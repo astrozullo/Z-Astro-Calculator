@@ -51,27 +51,9 @@ Z-Astro-Calculator is a standalone HTML file designed for astrophotographers. It
 - **Sampling analysis** — Nyquist optimal zones for planetary and deep sky with visual indicator (optimal / undersampled / oversampled)
 - **Lunar resolution** — km/pixel and FOV on the lunar surface at configurable distance
 - **Camera presets** — 65+ preloaded models (ZWO, PlayerOne, QHY, ToupTek, Aiptek, Moravian, Atik, Canon EOS, Nikon DSLR)
-- **Vignetting warning** — risk estimate based on sensor diagonal and native telescope focal ratio
 - **Visible Objects Tonight** — calculates which DSO objects (100+ Messier and NGC) are visible from any location on a given date and time, with city autocomplete search (200+ cities in database)
 - **4 languages** — Italiano, English, Español, Русский
 - **Automatic dark mode**
-
-### Vignetting warning — how it works
-The calculator estimates the risk of mechanical vignetting by comparing the physical sensor diagonal (calculated from pixel size × resolution) against the **native** focal ratio of the telescope. The effective focal ratio with a Barlow is not used because a Barlow does not reduce the image circle — it only magnifies the central portion. A focal reducer, on the other hand, compresses the image circle and therefore raises the risk level by one step in the estimate.
-
-The estimate uses established empirical thresholds:
-- Sensor > 40mm diagonal (full frame) with native f/ > 5: warning; with f/ > 8: high risk
-- Sensor > 28mm diagonal (APS-C) with native f/ > 7: warning; with f/ > 10: high risk
-- Sensor > 21mm diagonal (4/3") with native f/ > 10: warning; with f/ > 13: high risk
-
-This estimate is indicative. The actual image circle depends on the specific optical design of the telescope (baffling, secondary mirror, integrated reducers). Always verify the instrument's specifications.
-
-### Privacy and requirements
-- ✅ **No data collected** — the file transmits nothing, has no analytics, no cookies
-- ✅ **Works offline** — no internet connection required, zero external dependencies
-- ✅ **Cross-platform** — works on any modern browser (Chrome, Firefox, Safari, Edge) on Windows, macOS, Linux, Android, iOS
-- ✅ **Single file** — one `.html` file, no folders, no installation
-- ✅ **Open source** — code is readable and inspectable directly in the browser (Ctrl+U)
 
 ### How to use
 Download `Z-Astro-Calculator.html` and open it with any browser. That's it.
