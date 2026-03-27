@@ -21,16 +21,6 @@ Z-Astro-Calculator è un file HTML standalone progettato per astrofotografi. Cal
 - **4 lingue** — Italiano, English, Español, Русский
 - **Dark mode** automatica
 
-### Avviso vignettatura — come funziona
-Il calcolatore stima il rischio di vignettatura meccanica confrontando la diagonale fisica del sensore (calcolata da pixel size × risoluzione) con il rapporto focale **nativo** del telescopio. Il rapporto focale effettivo con Barlow non viene usato perché un Barlow non riduce il cerchio d'immagine — al contrario, magnifica solo la parte centrale. Un riduttore invece comprime il cerchio d'immagine e per questo aumenta il rischio di un livello nella stima.
-
-La stima usa soglie empiriche consolidate:
-- Sensore > 40mm diag. (full frame) con f/ nativo > 5: attenzione; con f/ > 8: rischio elevato
-- Sensore > 28mm diag. (APS-C) con f/ nativo > 7: attenzione; con f/ > 10: rischio elevato
-- Sensore > 21mm diag. (4/3") con f/ nativo > 10: attenzione; con f/ > 13: rischio elevato
-
-Questa stima è indicativa. Il cerchio d'immagine reale dipende dal progetto ottico specifico del telescopio (baffling, secondario, riduttori integrati). Verificare sempre le specifiche dello strumento.
-
 ### Privacy e requisiti
 - ✅ **Nessun dato raccolto** — il file non trasmette nulla, non ha analytics, non ha cookie
 - ✅ **Funziona offline** — non richiede connessione internet, zero dipendenze esterne
