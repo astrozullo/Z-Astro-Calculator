@@ -16,7 +16,6 @@ Z-Astro-Calculator è un file HTML standalone progettato per astrofotografi. Cal
 - **Analisi campionamento** — zone ottimali Nyquist per planetario e deep sky con indicatore visivo (ottimale / sottocampionato / sovracampionato)
 - **Risoluzione lunare** — km/pixel e FOV sulla superficie lunare a distanza configurabile
 - **Preset fotocamere** — 65+ modelli precaricati (ZWO, PlayerOne, QHY, ToupTek, Aiptek, Moravian, Atik, Canon EOS, Nikon DSLR)
-- **Avviso vignettatura** — stima del rischio basata sulla diagonale del sensore e sul rapporto focale nativo del telescopio
 - **Visible Objects Tonight** — calcola gli oggetti DSO (100+ tra Messier e NGC) visibili da qualsiasi posizione geografica in una data e ora specifiche, con ricerca città autocomplete (200+ città nel database)
 - **4 lingue** — Italiano, English, Español, Русский
 - **Dark mode** automatica
