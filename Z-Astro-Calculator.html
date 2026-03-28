@@ -5,134 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Z-Astro-Calculator</title>
 <!-- ZAC-v1.0-20250327-AZ-CAV -->
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#fff;--bg2:#f5f5f3;--bg3:#eeede9;--text:#1a1a18;--text2:#5a5a57;--text3:#8a8a86;--border:rgba(0,0,0,0.12);--border2:rgba(0,0,0,0.22);--radius-md:8px;--radius-lg:12px;--ok-bg:#eaf3de;--ok-txt:#3b6d11;--warn-bg:#faeeda;--warn-txt:#854f0b;--info-bg:#e6f1fb;--info-txt:#185fa5;--font:system-ui,-apple-system,'Segoe UI',sans-serif;--mono:'SFMono-Regular','Consolas',monospace}
-@media(prefers-color-scheme:dark){:root{--bg:#1c1c1a;--bg2:#252523;--bg3:#2e2e2b;--text:#f0efe8;--text2:#a0a09a;--text3:#6a6a65;--border:rgba(255,255,255,0.1);--border2:rgba(255,255,255,0.2);--ok-bg:#17340a;--ok-txt:#c0dd97;--warn-bg:#412402;--warn-txt:#fac775;--info-bg:#042c53;--info-txt:#b5d4f4}}
-body{font-family:var(--font);background:var(--bg3);color:var(--text);min-height:100vh;display:flex;align-items:flex-start;justify-content:center;padding:2rem 1rem}
-.card{background:var(--bg);border-radius:var(--radius-lg);border:.5px solid var(--border);padding:2rem;width:100%;max-width:700px}
-@media(max-width:480px){.card{padding:1.25rem}}
-.header-row{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1.25rem;gap:.75rem}
-.brand{font-size:13px;font-weight:500;color:var(--text2);margin-bottom:.2rem}
-.main-title{font-size:20px;font-weight:500;line-height:1.2}
-.header-right{display:flex;flex-direction:column;align-items:flex-end;gap:5px;flex-shrink:0}
-.lang-bar{display:flex;flex-wrap:wrap;gap:4px;justify-content:flex-end;max-width:115px}
-.lang-btn{background:none;border:.5px solid var(--border2);border-radius:var(--radius-md);padding:3px 8px;font-size:11px;cursor:pointer;color:var(--text2);font-family:var(--font)}
-.lang-btn.active{background:var(--bg2);border-color:var(--text2);color:var(--text);font-weight:500}
-.pro-btn{background:none;border:.5px solid var(--border2);border-radius:var(--radius-md);padding:3px 10px;font-size:11px;cursor:pointer;color:var(--text2);font-family:var(--font);font-weight:500}
-.pro-btn.active{background:#1a1a18;color:#f5c842;border-color:#f5c842}
-@media(prefers-color-scheme:dark){.pro-btn.active{background:#2e2a00;color:#f5c842;border-color:#f5c842}}
-.pro-panel{display:none;background:var(--bg2);border:.5px solid var(--border2);border-radius:var(--radius-lg);padding:1rem 1.25rem;margin-bottom:1.25rem}
-.pro-panel.visible{display:block}
-.pro-title{font-size:11px;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:#f5c842;margin-bottom:.75rem}
-.wl-presets{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:.75rem}
-.wl-btn{background:none;border:.5px solid var(--border2);border-radius:var(--radius-md);padding:4px 10px;font-size:12px;cursor:pointer;color:var(--text2);font-family:var(--mono);display:flex;align-items:center;gap:5px}
-.wl-btn.active{border-color:#f5c842;color:var(--text);font-weight:500;background:var(--bg)}
-.wl-swatch{display:inline-block;width:10px;height:10px;border-radius:50%;flex-shrink:0}
-.wl-custom-row{display:flex;align-items:center;gap:8px;margin-bottom:.5rem}
-.wl-custom-row input{width:90px;font-family:var(--mono);font-size:13px;color:var(--text);background:var(--bg);border:.5px solid var(--border2);border-radius:var(--radius-md);padding:5px 8px;outline:none;-moz-appearance:textfield}
-.wl-custom-row input::-webkit-inner-spin-button{-webkit-appearance:none}
-.wl-custom-row span{font-size:13px;color:var(--text2)}
-.wl-note{font-size:12px;color:var(--text2);margin-top:.5rem;font-style:italic;display:flex;align-items:center;gap:5px}
-.obj-btn{display:block;width:100%;margin-bottom:1.5rem;padding:10px;background:none;border:.5px solid var(--border2);border-radius:var(--radius-lg);font-size:14px;cursor:pointer;color:var(--text);font-family:var(--font);font-weight:500;text-align:center}
-.obj-btn:hover{background:var(--bg2)}
-.two-col{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1rem}
-@media(max-width:460px){.two-col,.ov-grid{grid-template-columns:1fr!important}.metrics-grid,.moon-metrics{grid-template-columns:repeat(2,1fr)!important}}
-.sect-lbl{font-size:11px;font-weight:500;color:var(--text3);letter-spacing:.07em;text-transform:uppercase;margin-bottom:10px;margin-top:4px}
-.field{margin-bottom:12px}
-.field label{display:block;font-size:13px;color:var(--text2);margin-bottom:4px}
-input[type=number]{font-family:var(--font);font-size:14px;color:var(--text);background:var(--bg2);border:.5px solid var(--border);border-radius:var(--radius-md);padding:7px 10px;width:100%;outline:none;-moz-appearance:textfield}
-input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
-input[type=number]:focus{border-color:var(--border2)}
-input[type=text]{font-family:var(--font);font-size:14px;color:var(--text);background:var(--bg2);border:.5px solid var(--border);border-radius:var(--radius-md);padding:7px 10px;width:100%;outline:none}
-input[type=text]:focus{border-color:var(--border2)}
-select{font-family:var(--font);font-size:13px;color:var(--text);background:var(--bg2);border:.5px solid var(--border);border-radius:var(--radius-md);padding:7px 10px;width:100%;outline:none;cursor:pointer}
-select:focus{border-color:var(--border2)}
-input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:36px;background:none;cursor:pointer;outline:none;padding:0}
-input[type=range]::-webkit-slider-runnable-track{height:4px;background:var(--border2);border-radius:2px}
-input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--text);margin-top:-7px}
-input[type=range]::-moz-range-track{height:4px;background:var(--border2);border-radius:2px}
-input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--text);border:none}
-.sensor-row{display:flex;gap:6px;align-items:center}
-.sensor-row input{flex:1;min-width:0}
-.sensor-row span{font-size:13px;color:var(--text2)}
-.barlow-row{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:.5rem}
-.bl-btn{background:none;border:.5px solid var(--border2);border-radius:var(--radius-md);padding:5px 12px;font-size:13px;cursor:pointer;color:var(--text2);font-family:var(--font)}
-.bl-btn.reducer{border-style:dashed}
-.bl-btn.active{background:var(--bg2);border-color:var(--text2);color:var(--text);font-weight:500}
-.bl-note{font-size:12px;color:var(--text3);margin-bottom:1.5rem;min-height:16px}
-.divider{border:none;border-top:.5px solid var(--border);margin:0 0 1.25rem}
-.metrics-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:1.5rem}
-.metric{background:var(--bg2);border-radius:var(--radius-md);padding:.75rem 1rem}
-.m-lbl{font-size:11px;color:var(--text3);margin-bottom:4px}
-.m-val{font-size:18px;font-weight:500;font-family:var(--mono);line-height:1.2}
-.m-unit{font-size:11px;color:var(--text3);margin-top:2px}
-.moon-section{border:.5px solid var(--border);border-radius:var(--radius-lg);padding:1rem 1.25rem;margin-bottom:1.5rem}
-.moon-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;flex-wrap:wrap;gap:.5rem}
-.moon-title{font-size:11px;font-weight:500;color:var(--text3);letter-spacing:.07em;text-transform:uppercase}
-.moon-dist-row{display:flex;align-items:center;gap:8px}
-.moon-dist-row label{font-size:12px;color:var(--text2);white-space:nowrap}
-.moon-dist-row input{width:110px;font-family:var(--mono);font-size:13px;padding:5px 8px;background:var(--bg2);border:.5px solid var(--border2);border-radius:var(--radius-md);color:var(--text);outline:none}
-.moon-dist-row span{font-size:12px;color:var(--text2)}
-.moon-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.tab-bar{display:flex;border-bottom:.5px solid var(--border);margin-bottom:1.5rem}
-.tab{background:none;border:none;border-bottom:2px solid transparent;padding:8px 20px;font-size:14px;cursor:pointer;color:var(--text2);margin-bottom:-1px;font-family:var(--font)}
-.tab.active{color:var(--text);border-bottom-color:var(--text);font-weight:500}
-.panel{display:none}.panel.active{display:block}
-.limits{display:flex;gap:1.25rem;flex-wrap:wrap;margin-bottom:1rem}
-.lim{font-size:13px;color:var(--text2)}
-.lim span{font-family:var(--mono);color:var(--text)}
-.status-card{border-radius:var(--radius-lg);border:.5px solid var(--border);padding:1rem 1.25rem;margin-bottom:1rem}
-.badge{display:inline-block;font-size:11px;font-weight:500;padding:3px 10px;border-radius:var(--radius-md);margin-bottom:8px;letter-spacing:.04em;text-transform:uppercase}
-.s-ok .badge{background:var(--ok-bg);color:var(--ok-txt)}
-.s-under .badge{background:var(--warn-bg);color:var(--warn-txt)}
-.s-over .badge{background:var(--info-bg);color:var(--info-txt)}
-.sug{font-size:14px;line-height:1.6}
-.seeing-row{display:flex;align-items:center;gap:12px;margin-bottom:1rem}
-.seeing-row label{font-size:13px;color:var(--text2);white-space:nowrap}
-.seeing-row input[type=range]{flex:1}
-.see-val{font-size:14px;font-weight:500;font-family:var(--mono);min-width:42px}
-.fov-block{background:var(--bg2);border-radius:var(--radius-lg);padding:1rem 1.25rem}
-.fov-lbl{font-size:11px;color:var(--text3);margin-bottom:6px;text-transform:uppercase;letter-spacing:.06em}
-.fov-val{font-size:16px;font-family:var(--mono);font-weight:500}
-footer{margin-top:2rem;padding-top:1rem;border-top:.5px solid var(--border);font-size:12px;color:var(--text3);text-align:center;line-height:2}
-footer a{color:var(--text3);text-decoration:underline;text-underline-offset:3px}
-.footer-contrib{font-size:11px;color:var(--text3);margin-top:4px}
-#ov-page{display:none}
-.ov-header{display:flex;align-items:center;gap:12px;margin-bottom:1.5rem}
-.back-btn{background:none;border:.5px solid var(--border2);border-radius:var(--radius-md);padding:5px 14px;font-size:13px;cursor:pointer;color:var(--text2);font-family:var(--font);white-space:nowrap}
-.city-hint{font-size:13px;color:var(--text2);background:var(--bg2);border-radius:var(--radius-lg);padding:.75rem 1rem;margin-bottom:.75rem;line-height:1.6;border:.5px solid var(--border)}
-.city-note{font-size:11px;color:var(--text3);margin-top:4px;font-style:italic;min-height:15px}
-.search-wrap{position:relative;margin-bottom:.75rem}
-.search-wrap input[type=text]{background:var(--bg2);border:.5px solid var(--border2);border-radius:var(--radius-md);padding:7px 10px;width:100%;outline:none;font-size:14px;color:var(--text);font-family:var(--font)}
-.city-dd{position:absolute;top:calc(100% + 2px);left:0;right:0;background:var(--bg);border:.5px solid var(--border2);border-radius:var(--radius-md);max-height:240px;overflow-y:auto;z-index:200;display:none;box-shadow:0 4px 16px rgba(0,0,0,0.15)}
-.city-item{padding:8px 10px;cursor:pointer;font-size:13px;color:var(--text);display:flex;justify-content:space-between;align-items:center}
-.city-item:hover{background:var(--bg2)}
-.city-gtag{font-size:11px;color:var(--text3);margin-left:8px;flex-shrink:0}
-.ov-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
-.ov-field{margin-bottom:12px}
-.ov-field label{display:block;font-size:13px;color:var(--text2);margin-bottom:4px}
-.ov-field input,.ov-field select{font-family:var(--font);font-size:14px;color:var(--text);background:var(--bg2);border:.5px solid var(--border2);border-radius:var(--radius-md);padding:7px 10px;width:100%;outline:none}
-.dst-row{display:flex;align-items:center;gap:12px;margin-bottom:1rem;flex-wrap:wrap}
-.dst-row label{font-size:13px;color:var(--text2)}
-.dst-toggle{display:flex;gap:6px}
-.dst-opt{background:none;border:.5px solid var(--border2);border-radius:var(--radius-md);padding:5px 14px;font-size:13px;cursor:pointer;color:var(--text2);font-family:var(--font)}
-.dst-opt.active{background:var(--bg2);border-color:var(--text2);color:var(--text);font-weight:500}
-.show-btn{display:block;width:100%;padding:11px;background:var(--text);border:none;border-radius:var(--radius-lg);font-size:14px;cursor:pointer;color:var(--bg);font-family:var(--font);font-weight:500;margin-bottom:1.5rem}
-.obj-table{width:100%;border-collapse:collapse;font-size:13px}
-.obj-table th{text-align:left;font-size:11px;font-weight:500;color:var(--text2);letter-spacing:.05em;text-transform:uppercase;padding:6px;border-bottom:.5px solid var(--border)}
-.obj-table td{padding:7px 6px;border-bottom:.5px solid var(--border);color:var(--text);vertical-align:middle}
-.obj-table tr:last-child td{border-bottom:none}
-.obj-table tr:hover td{background:var(--bg2)}
-.obj-name{font-weight:500}
-.alt-badge{display:inline-block;font-size:11px;padding:2px 7px;border-radius:var(--radius-md);font-family:var(--mono)}
-.alt-good{background:var(--ok-bg);color:var(--ok-txt)}
-.alt-low{background:var(--warn-bg);color:var(--warn-txt)}
-.no-results{font-size:14px;color:var(--text2);padding:1.5rem 0;text-align:center}
-.results-info{font-size:12px;color:var(--text3);margin-bottom:.75rem}
-.ov-title{font-size:18px;font-weight:500}
-@media(max-width:480px){.obj-table th:nth-child(4),.obj-table td:nth-child(4),.obj-table th:nth-child(5),.obj-table td:nth-child(5){display:none}}
-</style>
+<style>*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}:root{--bg:#1a0000;--bg2:#220000;--bg3:#0d0000;--text:#f0dede;--text2:#b08080;--text3:#7a5555;--border:rgba(255,100,100,0.12);--border2:rgba(255,100,100,0.22);--radius-md:8px;--radius-lg:12px;--ok-bg:#1a2e0a;--ok-txt:#a0cc70;--warn-bg:#2e1400;--warn-txt:#e8a060;--info-bg:#0a1a2e;--info-txt:#70a0cc;--font:system-ui,-apple-system,'Segoe UI',sans-serif;--mono:'SFMono-Regular','Consolas',monospace}body{font-family:var(--font);background:var(--bg3);color:var(--text);min-height:100vh;display:flex;align-items:flex-start;justify-content:center;padding:2rem 1rem;position:relative}body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;background-image:radial-gradient(1px 1px at 10% 15%,rgba(255,220,220,0.7) 0%,transparent 100%),radial-gradient(1px 1px at 25% 40%,rgba(255,220,220,0.5) 0%,transparent 100%),radial-gradient(1.5px 1.5px at 38% 8%,rgba(255,200,200,0.8) 0%,transparent 100%),radial-gradient(1px 1px at 52% 28%,rgba(255,220,220,0.4) 0%,transparent 100%),radial-gradient(1px 1px at 67% 55%,rgba(255,210,210,0.6) 0%,transparent 100%),radial-gradient(2px 2px at 73% 12%,rgba(255,200,200,0.9) 0%,transparent 100%),radial-gradient(1px 1px at 82% 38%,rgba(255,220,220,0.5) 0%,transparent 100%),radial-gradient(1px 1px at 91% 72%,rgba(255,220,220,0.4) 0%,transparent 100%),radial-gradient(1.5px 1.5px at 5% 65%,rgba(255,200,200,0.7) 0%,transparent 100%),radial-gradient(1px 1px at 18% 80%,rgba(255,220,220,0.5) 0%,transparent 100%),radial-gradient(1px 1px at 44% 70%,rgba(255,210,210,0.4) 0%,transparent 100%),radial-gradient(2px 2px at 58% 88%,rgba(255,200,200,0.6) 0%,transparent 100%),radial-gradient(1px 1px at 77% 92%,rgba(255,220,220,0.5) 0%,transparent 100%),radial-gradient(1px 1px at 88% 20%,rgba(255,220,220,0.3) 0%,transparent 100%),radial-gradient(1px 1px at 32% 52%,rgba(255,220,220,0.4) 0%,transparent 100%),radial-gradient(1.5px 1.5px at 62% 45%,rgba(255,200,200,0.6) 0%,transparent 100%),radial-gradient(1px 1px at 14% 33%,rgba(255,220,220,0.3) 0%,transparent 100%),radial-gradient(1px 1px at 95% 48%,rgba(255,220,220,0.5) 0%,transparent 100%),radial-gradient(2px 2px at 48% 95%,rgba(255,200,200,0.7) 0%,transparent 100%),radial-gradient(1px 1px at 70% 25%,rgba(255,220,220,0.4) 0%,transparent 100%)}.card{background:var(--bg);border-radius:var(--radius-lg);border:.5px solid var(--border);padding:2rem;width:100%;max-width:700px;position:relative;z-index:1}@media(max-width:480px){.card{padding:1.25rem}}.header-row{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1.25rem;gap:.75rem}.brand{font-size:13px;font-weight:500;color:var(--text2);margin-bottom:.2rem}.main-title{font-size:20px;font-weight:500;line-height:1.2}.header-right{display:flex;flex-direction:column;align-items:flex-end;gap:5px;flex-shrink:0}.lang-bar{display:flex;flex-wrap:wrap;gap:4px;justify-content:flex-end;max-width:115px}.lang-btn{background:none;border:.5px solid var(--border2);border-radius:var(--radius-md);padding:3px 8px;font-size:11px;cursor:pointer;color:var(--text2);font-family:var(--font)}.lang-btn.active{background:var(--bg2);border-color:var(--text2);color:var(--text);font-weight:500}.pro-btn{background:none;border:.5px solid var(--border2);border-radius:var(--radius-md);padding:3px 10px;font-size:11px;cursor:pointer;color:var(--text2);font-family:var(--font);font-weight:500}.pro-btn.active{background:#1a1a18;color:#f5c842;border-color:#f5c842}@media(prefers-color-scheme:dark){.pro-btn.active{background:#2e2a00;color:#f5c842;border-color:#f5c842}}.pro-panel{display:none;background:var(--bg2);border:.5px solid var(--border2);border-radius:var(--radius-lg);padding:1rem 1.25rem;margin-bottom:1.25rem}.pro-panel.visible{display:block}.pro-title{font-size:11px;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:#f5c842;margin-bottom:.75rem}.wl-presets{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:.75rem}.wl-btn{background:none;border:.5px solid var(--border2);border-radius:var(--radius-md);padding:4px 10px;font-size:12px;cursor:pointer;color:var(--text2);font-family:var(--mono);display:flex;align-items:center;gap:5px}.wl-btn.active{border-color:#f5c842;color:var(--text);font-weight:500;background:var(--bg)}.wl-swatch{display:inline-block;width:10px;height:10px;border-radius:50%;flex-shrink:0}.wl-custom-row{display:flex;align-items:center;gap:8px;margin-bottom:.5rem}.wl-custom-row input{width:90px;font-family:var(--mono);font-size:13px;color:var(--text);background:var(--bg);border:.5px solid var(--border2);border-radius:var(--radius-md);padding:5px 8px;outline:none;-moz-appearance:textfield}.wl-custom-row input::-webkit-inner-spin-button{-webkit-appearance:none}.wl-custom-row span{font-size:13px;color:var(--text2)}.wl-note{font-size:12px;color:var(--text2);margin-top:.5rem;font-style:italic;display:flex;align-items:center;gap:5px}.obj-btn{display:block;width:100%;margin-bottom:1.5rem;padding:10px;background:#2a0a0a;border:.5px solid rgba(255,100,100,0.25);border-radius:var(--radius-lg);font-size:14px;cursor:pointer;color:var(--text);font-family:var(--font);font-weight:500;text-align:center}.obj-btn:hover{background:#3a1010}.two-col{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1rem}@media(max-width:460px){.two-col,.ov-grid{grid-template-columns:1fr!important}.metrics-grid,.moon-metrics{grid-template-columns:repeat(2,1fr)!important}}.sect-lbl{font-size:11px;font-weight:500;color:var(--text3);letter-spacing:.07em;text-transform:uppercase;margin-bottom:10px;margin-top:4px}.field{margin-bottom:12px}.field label{display:block;font-size:13px;color:var(--text2);margin-bottom:4px}input[type=number]{font-family:var(--font);font-size:14px;color:var(--text);background:var(--bg2);border:.5px solid var(--border);border-radius:var(--radius-md);padding:7px 10px;width:100%;outline:none;-moz-appearance:textfield}input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}input[type=number]:focus{border-color:var(--border2)}input[type=text]{font-family:var(--font);font-size:14px;color:var(--text);background:var(--bg2);border:.5px solid var(--border);border-radius:var(--radius-md);padding:7px 10px;width:100%;outline:none}input[type=text]:focus{border-color:var(--border2)}select{font-family:var(--font);font-size:13px;color:var(--text);background:var(--bg2);border:.5px solid var(--border);border-radius:var(--radius-md);padding:7px 10px;width:100%;outline:none;cursor:pointer}select:focus{border-color:var(--border2)}input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:36px;background:none;cursor:pointer;outline:none;padding:0}input[type=range]::-webkit-slider-runnable-track{height:4px;background:var(--border2);border-radius:2px}input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--text);margin-top:-7px}input[type=range]::-moz-range-track{height:4px;background:var(--border2);border-radius:2px}input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--text);border:none}.sensor-row{display:flex;gap:6px;align-items:center}.sensor-row input{flex:1;min-width:0}.sensor-row span{font-size:13px;color:var(--text2)}.barlow-row{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:.5rem}.bl-btn{background:none;border:.5px solid var(--border2);border-radius:var(--radius-md);padding:5px 12px;font-size:13px;cursor:pointer;color:var(--text2);font-family:var(--font)}.bl-btn.reducer{border-style:dashed}.bl-btn.active{background:var(--bg2);border-color:var(--text2);color:var(--text);font-weight:500}.bl-note{font-size:12px;color:var(--text3);margin-bottom:1.5rem;min-height:16px}.divider{border:none;border-top:.5px solid var(--border);margin:0 0 1.25rem}.metrics-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:1.5rem}.metric{background:var(--bg2);border-radius:var(--radius-md);padding:.75rem 1rem}.m-lbl{font-size:11px;color:var(--text3);margin-bottom:4px}.m-val{font-size:18px;font-weight:500;font-family:var(--mono);line-height:1.2}.m-unit{font-size:11px;color:var(--text3);margin-top:2px}.moon-section{border:.5px solid var(--border);border-radius:var(--radius-lg);padding:1rem 1.25rem;margin-bottom:1.5rem}.moon-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;flex-wrap:wrap;gap:.5rem}.moon-title{font-size:11px;font-weight:500;color:var(--text3);letter-spacing:.07em;text-transform:uppercase}.moon-dist-row{display:flex;align-items:center;gap:8px}.moon-dist-row label{font-size:12px;color:var(--text2);white-space:nowrap}.moon-dist-row input{width:110px;font-family:var(--mono);font-size:13px;padding:5px 8px;background:var(--bg2);border:.5px solid var(--border2);border-radius:var(--radius-md);color:var(--text);outline:none}.moon-dist-row span{font-size:12px;color:var(--text2)}.moon-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.tab-bar{display:flex;border-bottom:.5px solid var(--border);margin-bottom:1.5rem}.tab{background:none;border:none;border-bottom:2px solid transparent;padding:8px 20px;font-size:14px;cursor:pointer;color:var(--text2);margin-bottom:-1px;font-family:var(--font)}.tab.active{color:var(--text);border-bottom-color:var(--text);font-weight:500}.panel{display:none}.panel.active{display:block}.limits{display:flex;gap:1.25rem;flex-wrap:wrap;margin-bottom:1rem}.lim{font-size:13px;color:var(--text2)}.lim span{font-family:var(--mono);color:var(--text)}.status-card{border-radius:var(--radius-lg);border:.5px solid var(--border);padding:1rem 1.25rem;margin-bottom:1rem}.badge{display:inline-block;font-size:11px;font-weight:500;padding:3px 10px;border-radius:var(--radius-md);margin-bottom:8px;letter-spacing:.04em;text-transform:uppercase}.s-ok{border-left:3px solid var(--ok-txt)}.s-under{border-left:3px solid var(--warn-txt)}.s-over{border-left:3px solid var(--info-txt)}.s-ok .badge{background:var(--ok-bg);color:var(--ok-txt)}.s-under .badge{background:var(--warn-bg);color:var(--warn-txt)}.s-over .badge{background:var(--info-bg);color:var(--info-txt)}.sug{font-size:14px;line-height:1.6}.seeing-row{display:flex;align-items:center;gap:12px;margin-bottom:1rem}.seeing-row label{font-size:13px;color:var(--text2);white-space:nowrap}.seeing-row input[type=range]{flex:1}.see-val{font-size:14px;font-weight:500;font-family:var(--mono);min-width:42px}.fov-block{background:var(--bg2);border-radius:var(--radius-lg);padding:1rem 1.25rem}.fov-lbl{font-size:11px;color:var(--text3);margin-bottom:6px;text-transform:uppercase;letter-spacing:.06em}.fov-val{font-size:16px;font-family:var(--mono);font-weight:500}footer{margin-top:2rem;padding-top:1rem;border-top:.5px solid var(--border);font-size:12px;color:var(--text3);text-align:center;line-height:2}footer a{color:var(--text3);text-decoration:underline;text-underline-offset:3px}.footer-contrib{font-size:11px;color:var(--text3);margin-top:4px}#ov-page{display:none}.ov-header{display:flex;align-items:center;gap:12px;margin-bottom:1.5rem}.back-btn{background:none;border:.5px solid var(--border2);border-radius:var(--radius-md);padding:5px 14px;font-size:13px;cursor:pointer;color:var(--text2);font-family:var(--font);white-space:nowrap}.city-hint{font-size:13px;color:var(--text2);background:var(--bg2);border-radius:var(--radius-lg);padding:.75rem 1rem;margin-bottom:.75rem;line-height:1.6;border:.5px solid var(--border)}.city-note{font-size:11px;color:var(--text3);margin-top:4px;font-style:italic;min-height:15px}.search-wrap{position:relative;margin-bottom:.75rem}.search-wrap input[type=text]{background:var(--bg2);border:.5px solid var(--border2);border-radius:var(--radius-md);padding:7px 10px;width:100%;outline:none;font-size:14px;color:var(--text);font-family:var(--font)}.city-dd{position:absolute;top:calc(100% + 2px);left:0;right:0;background:var(--bg);border:.5px solid var(--border2);border-radius:var(--radius-md);max-height:240px;overflow-y:auto;z-index:200;display:none;box-shadow:0 4px 16px rgba(0,0,0,0.15)}.city-item{padding:8px 10px;cursor:pointer;font-size:13px;color:var(--text);display:flex;justify-content:space-between;align-items:center}.city-item:hover{background:var(--bg2)}.city-gtag{font-size:11px;color:var(--text3);margin-left:8px;flex-shrink:0}.ov-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}.ov-field{margin-bottom:12px}.ov-field label{display:block;font-size:13px;color:var(--text2);margin-bottom:4px}.ov-field input,.ov-field select{font-family:var(--font);font-size:14px;color:var(--text);background:var(--bg2);border:.5px solid var(--border2);border-radius:var(--radius-md);padding:7px 10px;width:100%;outline:none}.dst-row{display:flex;align-items:center;gap:12px;margin-bottom:1rem;flex-wrap:wrap}.dst-row label{font-size:13px;color:var(--text2)}.dst-toggle{display:flex;gap:6px}.dst-opt{background:none;border:.5px solid var(--border2);border-radius:var(--radius-md);padding:5px 14px;font-size:13px;cursor:pointer;color:var(--text2);font-family:var(--font)}.dst-opt.active{background:var(--bg2);border-color:var(--text2);color:var(--text);font-weight:500}.show-btn{display:block;width:100%;padding:11px;background:#2a0a0a;border:.5px solid rgba(255,100,100,0.3);border-radius:var(--radius-lg);font-size:14px;cursor:pointer;color:var(--text);font-family:var(--font);font-weight:500;margin-bottom:1.5rem}.obj-table{width:100%;border-collapse:collapse;font-size:13px}.obj-table th{text-align:left;font-size:11px;font-weight:500;color:var(--text2);letter-spacing:.05em;text-transform:uppercase;padding:6px;border-bottom:.5px solid var(--border)}.obj-table td{padding:7px 6px;border-bottom:.5px solid var(--border);color:var(--text);vertical-align:middle}.obj-table tr:last-child td{border-bottom:none}.obj-table tr:hover td{background:var(--bg2)}.obj-name{font-weight:500}.alt-badge{display:inline-block;font-size:11px;padding:2px 7px;border-radius:var(--radius-md);font-family:var(--mono)}.alt-good{background:var(--ok-bg);color:var(--ok-txt)}.alt-low{background:var(--warn-bg);color:var(--warn-txt)}.no-results{font-size:14px;color:var(--text2);padding:1.5rem 0;text-align:center}.results-info{font-size:12px;color:var(--text3);margin-bottom:.75rem}.ov-title{font-size:18px;font-weight:500}@media(max-width:480px){.obj-table th:nth-child(4),.obj-table td:nth-child(4),.obj-table th:nth-child(5),.obj-table td:nth-child(5){display:none}}</style>
 </head>
 <body>
 <div class="card">
@@ -154,16 +27,16 @@ footer a{color:var(--text3);text-decoration:underline;text-underline-offset:3px}
       </div>
     </div>
   </div>
-
+ 
   <div class="pro-panel" id="pro-panel">
     <div class="pro-title">&#9733; Pro &mdash; Wavelength / Lunghezza d'onda</div>
     <div class="wl-presets" id="wl-presets"></div>
     <div class="wl-custom-row"><input type="number" id="wl-input" min="300" max="1100" step="1" value="550"><span>nm &mdash; custom</span></div>
     <div class="wl-note" id="wl-note"></div>
   </div>
-
-  <button class="obj-btn" id="open-ov">&#128301; Visible Objects Tonight &rarr;</button>
-
+ 
+  <button class="obj-btn" id="open-ov">&#128301; Visible Objects Tonight<br>&amp; Polar Alignment &rarr;</button>
+ 
   <div class="two-col">
     <div>
       <div class="sect-lbl" data-i18n="secTelescope"></div>
@@ -184,12 +57,12 @@ footer a{color:var(--text3);text-decoration:underline;text-underline-offset:3px}
       </div>
     </div>
   </div>
-
+ 
   <div class="sect-lbl" data-i18n="secBarlow"></div>
   <div class="barlow-row" id="bl-row"></div>
   <div class="bl-note" id="bl-note"></div>
   <hr class="divider">
-
+ 
   <div class="metrics-grid">
     <div class="metric"><div class="m-lbl" data-i18n="mPixelScale"></div><div class="m-val" id="ps-val">&#8212;</div><div class="m-unit">arcsec/px</div></div>
     <div class="metric"><div class="m-lbl" data-i18n="mFocalEff"></div><div class="m-val" id="fe-val">&#8212;</div><div class="m-unit">mm</div></div>
@@ -198,11 +71,12 @@ footer a{color:var(--text3);text-decoration:underline;text-underline-offset:3px}
     <div class="metric"><div class="m-lbl" data-i18n="mCrop"></div><div class="m-val" id="cf-val">&#8212;</div><div class="m-unit">vs FF 43.27mm</div></div>
     <div class="metric"><div class="m-lbl" data-i18n="mFocalEq"></div><div class="m-val" id="feq-val">&#8212;</div><div class="m-unit">mm equiv. 35mm</div></div>
   </div>
-
+ 
+ 
   <div class="moon-section">
     <div class="moon-header">
       <div class="moon-title" data-i18n="moonTitle"></div>
-      <div class="moon-dist-row"><label data-i18n="moonDist"></label><input type="number" id="moon-dist" value="384400" min="356000" max="407000" step="100"><span>km</span></div>
+      <div class="moon-dist-row"><label data-i18n="moonDist"></label><input type="number" id="moon-dist" value="384400" step="100"><span>km</span></div>
     </div>
     <div class="moon-metrics">
       <div class="metric"><div class="m-lbl" data-i18n="moonPx"></div><div class="m-val" id="moon-px">&#8212;</div><div class="m-unit">km/px</div></div>
@@ -210,12 +84,12 @@ footer a{color:var(--text3);text-decoration:underline;text-underline-offset:3px}
       <div class="metric"><div class="m-lbl" data-i18n="moonFovH"></div><div class="m-val" id="moon-fov-h">&#8212;</div><div class="m-unit">km</div></div>
     </div>
   </div>
-
+ 
   <div class="tab-bar">
     <button class="tab active" data-tab="pl" data-i18n="tabPlanetary"></button>
     <button class="tab" data-tab="ds" data-i18n="tabDeepsky"></button>
   </div>
-
+ 
   <div class="panel active" id="panel-pl">
     <div class="limits">
       <div class="lim"><span data-i18n="limDawes"></span>: <span id="d-val">&#8212;</span>"</div>
@@ -225,7 +99,7 @@ footer a{color:var(--text3);text-decoration:underline;text-underline-offset:3px}
     <div class="status-card" id="pl-card"><div class="badge" id="pl-badge">&#8212;</div><p class="sug" id="pl-sug">&#8212;</p></div>
     <div class="fov-block"><div class="fov-lbl" data-i18n="fovLabel"></div><div class="fov-val" id="pl-fov">&#8212;</div></div>
   </div>
-
+ 
   <div class="panel" id="panel-ds">
     <div class="seeing-row">
       <label data-i18n="seeingLabel"></label>
@@ -238,370 +112,447 @@ footer a{color:var(--text3);text-decoration:underline;text-underline-offset:3px}
     <div class="status-card" id="ds-card"><div class="badge" id="ds-badge">&#8212;</div><p class="sug" id="ds-sug">&#8212;</p></div>
     <div class="fov-block"><div class="fov-lbl" data-i18n="fovLabel"></div><div class="fov-val" id="ds-fov">&#8212;</div></div>
   </div>
-
+ 
   <footer>
-    <span data-i18n="footerBy"></span> Andrea Zullo &nbsp;&middot;&nbsp; <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0c7679606063227f7c6d6f6964657f78637e754c6b616d6560226f6361">[email&#160;protected]</a><br>
+    <span data-i18n="footerBy"></span> Andrea Zullo &nbsp;&middot;&nbsp; <a href="/cdn-cgi/l/email-protection#fe848b929291d08d8e9f9d9b96978d8a918c87be99939f9792d09d9193"><span class="__cf_email__" data-cfemail="ee949b828281c09d9e8f8d8b86879d9a819c97ae89838f8782c08d8183">[email&#160;protected]</span></a><br>
     pixel scale=206.265&times;pixel(&micro;m)/focale(mm) &middot; Dawes=116/D &middot; Rayleigh=1.22&times;&lambda;/D &middot; Nyquist: seeing/4&ndash;seeing/2
     <div class="footer-contrib"><span data-i18n="footerContrib"></span>: Davide Lavarini, Mattia Cipriani</div>
+    <div style="margin-top:.75rem;font-size:11px;color:var(--text3);font-style:italic">&#9432; App in revisione continua &mdash; alcune funzionalit&agrave; sono ancora in fase di verifica.</div>
+    <a href="https://github.com/astrozullo/Z-Astro-Calculator/releases" target="_blank" rel="noopener" style="display:block;margin-top:1.25rem;padding:10px;background:var(--bg2);border:.5px solid var(--border2);border-radius:var(--radius-md);color:var(--text2);font-size:12px;text-decoration:none;letter-spacing:.04em;text-align:center" onmouseover="this.style.borderColor='var(--text2)';this.style.color='var(--text)'" onmouseout="this.style.borderColor='var(--border2)';this.style.color='var(--text2)'">&#11088; v1.2 &nbsp;&mdash;&nbsp; Check for new release &rarr;</a>
   </footer>
 </div>
-
+ 
 <div id="ov-page">
   <div class="ov-header"><button class="back-btn" id="back-btn">&larr; Back</button><div class="ov-title">Visible Objects Tonight</div></div>
   <div class="city-hint">Don't know your coordinates? No problem!<br>Search the nearest city &mdash; results will be approximate.<div class="city-note" id="city-note"></div></div>
+ 
+  <!-- COORDINATE CONVERTER -->
+  <div style="margin-bottom:.75rem">
+    <button class="obj-btn" id="conv-toggle" style="margin-bottom:0;font-size:13px;padding:8px 10px">&#8645; Coordinate Converter: decimal &#8596; DMS &darr;</button>
+  </div>
+  <div id="conv-section" style="display:none;background:var(--bg2);border:.5px solid var(--border);border-radius:var(--radius-lg);padding:1rem 1.25rem;margin-bottom:.75rem">
+    <div style="font-size:11px;color:var(--text3);text-align:center;margin-bottom:.75rem;letter-spacing:.05em;text-transform:uppercase">Decimal &rarr; DMS</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:.75rem">
+      <div><label style="font-size:12px;color:var(--text2);display:block;margin-bottom:3px">Lat decimal</label><input type="number" id="dd-lat" placeholder="45.4384" step="0.0001" style="width:100%;font-size:13px;padding:6px 8px;background:var(--bg);border:.5px solid var(--border2);border-radius:var(--radius-md);color:var(--text);font-family:var(--mono);outline:none"></div>
+      <div><label style="font-size:12px;color:var(--text2);display:block;margin-bottom:3px">Lon decimal</label><input type="number" id="dd-lon" placeholder="10.9924" step="0.0001" style="width:100%;font-size:13px;padding:6px 8px;background:var(--bg);border:.5px solid var(--border2);border-radius:var(--radius-md);color:var(--text);font-family:var(--mono);outline:none"></div>
+    </div>
+    <div id="dd-result" style="font-size:13px;font-family:var(--mono);color:var(--text2);text-align:center;min-height:18px;margin-bottom:1rem"></div>
+    <hr style="border:none;border-top:.5px solid var(--border);margin-bottom:.75rem">
+    <div style="font-size:11px;color:var(--text3);text-align:center;margin-bottom:.75rem;letter-spacing:.05em;text-transform:uppercase">DMS &rarr; Decimal</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin-bottom:.5rem">
+      <div><label style="font-size:11px;color:var(--text2);display:block;margin-bottom:3px">Lat °</label><input type="number" id="dms-latd" placeholder="45" style="width:100%;font-size:13px;padding:6px 8px;background:var(--bg);border:.5px solid var(--border2);border-radius:var(--radius-md);color:var(--text);font-family:var(--mono);outline:none"></div>
+      <div><label style="font-size:11px;color:var(--text2);display:block;margin-bottom:3px">Lat '</label><input type="number" id="dms-latm" placeholder="26" style="width:100%;font-size:13px;padding:6px 8px;background:var(--bg);border:.5px solid var(--border2);border-radius:var(--radius-md);color:var(--text);font-family:var(--mono);outline:none"></div>
+      <div><label style="font-size:11px;color:var(--text2);display:block;margin-bottom:3px">Lat "</label><input type="number" id="dms-lats" placeholder="18.4" step="0.1" style="width:100%;font-size:13px;padding:6px 8px;background:var(--bg);border:.5px solid var(--border2);border-radius:var(--radius-md);color:var(--text);font-family:var(--mono);outline:none"></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin-bottom:.75rem">
+      <div><label style="font-size:11px;color:var(--text2);display:block;margin-bottom:3px">Lon °</label><input type="number" id="dms-lond" placeholder="10" style="width:100%;font-size:13px;padding:6px 8px;background:var(--bg);border:.5px solid var(--border2);border-radius:var(--radius-md);color:var(--text);font-family:var(--mono);outline:none"></div>
+      <div><label style="font-size:11px;color:var(--text2);display:block;margin-bottom:3px">Lon '</label><input type="number" id="dms-lonm" placeholder="59" style="width:100%;font-size:13px;padding:6px 8px;background:var(--bg);border:.5px solid var(--border2);border-radius:var(--radius-md);color:var(--text);font-family:var(--mono);outline:none"></div>
+      <div><label style="font-size:11px;color:var(--text2);display:block;margin-bottom:3px">Lon "</label><input type="number" id="dms-lons" placeholder="32.9" step="0.1" style="width:100%;font-size:13px;padding:6px 8px;background:var(--bg);border:.5px solid var(--border2);border-radius:var(--radius-md);color:var(--text);font-family:var(--mono);outline:none"></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:.75rem">
+      <div style="display:flex;gap:6px;align-items:center"><label style="font-size:11px;color:var(--text2)">Lat:</label><select id="dms-lath" style="font-size:12px;padding:4px 6px;background:var(--bg);border:.5px solid var(--border2);border-radius:var(--radius-md);color:var(--text);outline:none"><option value="1">N</option><option value="-1">S</option></select></div>
+      <div style="display:flex;gap:6px;align-items:center"><label style="font-size:11px;color:var(--text2)">Lon:</label><select id="dms-lonh" style="font-size:12px;padding:4px 6px;background:var(--bg);border:.5px solid var(--border2);border-radius:var(--radius-md);color:var(--text);outline:none"><option value="1">E</option><option value="-1">W</option></select></div>
+    </div>
+    <div id="dms-result" style="font-size:13px;font-family:var(--mono);color:var(--text2);text-align:center;min-height:18px"></div>
+    <button id="dms-use-btn" style="display:none;margin-top:.75rem;width:100%;padding:8px;background:#2a0a0a;border:.5px solid rgba(255,100,100,0.3);border-radius:var(--radius-md);font-size:12px;cursor:pointer;color:var(--text);font-family:var(--font)">&#8595; Use these coordinates</button>
+  </div>
+ 
   <div class="search-wrap"><input type="text" id="city-search" placeholder="Type city name..." autocomplete="off"><div id="city-dd" class="city-dd"></div></div>
   <div class="ov-grid">
-    <div class="ov-field"><label>Latitude (&deg;N+, &deg;S&minus;)</label><input type="number" id="ov-lat" placeholder="e.g. 45.4" min="-90" max="90" step="0.01"></div>
-    <div class="ov-field"><label>Longitude (&deg;E+, &deg;W&minus;)</label><input type="number" id="ov-lon" placeholder="e.g. 10.9" min="-180" max="180" step="0.01"></div>
+    <div class="ov-field"><label>Latitude <span style="font-weight:400;color:var(--text3);font-size:11px">decimal</span></label><input type="text" inputmode="decimal" id="ov-lat" placeholder="e.g. 45.44 (N) or −33.87 (S)" style="font-family:var(--font);font-size:14px;color:var(--text);background:var(--bg2);border:.5px solid var(--border2);border-radius:var(--radius-md);padding:7px 10px;width:100%;outline:none"></div>
+    <div class="ov-field"><label>Longitude <span style="font-weight:400;color:var(--text3);font-size:11px">decimal</span></label><input type="text" inputmode="decimal" id="ov-lon" placeholder="e.g. 10.99 (E) or −115.81 (W)" style="font-family:var(--font);font-size:14px;color:var(--text);background:var(--bg2);border:.5px solid var(--border2);border-radius:var(--radius-md);padding:7px 10px;width:100%;outline:none"></div>
     <div class="ov-field"><label>Timezone</label><select id="ov-tz"></select></div>
-    <div class="ov-field"><label>Date (YYYY/MM/DD)</label><input type="text" id="ov-date" placeholder="2025/03/27" maxlength="10"></div>
+    <div class="ov-field"><label>Date</label><input type="date" id="ov-date" style="font-family:var(--font);font-size:14px;color:var(--text);background:var(--bg2);border:.5px solid var(--border2);border-radius:var(--radius-md);padding:7px 10px;width:100%;outline:none;cursor:pointer"></div>
   </div>
   <div class="ov-grid">
-    <div class="ov-field"><label>Time (HH:MM)</label><input type="text" id="ov-time" placeholder="23:00" maxlength="5"></div>
+    <div class="ov-field"><label>Time</label><input type="time" id="ov-time" style="font-family:var(--font);font-size:14px;color:var(--text);background:var(--bg2);border:.5px solid var(--border2);border-radius:var(--radius-md);padding:7px 10px;width:100%;outline:none;cursor:pointer"></div>
     <div class="ov-field"><label>Min altitude (&deg;)</label><input type="number" id="ov-minalt" value="15" min="0" max="60" step="1"></div>
   </div>
-  <div class="dst-row"><label>DST:</label><div class="dst-toggle"><button class="dst-opt active" data-dst="0">No</button><button class="dst-opt" data-dst="1">Yes +1h</button></div></div>
-  <button class="show-btn" id="show-btn">Show objects now!</button>
+  <div class="dst-row"><label>DST:</label><div class="dst-toggle"><button class="dst-opt active" data-dst="0">No</button><button class="dst-opt" data-dst="1">Yes +1h</button></div><span style="font-size:11px;color:var(--text3)">default: standard time &mdash; enable in summer</span></div>
+  <div style="display:flex;gap:8px;margin-bottom:0">
+    <button class="show-btn" id="show-btn" style="margin-bottom:0;flex:1">Show objects now!</button>
+    <button id="clear-btn" style="background:none;border:.5px solid var(--border2);border-radius:var(--radius-lg);padding:11px 16px;font-size:13px;cursor:pointer;color:var(--text2);font-family:var(--font);white-space:nowrap">✕ Clear</button>
+  </div>
+  <div style="font-size:11px;color:var(--text3);text-align:center;margin-top:.5rem;margin-bottom:1rem">Press again to update after changing date or time</div>
   <div id="ov-results"></div>
+ 
+  <!-- POLAR ALIGNMENT -->
+  <div style="margin-top:1.5rem">
+    <button class="obj-btn" id="polar-toggle" style="margin-bottom:0">&#11088; Polar Alignment &mdash; Posizione Polaris &darr;</button>
+  </div>
+  <div id="polar-section" style="display:none;margin-top:1rem">
+    <div style="background:var(--bg2);border:.5px solid var(--border);border-radius:var(--radius-lg);padding:1rem 1.25rem;margin-bottom:1rem;font-size:13px;color:var(--text2);line-height:1.7">
+      Place Polaris in the polar scope reticle at the clock position shown below.
+      <div style="margin-top:.6rem;font-size:11px;color:var(--warn-txt);opacity:.85">&#9888; Funzionalit&agrave; in fase di test &mdash; dati riferiti all&rsquo;epoca 2025. Verr&agrave; aggiornata in una release successiva.</div>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:1rem">
+      <svg id="polar-svg" width="260" height="260" viewBox="0 0 260 260" style="max-width:100%">
+        <!-- Background -->
+        <circle cx="130" cy="130" r="125" fill="var(--bg3)" stroke="var(--border2)" stroke-width=".5"/>
+        <!-- Outer ring -->
+        <circle cx="130" cy="130" r="112" fill="none" stroke="var(--border2)" stroke-width="1.5"/>
+        <circle cx="130" cy="130" r="100" fill="none" stroke="var(--border2)" stroke-width=".5"/>
+        <!-- Tick marks every 15min = 3.75deg, label every 1h -->
+        <g id="polar-ticks"></g>
+        <!-- Hour labels 0,3,6,9 -->
+        <text x="130" y="16" text-anchor="middle" font-size="14" font-weight="600" fill="var(--text2)">0</text>
+        <text x="246" y="135" text-anchor="middle" font-size="14" font-weight="600" fill="var(--text2)">3</text>
+        <text x="130" y="252" text-anchor="middle" font-size="14" font-weight="600" fill="var(--text2)">6</text>
+        <text x="14" y="135" text-anchor="middle" font-size="14" font-weight="600" fill="var(--text2)">9</text>
+        <!-- Crosshair -->
+        <line x1="130" y1="50" x2="130" y2="210" stroke="var(--border2)" stroke-width=".8"/>
+        <line x1="50" y1="130" x2="210" y2="130" stroke="var(--border2)" stroke-width=".8"/>
+        <!-- NCP center dot -->
+        <circle cx="130" cy="130" r="3" fill="var(--text3)"/>
+        <!-- Polaris orbit circle — matches reticle ring -->
+        <circle cx="130" cy="130" r="92" fill="none" stroke="var(--border2)" stroke-width=".8" stroke-dasharray="4,3"/>
+        <!-- Polaris dot — positioned by JS -->
+        <circle id="polaris-dot" cx="130" cy="58" r="7" fill="#f5c842" stroke="#c8a000" stroke-width="1.5"/>
+        <!-- Polaris label -->
+        <text id="polaris-label" x="130" y="42" text-anchor="middle" font-size="11" fill="#f5c842">Polaris</text>
+      </svg>
+      <div id="polar-info" style="text-align:center;font-size:14px;color:var(--text);line-height:2">
+        <span style="color:var(--text3);font-size:12px">Enter date, time and location, then press "Show objects now!"</span>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <span data-i18n="footerBy"></span> Andrea Zullo &nbsp;&middot;&nbsp; <a href="/cdn-cgi/l/email-protection#047e7168686b2a77746567616c6d77706b767d446369656d682a676b69"><span class="__cf_email__" data-cfemail="1a606f76767534696a7b797f7273696e7568635a7d777b737634797577">[email&#160;protected]</span></a><br>
+    LST = Local Sidereal Time &middot; Alt = object altitude &middot; Polaris RA 2h55m, NCP offset ~0.64&deg; (2025)
+    <div class="footer-contrib"><span data-i18n="footerContrib"></span>: Davide Lavarini, Mattia Cipriani</div>
+    <div style="margin-top:.75rem;font-size:11px;color:var(--text3);font-style:italic">&#9432; App in revisione continua &mdash; alcune funzionalit&agrave; sono ancora in fase di verifica.</div>
+  </footer>
 </div>
-</div>
-
-<script>
-var g=function(id){return document.getElementById(id);};
+ 
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>var g=function(id){return document.getElementById(id);};
 var FF=43.2665,WL=550,curWL=550,proOn=false,curF=1,lang='it',dst=0;
 var _ref_CAV={lat:45.6800,lon:10.8300};var _z41='';try{_z41=atob('QW5kcmVhWnVsbG8=');}catch(e){}
-
-/* ── WAVELENGTH PRESETS ─────────────────────────────────────── */
 var WLP=[{l:'White',nm:550,c:'#ddd'},{l:'Ca-K',nm:393,c:'#93f'},{l:'Hb',nm:486,c:'#48f'},{l:'OIII',nm:501,c:'#2c8'},{l:'Ha',nm:656,c:'#f33'},{l:'SII',nm:672,c:'#f60'},{l:'NIR',nm:850,c:'#700'}];
 function wlCol(n){if(n<380)return'#b7f';if(n<450)return'#60f';if(n<490)return'#03f';if(n<520)return'#09f';if(n<565)return'#0b3';if(n<590)return'#9b0';if(n<625)return'#fb0';if(n<700)return'#f30';return'#700';}
 (function(){var c=g('wl-presets');WLP.forEach(function(p){var b=document.createElement('button');b.className='wl-btn'+(p.nm===550?' active':'');b.setAttribute('data-nm',''+p.nm);var s=document.createElement('span');s.className='wl-swatch';s.style.background=p.c;s.style.border='.5px solid #888';b.appendChild(s);b.appendChild(document.createTextNode(p.l+' '+p.nm+'nm'));b.addEventListener('click',function(){document.querySelectorAll('.wl-btn').forEach(function(x){x.classList.remove('active');});b.classList.add('active');curWL=p.nm;g('wl-input').value=p.nm;wlNote();calc();});c.appendChild(b);});})();
 g('wl-input').addEventListener('input',function(){var v=parseInt(this.value);if(isNaN(v)||v<300||v>1100)return;curWL=v;document.querySelectorAll('.wl-btn').forEach(function(b){b.classList.remove('active');});wlNote();calc();});
 function wlNote(){var d=Math.round((curWL/WL-1)*100),s=d>=0?'+':'',n='';WLP.forEach(function(p){if(p.nm===curWL)n=' ('+p.l+')';});var el=g('wl-note');el.innerHTML='';var sw=document.createElement('span');sw.className='wl-swatch';sw.style.background=wlCol(curWL);sw.style.border='.5px solid #888';el.appendChild(sw);el.appendChild(document.createTextNode(curWL+'nm'+n+' \u2014 Rayleigh '+s+d+'% vs 550nm'));}
 g('pro-btn').addEventListener('click',function(){proOn=!proOn;g('pro-btn').classList.toggle('active',proOn);g('pro-panel').classList.toggle('visible',proOn);if(!proOn){curWL=WL;g('wl-input').value=WL;document.querySelectorAll('.wl-btn').forEach(function(b){b.classList.toggle('active',b.getAttribute('data-nm')==='550');});}calc();});
-
-/* ── I18N ───────────────────────────────────────────────────── */
 var I={
- it:{mainTitle:'Tool per astrofotografi',secTelescope:'Telescopio',secCamera:'Camera',camPreset:'Preset fotocamera',secBarlow:'Barlow / riduttore',labelDiam:'Diametro (mm)',labelFocal:'Focale base (mm)',labelPixel:'Pixel (\u03bcm)',labelSensor:'Sensore (px)',mPixelScale:'Pixel scale',mFocalEff:'Focale eff.',mFRatio:'Rapporto f/',mFactor:'Fattore',mCrop:'Crop',mFocalEq:'Focale FF',moonTitle:'Risoluzione Luna',moonDist:'Distanza lunare',moonPx:'km/pixel',moonFovW:'FOV largh.',moonFovH:'FOV alt.',tabPlanetary:'Planetario',tabDeepsky:'Deep sky',limDawes:'Dawes',limRayleigh:'Rayleigh',limOptZone:'Zona ottimale',limStars:'Stelle',fovLabel:'FOV',seeingLabel:'Seeing (FWHM)',badgeOk:'ottimale',badgeUnder:'sottocampionato',badgeOver:'sovracampionato',footerBy:'Generato da',footerContrib:'Contributors',blNone:'Setup senza ottiche aggiuntive.',blR:function(f,a,b){return 'Riduttore '+f+'\u00d7. Focale: '+a+' \u2192 '+b+' mm.';},blB:function(f,a,b){return 'Barlow '+f+'\u00d7. Focale: '+a+' \u2192 '+b+' mm.';},plOk:function(p,r){return 'Ottimale. Scala '+p+'"/px \u2248 Rayleigh/'+r+'.';},plU:function(f,a,b){return 'Sottocampionato. Fattore ~'+f+'\u00d7 (ottimale: '+a+'\u2013'+b+'"/px).';},plO:function(f){return 'Sovracampionato. Fattore ~'+f+'\u00d7.';},dsOk:function(s,t){return 'Ottimale seeing '+s+'". Stelle ~'+t+' px FWHM.';},dsU:function(f,m){return 'Sottocampionato. Fattore ~'+f+'\u00d7. Seeing >'+m+'".';},dsO:function(f,b){return 'Sovracampionato. Fattore ~'+f+'\u00d7 o binning 2\u00d72 (~'+b+'"/px).';} },
- en:{mainTitle:'Tool for astrophotographers',secTelescope:'Telescope',secCamera:'Camera',camPreset:'Camera preset',secBarlow:'Barlow / reducer',labelDiam:'Diameter (mm)',labelFocal:'Base focal (mm)',labelPixel:'Pixel (\u03bcm)',labelSensor:'Sensor (px)',mPixelScale:'Pixel scale',mFocalEff:'Eff. focal',mFRatio:'Focal ratio',mFactor:'Factor',mCrop:'Crop',mFocalEq:'FF focal',moonTitle:'Moon resolution',moonDist:'Lunar distance',moonPx:'km/pixel',moonFovW:'FOV width',moonFovH:'FOV height',tabPlanetary:'Planetary',tabDeepsky:'Deep sky',limDawes:'Dawes',limRayleigh:'Rayleigh',limOptZone:'Optimal zone',limStars:'Stars',fovLabel:'FOV',seeingLabel:'Seeing (FWHM)',badgeOk:'optimal',badgeUnder:'undersampled',badgeOver:'oversampled',footerBy:'Generated by',footerContrib:'Contributors',blNone:'No additional optics.',blR:function(f,a,b){return 'Reducer '+f+'\u00d7. Focal: '+a+' \u2192 '+b+' mm.';},blB:function(f,a,b){return 'Barlow '+f+'\u00d7. Focal: '+a+' \u2192 '+b+' mm.';},plOk:function(p,r){return 'Optimal. Scale '+p+'"/px \u2248 Rayleigh/'+r+'.';},plU:function(f,a,b){return 'Undersampled. Factor ~'+f+'\u00d7 (optimal: '+a+'\u2013'+b+'"/px).';},plO:function(f){return 'Oversampled. Factor ~'+f+'\u00d7.';},dsOk:function(s,t){return 'Optimal seeing '+s+'". Stars ~'+t+' px FWHM.';},dsU:function(f,m){return 'Undersampled. Factor ~'+f+'\u00d7. Seeing >'+m+'".';},dsO:function(f,b){return 'Oversampled. Factor ~'+f+'\u00d7 or 2\u00d72 binning (~'+b+'"/px).';} },
- es:{mainTitle:'Herramienta para astrof\u00f3tografos',secTelescope:'Telescopio',secCamera:'C\u00e1mara',camPreset:'Preset c\u00e1mara',secBarlow:'Barlow / reductor',labelDiam:'Di\u00e1metro (mm)',labelFocal:'Focal base (mm)',labelPixel:'P\u00edxel (\u03bcm)',labelSensor:'Sensor (px)',mPixelScale:'Escala px',mFocalEff:'Focal ef.',mFRatio:'Rel. focal',mFactor:'Factor',mCrop:'Recorte',mFocalEq:'Focal FF',moonTitle:'Resoluci\u00f3n Luna',moonDist:'Distancia lunar',moonPx:'km/p\u00edxel',moonFovW:'FOV ancho',moonFovH:'FOV alto',tabPlanetary:'Planetario',tabDeepsky:'Cielo prof.',limDawes:'Dawes',limRayleigh:'Rayleigh',limOptZone:'Zona \u00f3ptima',limStars:'Estrellas',fovLabel:'FOV',seeingLabel:'Seeing (FWHM)',badgeOk:'\u00f3ptimo',badgeUnder:'submuestreado',badgeOver:'sobremuestreado',footerBy:'Generado por',footerContrib:'Colaboradores',blNone:'Sin \u00f3pticas adicionales.',blR:function(f,a,b){return 'Reductor '+f+'\u00d7. '+a+'\u2192'+b+' mm.';},blB:function(f,a,b){return 'Barlow '+f+'\u00d7. '+a+'\u2192'+b+' mm.';},plOk:function(p,r){return '\u00d3ptimo. '+p+'"/px\u2248Rayleigh/'+r+'.';},plU:function(f,a,b){return 'Sub. ~'+f+'\u00d7 ('+a+'\u2013'+b+'"/px).';},plO:function(f){return 'Sobre. ~'+f+'\u00d7.';},dsOk:function(s,t){return '\u00d3pt. seeing '+s+'". ~'+t+' px.';},dsU:function(f,m){return 'Sub. ~'+f+'\u00d7. Seeing>'+m+'".';},dsO:function(f,b){return 'Sobre. ~'+f+'\u00d7 o bin 2\u00d72.';} },
- ru:{mainTitle:'\u0418\u043d\u0441\u0442\u0440. \u0430\u0441\u0442\u0440\u043e\u0444\u043e\u0442\u043e\u0433\u0440\u0430\u0444\u043e\u0432',secTelescope:'\u0422\u0435\u043b\u0435\u0441\u043a\u043e\u043f',secCamera:'\u041a\u0430\u043c\u0435\u0440\u0430',camPreset:'\u041f\u0440\u0435\u0441\u0435\u0442 \u043a\u0430\u043c\u0435\u0440\u044b',secBarlow:'\u0411\u0430\u0440\u043b\u043e\u0443/\u0440\u0435\u0434.',labelDiam:'\u0414\u0438\u0430\u043c. (\u043c\u043c)',labelFocal:'\u0424\u043e\u043a. (\u043c\u043c)',labelPixel:'\u041f\u0438\u043a\u0441. (\u043c\u043a\u043c)',labelSensor:'\u0421\u0435\u043d\u0441. (\u043f\u043a\u0441)',mPixelScale:'\u041c\u0430\u0441\u0448\u0442\u0430\u0431',mFocalEff:'\u0424\u043e\u043a\u0443\u0441',mFRatio:'\u041e\u0442\u043d\u043e\u0448.',mFactor:'\u041a\u043e\u044d\u0444\u0444.',mCrop:'\u041a\u0440\u043e\u043f',mFocalEq:'FF\u0444\u043e\u043a.',moonTitle:'\u0420\u0430\u0437\u0440\u0435\u0448. \u041b\u0443\u043d\u0430',moonDist:'\u0420\u0430\u0441\u0441\u0442.',moonPx:'\u043a\u043c/\u043f\u043a\u0441',moonFovW:'\u041f\u043e\u043b\u0435(\u0448)',moonFovH:'\u041f\u043e\u043b\u0435(\u0432)',tabPlanetary:'\u041f\u043b\u0430\u043d.',tabDeepsky:'\u0414\u0438\u043f-\u0441\u043a\u0430\u0439',limDawes:'\u0414\u043e\u0443\u0437',limRayleigh:'\u0420\u044d\u043b\u0435\u0439',limOptZone:'\u041e\u043f\u0442. \u0437.',limStars:'\u0417\u0432\u0451\u0437\u0434\u044b',fovLabel:'\u041f\u043e\u043b\u0435',seeingLabel:'\u0421\u0438\u0438\u043d\u0433',badgeOk:'\u043e\u043f\u0442.',badgeUnder:'\u043d\u0435\u0434\u043e\u0441.',badgeOver:'\u043f\u0435\u0440\u0435\u0441.',footerBy:'\u0421\u043e\u0437\u0434\u0430\u043d\u043e',footerContrib:'\u0423\u0447\u0430\u0441\u0442\u043d\u0438\u043a\u0438',blNone:'\u0411\u0435\u0437 \u0434\u043e\u043f. \u043e\u043f\u0442\u0438\u043a\u0438.',blR:function(f,a,b){return '\u0420\u0435\u0434. '+f+'\u00d7. '+a+'\u2192'+b+'\u043c\u043c.';},blB:function(f,a,b){return '\u0411\u0430\u0440. '+f+'\u00d7. '+a+'\u2192'+b+'\u043c\u043c.';},plOk:function(p,r){return '\u041e\u043f\u0442. '+p+'"/\u043f\u043a\u0441\u2248R/'+r+'.';},plU:function(f,a,b){return '\u041d\u0435\u0434. ~'+f+'\u00d7('+a+'\u2013'+b+'"/\u043f\u043a\u0441).';},plO:function(f){return '\u041f\u0435\u0440. ~'+f+'\u00d7.';},dsOk:function(s,t){return '\u041e\u043f\u0442. '+s+'". ~'+t+'\u043f\u043a\u0441.';},dsU:function(f,m){return '\u041d\u0435\u0434. ~'+f+'\u00d7. >'+m+'".';},dsO:function(f,b){return '\u041f\u0435\u0440. ~'+f+'\u00d7/2\u00d72(~'+b+'").';} }
-};
+it:{mainTitle:'Tool per astrofotografi',secTelescope:'Telescopio',secCamera:'Camera',camPreset:'Preset fotocamera',secBarlow:'Barlow / riduttore',labelDiam:'Diametro (mm)',labelFocal:'Focale base (mm)',labelPixel:'Pixel (\u03bcm)',labelSensor:'Sensore (px)',mPixelScale:'Pixel scale',mFocalEff:'Focale eff.',mFRatio:'Rapporto f/',mFactor:'Fattore',mCrop:'Crop',mFocalEq:'Focale FF',moonTitle:'Risoluzione Luna',moonDist:'Distanza lunare',moonPx:'km/pixel',moonFovW:'FOV largh.',moonFovH:'FOV alt.',tabPlanetary:'Planetario',tabDeepsky:'Deep sky',limDawes:'Dawes',limRayleigh:'Rayleigh',limOptZone:'Range consigliato',limStars:'Stelle',fovLabel:'FOV',seeingLabel:'Seeing (FWHM)',badgeOk:'ben calibrato',badgeUnder:'sottocampionato',badgeOver:'sovracampionato',footerBy:'Generato da',footerContrib:'Contributors',blNone:'Setup senza ottiche aggiuntive.',blR:function(f,a,b){return 'Riduttore '+f+'\u00d7. Focale: '+a+' \u2192 '+b+' mm.';},blB:function(f,a,b){return 'Barlow '+f+'\u00d7. Focale: '+a+' \u2192 '+b+' mm.';},plOk:function(p,r){return 'Ben calibrato. Scala '+p+'"/px \u2248 Rayleigh/'+r+'. Linea guida pratica basata sul criterio di Rayleigh.';},plU:function(f,a,b){return 'Sottocampionato. Fattore ~'+f+'\u00d7 (range consigliato: '+a+'\u2013'+b+'"/px).';},plO:function(f){return 'Sovracampionato. Fattore ~'+f+'\u00d7. Considera un riduttore o binning.';},dsOk:function(s,t){return 'Ben calibrato. Seeing '+s+'". Stelle ~'+t+' px FWHM.';},dsU:function(f,m){return 'Sottocampionato. Fattore ~'+f+'\u00d7. Seeing >'+m+'".';},dsO:function(f,b){return 'Sovracampionato. Fattore ~'+f+'\u00d7 o binning 2\u00d72 (~'+b+'"/px).';} },
+en:{mainTitle:'Tool for astrophotographers',secTelescope:'Telescope',secCamera:'Camera',camPreset:'Camera preset',secBarlow:'Barlow / reducer',labelDiam:'Diameter (mm)',labelFocal:'Base focal (mm)',labelPixel:'Pixel (\u03bcm)',labelSensor:'Sensor (px)',mPixelScale:'Pixel scale',mFocalEff:'Eff. focal',mFRatio:'Focal ratio',mFactor:'Factor',mCrop:'Crop',mFocalEq:'FF focal',moonTitle:'Moon resolution',moonDist:'Lunar distance',moonPx:'km/pixel',moonFovW:'FOV width',moonFovH:'FOV height',tabPlanetary:'Planetary',tabDeepsky:'Deep sky',limDawes:'Dawes',limRayleigh:'Rayleigh',limOptZone:'Recommended range',limStars:'Stars',fovLabel:'FOV',seeingLabel:'Seeing (FWHM)',badgeOk:'well matched',badgeUnder:'undersampled',badgeOver:'oversampled',footerBy:'Generated by',footerContrib:'Contributors',blNone:'No additional optics.',blR:function(f,a,b){return 'Reducer '+f+'\u00d7. Focal: '+a+' \u2192 '+b+' mm.';},blB:function(f,a,b){return 'Barlow '+f+'\u00d7. Focal: '+a+' \u2192 '+b+' mm.';},plOk:function(p,r){return 'Well matched. Scale '+p+'"/px \u2248 Rayleigh/'+r+'. Practical guideline based on Rayleigh criterion.';},plU:function(f,a,b){return 'Undersampled. Factor ~'+f+'\u00d7 (recommended range: '+a+'\u2013'+b+'"/px).';},plO:function(f){return 'Oversampled. Factor ~'+f+'\u00d7. Consider a reducer or binning.';},dsOk:function(s,t){return 'Well matched. Seeing '+s+'". Stars ~'+t+' px FWHM.';},dsU:function(f,m){return 'Undersampled. Factor ~'+f+'\u00d7. Seeing >'+m+'".';},dsO:function(f,b){return 'Oversampled. Factor ~'+f+'\u00d7. Consider 2\u00d72 binning (~'+b+'"/px).';} },
+es:{mainTitle:'Herramienta para astrof\u00f3tografos',secTelescope:'Telescopio',secCamera:'C\u00e1mara',camPreset:'Preset c\u00e1mara',secBarlow:'Barlow / reductor',labelDiam:'Di\u00e1metro (mm)',labelFocal:'Focal base (mm)',labelPixel:'P\u00edxel (\u03bcm)',labelSensor:'Sensor (px)',mPixelScale:'Escala px',mFocalEff:'Focal ef.',mFRatio:'Rel. focal',mFactor:'Factor',mCrop:'Recorte',mFocalEq:'Focal FF',moonTitle:'Resoluci\u00f3n Luna',moonDist:'Distancia lunar',moonPx:'km/p\u00edxel',moonFovW:'FOV ancho',moonFovH:'FOV alto',tabPlanetary:'Planetario',tabDeepsky:'Cielo prof.',limDawes:'Dawes',limRayleigh:'Rayleigh',limOptZone:'Rango recomendado',limStars:'Estrellas',fovLabel:'FOV',seeingLabel:'Seeing (FWHM)',badgeOk:'bien calibrado',badgeUnder:'submuestreado',badgeOver:'sobremuestreado',footerBy:'Generado por',footerContrib:'Colaboradores',blNone:'Sin \u00f3pticas adicionales.',blR:function(f,a,b){return 'Reductor '+f+'\u00d7. '+a+'\u2192'+b+' mm.';},blB:function(f,a,b){return 'Barlow '+f+'\u00d7. '+a+'\u2192'+b+' mm.';},plOk:function(p,r){return 'Bien calibrado. '+p+'"/px\u2248Rayleigh/'+r+'. Guía práctica basada en criterio Rayleigh.';},plU:function(f,a,b){return 'Submuestreado. ~'+f+'\u00d7 (recomendado: '+a+'\u2013'+b+'"/px).';},plO:function(f){return 'Sobremuestreado. ~'+f+'\u00d7. Considera reductor o binning.';},dsOk:function(s,t){return 'Bien calibrado. Seeing '+s+'". ~'+t+' px.';},dsU:function(f,m){return 'Submuestreado. ~'+f+'\u00d7. Seeing>'+m+'".';},dsO:function(f,b){return 'Sobremuestreado. ~'+f+'\u00d7 o bin 2\u00d72.';} },
+ru:{mainTitle:'\u0418\u043d\u0441\u0442\u0440. \u0430\u0441\u0442\u0440\u043e\u0444\u043e\u0442\u043e\u0433\u0440\u0430\u0444\u043e\u0432',secTelescope:'\u0422\u0435\u043b\u0435\u0441\u043a\u043e\u043f',secCamera:'\u041a\u0430\u043c\u0435\u0440\u0430',camPreset:'\u041f\u0440\u0435\u0441\u0435\u0442 \u043a\u0430\u043c\u0435\u0440\u044b',secBarlow:'\u0411\u0430\u0440\u043b\u043e\u0443/\u0440\u0435\u0434.',labelDiam:'\u0414\u0438\u0430\u043c. (\u043c\u043c)',labelFocal:'\u0424\u043e\u043a. (\u043c\u043c)',labelPixel:'\u041f\u0438\u043a\u0441. (\u043c\u043a\u043c)',labelSensor:'\u0421\u0435\u043d\u0441. (\u043f\u043a\u0441)',mPixelScale:'\u041c\u0430\u0441\u0448\u0442\u0430\u0431',mFocalEff:'\u0424\u043e\u043a\u0443\u0441',mFRatio:'\u041e\u0442\u043d\u043e\u0448.',mFactor:'\u041a\u043e\u044d\u0444\u0444.',mCrop:'\u041a\u0440\u043e\u043f',mFocalEq:'FF\u0444\u043e\u043a.',moonTitle:'\u0420\u0430\u0437\u0440\u0435\u0448. \u041b\u0443\u043d\u0430',moonDist:'\u0420\u0430\u0441\u0441\u0442.',moonPx:'\u043a\u043c/\u043f\u043a\u0441',moonFovW:'\u041f\u043e\u043b\u0435(\u0448)',moonFovH:'\u041f\u043e\u043b\u0435(\u0432)',tabPlanetary:'\u041f\u043b\u0430\u043d.',tabDeepsky:'\u0414\u0438\u043f-\u0441\u043a\u0430\u0439',limDawes:'\u0414\u043e\u0443\u0437',limRayleigh:'\u0420\u044d\u043b\u0435\u0439',limOptZone:'\u041e\u043f\u0442. \u0437.',limStars:'\u0417\u0432\u0451\u0437\u0434\u044b',fovLabel:'\u041f\u043e\u043b\u0435',seeingLabel:'\u0421\u0438\u0438\u043d\u0433',badgeOk:'\u043e\u043f\u0442.',badgeUnder:'\u043d\u0435\u0434\u043e\u0441.',badgeOver:'\u043f\u0435\u0440\u0435\u0441.',footerBy:'\u0421\u043e\u0437\u0434\u0430\u043d\u043e',footerContrib:'\u0423\u0447\u0430\u0441\u0442\u043d\u0438\u043a\u0438',blNone:'\u0411\u0435\u0437 \u0434\u043e\u043f. \u043e\u043f\u0442\u0438\u043a\u0438.',blR:function(f,a,b){return '\u0420\u0435\u0434. '+f+'\u00d7. '+a+'\u2192'+b+'\u043c\u043c.';},blB:function(f,a,b){return '\u0411\u0430\u0440. '+f+'\u00d7. '+a+'\u2192'+b+'\u043c\u043c.';},plOk:function(p,r){return '\u0425\u043e\u0440. \u043f\u043e\u0434\u0431\u043e\u0440. '+p+'"/\u043f\u043a\u0441\u2248R/'+r+'. \u041f\u0440\u0430\u043a\u0442. \u0440\u0435\u043a\u043e\u043c.';},plU:function(f,a,b){return '\u041d\u0435\u0434. ~'+f+'\u00d7('+a+'\u2013'+b+'"/\u043f\u043a\u0441).';},plO:function(f){return '\u041f\u0435\u0440. ~'+f+'\u00d7.';},dsOk:function(s,t){return '\u0425\u043e\u0440. \u043f\u043e\u0434\u0431\u043e\u0440. '+s+'". ~'+t+'\u043f\u043a\u0441.';},dsU:function(f,m){return '\u041d\u0435\u0434. ~'+f+'\u00d7. >'+m+'".';},dsO:function(f,b){return '\u041f\u0435\u0440. ~'+f+'\u00d7/2\u00d72(~'+b+'").';} }};
 function applyLang(){var t=I[lang];document.querySelectorAll('[data-i18n]').forEach(function(e){var k=e.getAttribute('data-i18n');if(t[k]&&typeof t[k]==='string')e.textContent=t[k];});calc();}
 document.querySelectorAll('.lang-btn').forEach(function(b){b.addEventListener('click',function(){document.querySelectorAll('.lang-btn').forEach(function(x){x.classList.remove('active');});b.classList.add('active');lang=b.getAttribute('data-lang');applyLang();});});
-
-/* ── BARLOW/REDUCER BUTTONS  (0.5× … 5×, includes 4×) ──────── */
 (function(){
-  var opts=[
-    {l:'0.5\u00d7',v:0.5,t:'r'},{l:'0.66\u00d7',v:0.66,t:'r'},{l:'0.75\u00d7',v:0.75,t:'r'},
-    {l:'1\u00d7',v:1,t:'n'},
-    {l:'1.5\u00d7',v:1.5,t:'b'},{l:'2\u00d7',v:2,t:'b'},{l:'3\u00d7',v:3,t:'b'},
-    {l:'4\u00d7',v:4,t:'b'},{l:'5\u00d7',v:5,t:'b'}
-  ];
-  var row=g('bl-row');
-  opts.forEach(function(o){
-    var b=document.createElement('button');
-    b.className='bl-btn'+(o.t==='r'?' reducer':'')+(o.v===1?' active':'');
-    b.textContent=o.l;
-    b.addEventListener('click',function(){
-      document.querySelectorAll('.bl-btn').forEach(function(x){x.classList.remove('active');});
-      b.classList.add('active');curF=o.v;calc();
-    });
-    row.appendChild(b);
-  });
-})();
-
-/* ── TABS ────────────────────────────────────────────────────── */
+var opts=[
+{l:'0.5\u00d7',v:0.5,t:'r'},{l:'0.66\u00d7',v:0.66,t:'r'},{l:'0.75\u00d7',v:0.75,t:'r'},
+{l:'1\u00d7',v:1,t:'n'},
+{l:'1.5\u00d7',v:1.5,t:'b'},{l:'2\u00d7',v:2,t:'b'},{l:'3\u00d7',v:3,t:'b'},
+{l:'4\u00d7',v:4,t:'b'},{l:'5\u00d7',v:5,t:'b'}];
+var row=g('bl-row');
+opts.forEach(function(o){
+var b=document.createElement('button');
+b.className='bl-btn'+(o.t==='r'?' reducer':'')+(o.v===1?' active':'');
+b.textContent=o.l;
+b.addEventListener('click',function(){
+document.querySelectorAll('.bl-btn').forEach(function(x){x.classList.remove('active');});
+b.classList.add('active');curF=o.v;calc();});
+row.appendChild(b);});})();
 document.querySelectorAll('.tab').forEach(function(b){b.addEventListener('click',function(){document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('active');});document.querySelectorAll('.panel').forEach(function(x){x.classList.remove('active');});b.classList.add('active');g('panel-'+b.getAttribute('data-tab')).classList.add('active');});});
-
-/* ── CAMERA DATABASE (50 cameras) ───────────────────────────── */
-// Format: [brand, model, pixel_um, width_px, height_px]
 var CAMS=[
-  // ZWO ASI
-  ['ZWO','ASI120MM Mini',3.75,1280,960],
-  ['ZWO','ASI120MC',3.75,1280,960],
-  ['ZWO','ASI178MM',2.4,3096,2080],
-  ['ZWO','ASI224MC',3.75,1304,976],
-  ['ZWO','ASI290MM Mini',2.9,1936,1096],
-  ['ZWO','ASI385MC',2.9,1920,1200],
-  ['ZWO','ASI462MC',2.9,1936,1096],
-  ['ZWO','ASI533MC Pro',3.76,3008,3008],
-  ['ZWO','ASI585MC',2.9,3856,2180],
-  ['ZWO','ASI678MC',2.0,3840,2160],
-  ['ZWO','ASI183MM Pro',2.4,5496,3672],
-  ['ZWO','ASI294MC Pro',4.63,4144,2822],
-  ['ZWO','ASI071MC Pro',4.78,4944,3284],
-  ['ZWO','ASI1600MM Pro',3.8,4656,3520],
-  ['ZWO','ASI2600MC Pro',3.76,6248,4176],
-  ['ZWO','ASI6200MM Pro',3.76,9576,6388],
-  // PlayerOne Astronomy
-  ['PlayerOne','Neptune-C II (IMX462)',2.9,1936,1096],
-  ['PlayerOne','Neptune-M (IMX462)',2.9,1936,1096],
-  ['PlayerOne','Mars-C II (IMX462)',2.9,1936,1096],
-  ['PlayerOne','Mars-M (IMX290)',2.9,1920,1200],
-  ['PlayerOne','Uranus-C (IMX585)',2.9,3856,2180],
-  ['PlayerOne','Uranus-M (IMX585)',2.9,3856,2180],
-  ['PlayerOne','Saturn-C Pro (IMX294)',4.63,4144,2822],
-  ['PlayerOne','Saturn-M Pro (IMX294)',4.63,4144,2822],
-  ['PlayerOne','Ceres-C (IMX571)',3.76,6252,4178],
-  ['PlayerOne','Apollo-M Max (IMX455)',3.76,9576,6388],
-  // QHY
-  ['QHY','QHY5III462C',2.9,1936,1096],
-  ['QHY','QHY5III485C',2.9,3856,2180],
-  ['QHY','QHY5III678C',2.0,3840,2160],
-  ['QHY','QHY183C',2.4,5544,3694],
-  ['QHY','QHY294C',4.63,4164,2796],
-  ['QHY','QHY533C',3.76,3008,3008],
-  ['QHY','QHY163M',3.8,4656,3522],
-  ['QHY','QHY268C',3.76,6280,4210],
-  ['QHY','QHY600C',3.76,9600,6422],
-  ['QHY','QHY128C',5.97,4146,2764],
-  // ToupTek Astro
-  ['ToupTek','GPCMOS02300KMA (2.3MP/IMX290)',2.9,1936,1096],
-  ['ToupTek','GPCMOS04000KMA (4MP/IMX585)',2.9,2712,1538],
-  ['ToupTek','ATR3CMOS09000KPA (9MP/IMX533)',3.76,3008,3008],
-  ['ToupTek','ATR3CMOS16200KPA (16MP/IMX492)',3.8,4656,3522],
-  ['ToupTek','ATR3CMOS26000KPA (26MP/IMX571)',3.76,6252,4178],
-  ['ToupTek','ATR3CMOS60000KPA (60MP/IMX455)',3.76,9576,6388],
-  ['ToupTek','ATC3CMOS12300KMA (12MP/IMX304)',3.45,4096,3000],
-  ['ToupTek','SCA130C (130MP/IMX461)',3.76,11656,8742],
-  // Aiptek Astro
-  ['Aiptek','ATC462C (2MP)',2.9,1936,1096],
-  ['Aiptek','ATC485C (8MP)',2.9,3856,2180],
-  ['Aiptek','ATC533C (9MP)',3.76,3008,3008],
-  ['Aiptek','ATC571C (26MP)',3.76,6252,4178],
-  ['Aiptek','ATC183C (20MP)',2.4,5496,3672],
-  ['Aiptek','ATC455C (60MP)',3.76,9576,6388],
-  // Canon EOS DSLR
-  ['Canon','EOS 2000D (Rebel T7)',3.72,6000,4000],
-  ['Canon','EOS 1D X Mark III',6.54,5472,3648],
-  ['Canon','EOS 5D Mark IV',5.36,6720,4480],
-  ['Canon','EOS 6D Mark II',5.76,6240,4160],
-  // Nikon DSLR
-  ['Nikon','D6',6.45,5568,3712],
-  ['Nikon','D780',5.94,6048,4024],
-  ['Nikon','D850',4.35,8256,5504],
-  ['Nikon','D5600',3.89,6000,4000],
-  // Moravian Instruments
-  ['Moravian','C3-26000 (IMX571, APS-C)',3.76,6252,4176],
-  ['Moravian','C3-61000 (IMX455, FF)',3.76,9576,6388],
-  ['Moravian','C4-16000 (GSense4040, 37mm)',9.0,4096,4096],
-  // Atik
-  ['Atik','Horizon II (MN34230, 4/3")',3.8,4644,3506],
-  ['Atik','Apx26 (IMX571, APS-C)',3.76,6252,4176],
-  ['Atik','Apx60 (IMX455, FF)',3.76,9576,6388]
-];
-
-/* Populate <select> with optgroups by brand */
+ 
+['ZWO','ASI120MM Mini',3.75,1280,960],
+['ZWO','ASI120MC',3.75,1280,960],
+['ZWO','ASI178MM',2.4,3096,2080],
+['ZWO','ASI224MC',3.75,1304,976],
+['ZWO','ASI290MM Mini',2.9,1936,1096],
+['ZWO','ASI385MC',2.9,1920,1200],
+['ZWO','ASI462MC',2.9,1936,1096],
+['ZWO','ASI533MC Pro',3.76,3008,3008],
+['ZWO','ASI585MC',2.9,3856,2180],
+['ZWO','ASI678MC',2.0,3840,2160],
+['ZWO','ASI183MM Pro',2.4,5496,3672],
+['ZWO','ASI294MC Pro',4.63,4144,2822],
+['ZWO','ASI071MC Pro',4.78,4944,3284],
+['ZWO','ASI1600MM Pro',3.8,4656,3520],
+['ZWO','ASI2600MC Pro',3.76,6248,4176],
+['ZWO','ASI6200MM Pro',3.76,9576,6388],
+ 
+['PlayerOne','Neptune-C II (IMX462)',2.9,1936,1096],
+['PlayerOne','Neptune-M (IMX462)',2.9,1936,1096],
+['PlayerOne','Mars-C II (IMX462)',2.9,1936,1096],
+['PlayerOne','Mars-M (IMX290)',2.9,1920,1200],
+['PlayerOne','Uranus-C (IMX585)',2.9,3856,2180],
+['PlayerOne','Uranus-M (IMX585)',2.9,3856,2180],
+['PlayerOne','Saturn-C Pro (IMX294)',4.63,4144,2822],
+['PlayerOne','Saturn-M Pro (IMX294)',4.63,4144,2822],
+['PlayerOne','Ceres-C (IMX571)',3.76,6252,4178],
+['PlayerOne','Apollo-M Max (IMX455)',3.76,9576,6388],
+ 
+['QHY','QHY5III462C',2.9,1936,1096],
+['QHY','QHY5III485C',2.9,3856,2180],
+['QHY','QHY5III678C',2.0,3840,2160],
+['QHY','QHY183C',2.4,5544,3694],
+['QHY','QHY294C',4.63,4164,2796],
+['QHY','QHY533C',3.76,3008,3008],
+['QHY','QHY163M',3.8,4656,3522],
+['QHY','QHY268C',3.76,6280,4210],
+['QHY','QHY600C',3.76,9600,6422],
+['QHY','QHY128C',5.97,4146,2764],
+ 
+['ToupTek','GPCMOS02300KMA (2.3MP/IMX290)',2.9,1936,1096],
+['ToupTek','GPCMOS04000KMA (4MP/IMX585)',2.9,2712,1538],
+['ToupTek','ATR3CMOS09000KPA (9MP/IMX533)',3.76,3008,3008],
+['ToupTek','ATR3CMOS16200KPA (16MP/IMX492)',3.8,4656,3522],
+['ToupTek','ATR3CMOS26000KPA (26MP/IMX571)',3.76,6252,4178],
+['ToupTek','ATR3CMOS60000KPA (60MP/IMX455)',3.76,9576,6388],
+['ToupTek','ATC3CMOS12300KMA (12MP/IMX304)',3.45,4096,3000],
+['ToupTek','SCA130C (130MP/IMX461)',3.76,11656,8742],
+ 
+['Aiptek','ATC462C (2MP)',2.9,1936,1096],
+['Aiptek','ATC485C (8MP)',2.9,3856,2180],
+['Aiptek','ATC533C (9MP)',3.76,3008,3008],
+['Aiptek','ATC571C (26MP)',3.76,6252,4178],
+['Aiptek','ATC183C (20MP)',2.4,5496,3672],
+['Aiptek','ATC455C (60MP)',3.76,9576,6388],
+ 
+['Canon','EOS 2000D (Rebel T7)',3.72,6000,4000],
+['Canon','EOS 1D X Mark III',6.54,5472,3648],
+['Canon','EOS 5D Mark IV',5.36,6720,4480],
+['Canon','EOS 6D Mark II',5.76,6240,4160],
+ 
+['Nikon','D6',6.45,5568,3712],
+['Nikon','D780',5.94,6048,4024],
+['Nikon','D850',4.35,8256,5504],
+['Nikon','D5600',3.89,6000,4000],
+ 
+['Moravian','C3-26000 (IMX571, APS-C)',3.76,6252,4176],
+['Moravian','C3-61000 (IMX455, FF)',3.76,9576,6388],
+['Moravian','C4-16000 (GSense4040, 37mm)',9.0,4096,4096],
+ 
+['Atik','Horizon II (MN34230, 4/3")',3.8,4644,3506],
+['Atik','Apx26 (IMX571, APS-C)',3.76,6252,4176],
+['Atik','Apx60 (IMX455, FF)',3.76,9576,6388]];
 (function(){
-  var sel=g('cam-preset');
-  var brands={};
-  CAMS.forEach(function(c){if(!brands[c[0]])brands[c[0]]=[];brands[c[0]].push(c);});
-  Object.keys(brands).forEach(function(brand){
-    var og=document.createElement('optgroup');
-    og.label=brand;
-    brands[brand].forEach(function(c,i){
-      var opt=document.createElement('option');
-      opt.value=brand+'|'+i;
-      opt.textContent=c[1]+' — '+c[2]+'\u03bcm  '+c[3]+'\u00d7'+c[4];
-      og.appendChild(opt);
-    });
-    sel.appendChild(og);
-  });
-  sel.addEventListener('change',function(){
-    var val=this.value;
-    if(!val)return;
-    var parts=val.split('|'),brand=parts[0],idx=parseInt(parts[1]);
-    var cam=brands[brand][idx];
-    if(!cam)return;
-    g('pixsize').value=cam[2];
-    g('sw').value=cam[3];
-    g('sh').value=cam[4];
-    calc();
-  });
-})();
-
-/* ── MAIN CALCULATOR ─────────────────────────────────────────── */
+var sel=g('cam-preset');
+var brands={};
+CAMS.forEach(function(c){if(!brands[c[0]])brands[c[0]]=[];brands[c[0]].push(c);});
+Object.keys(brands).forEach(function(brand){
+var og=document.createElement('optgroup');
+og.label=brand;
+brands[brand].forEach(function(c,i){
+var opt=document.createElement('option');
+opt.value=brand+'|'+i;
+opt.textContent=c[1]+' — '+c[2]+'\u03bcm '+c[3]+'\u00d7'+c[4];
+og.appendChild(opt);});
+sel.appendChild(og);});
+sel.addEventListener('change',function(){
+var val=this.value;
+if(!val)return;
+var parts=val.split('|'),brand=parts[0],idx=parseInt(parts[1]);
+var cam=brands[brand][idx];
+if(!cam)return;
+g('pixsize').value=cam[2];
+g('sw').value=cam[3];
+g('sh').value=cam[4];
+calc();});})();
 function fovA(px,um,F){return(206.265*um/F)*px/60;}
 function fovS(a){return a>=60?(a/60).toFixed(2)+'\u00b0':a.toFixed(1)+'\'';}
 function sC(c,cl){c.className='status-card '+cl;}
 function calcMoon(ps,sw,sh){var d=parseFloat(g('moon-dist').value)||384400,k=ps*(Math.PI/(180*3600))*d,fW=k*sw,fH=k*sh;g('moon-px').textContent=k<1?k.toFixed(3):k.toFixed(2);g('moon-fov-w').textContent=fW>1000?(fW/1000).toFixed(1)+'k':''+Math.round(fW);g('moon-fov-h').textContent=fH>1000?(fH/1000).toFixed(1)+'k':''+Math.round(fH);}
 function calc(){
-  var t=I[lang],D=parseFloat(g('diam').value)||0,Fb=parseFloat(g('focal').value)||0,
-      p=parseFloat(g('pixsize').value)||0,sw=parseFloat(g('sw').value)||0,
-      sh=parseFloat(g('sh').value)||0,see=parseFloat(g('seeing').value)||2.5;
-  if(!D||!Fb||!p||!sw||!sh)return;
-  var _ps_ref=(_ref_CAV.lat+_ref_CAV.lon)*0;
-  var F=Fb*curF,ps=206.265*p/F+_ps_ref,daw=116/D,
-      ray=1.22*(curWL/1e9)/(D/1000)*206265,
-      sW=sw*p/1000,sH=sh*p/1000,cf=FF/Math.sqrt(sW*sW+sH*sH);
-  g('ps-val').textContent=ps.toFixed(3);
-  g('fe-val').textContent=''+Math.round(F);
-  g('fr-val').textContent='f/'+(F/D).toFixed(1);
-  g('fx-val').textContent=curF+'\u00d7';
-  g('cf-val').textContent=cf.toFixed(2)+'\u00d7';
-  g('feq-val').textContent=''+Math.round(F*cf);
-  g('pl-fov').textContent=fovS(fovA(sw,p,F))+' \u00d7 '+fovS(fovA(sh,p,F));
-  g('ds-fov').textContent=g('pl-fov').textContent;
-  g('d-val').textContent=daw.toFixed(2);
-  g('r-val').textContent=ray.toFixed(2);
-  if(curF===1)g('bl-note').textContent=t.blNone;
-  else if(curF<1)g('bl-note').textContent=t.blR(curF,Math.round(Fb),Math.round(F));
-  else g('bl-note').textContent=t.blB(curF,Math.round(Fb),Math.round(F));
-  calcMoon(ps,sw,sh);
-  var pMin=ray/4,pMax=ray/2,pMid=(pMin+pMax)/2;
-  g('pl-opt').textContent=pMin.toFixed(2)+'\u2013'+pMax.toFixed(2);
-  var pC=g('pl-card'),pB=g('pl-badge');
-  if(ps>=pMin&&ps<=pMax){sC(pC,'s-ok');pB.textContent=t.badgeOk;g('pl-sug').textContent=t.plOk(ps.toFixed(3),(ray/ps).toFixed(1));}
-  else if(ps>pMax){sC(pC,'s-under');pB.textContent=t.badgeUnder;g('pl-sug').textContent=t.plU((ps/pMid).toFixed(1),pMin.toFixed(2),pMax.toFixed(2));}
-  else{sC(pC,'s-over');pB.textContent=t.badgeOver;g('pl-sug').textContent=t.plO((ps/pMid).toFixed(2));}
-  var dMin=see/4,dMax=see/2,dMid=(dMin+dMax)/2,stars=see/ps;
-  g('ds-opt').textContent=dMin.toFixed(2)+'\u2013'+dMax.toFixed(2);
-  g('ds-stars').textContent=stars.toFixed(1);
-  g('see-disp').textContent=see.toFixed(1)+'"';
-  var dC=g('ds-card'),dB=g('ds-badge');
-  if(ps>=dMin&&ps<=dMax){sC(dC,'s-ok');dB.textContent=t.badgeOk;g('ds-sug').textContent=t.dsOk(see.toFixed(1),stars.toFixed(1));}
-  else if(ps>dMax){sC(dC,'s-under');dB.textContent=t.badgeUnder;g('ds-sug').textContent=t.dsU((ps/dMid).toFixed(1),(ps*2).toFixed(1));}
-  else{sC(dC,'s-over');dB.textContent=t.badgeOver;g('ds-sug').textContent=t.dsO((ps/dMid).toFixed(2),(ps*2).toFixed(2));}
+var t=I[lang],D=parseFloat(g('diam').value)||0,Fb=parseFloat(g('focal').value)||0,
+p=parseFloat(g('pixsize').value)||0,sw=parseFloat(g('sw').value)||0,
+sh=parseFloat(g('sh').value)||0,see=parseFloat(g('seeing').value)||2.5;
+if(!D||!Fb||!p||!sw||!sh)return;
+var _ps_ref=(_ref_CAV.lat+_ref_CAV.lon)*0;
+var F=Fb*curF,ps=206.265*p/F+_ps_ref,daw=116/D,
+ray=1.22*(curWL/1e9)/(D/1000)*206265,
+sW=sw*p/1000,sH=sh*p/1000,cf=FF/Math.sqrt(sW*sW+sH*sH);
+g('ps-val').textContent=ps.toFixed(3);
+g('fe-val').textContent=''+Math.round(F);
+g('fr-val').textContent='f/'+(F/D).toFixed(1);
+g('fx-val').textContent=curF+'\u00d7';
+g('cf-val').textContent=cf.toFixed(2)+'\u00d7';
+g('feq-val').textContent=''+Math.round(F*cf);
+g('pl-fov').textContent=fovS(fovA(sw,p,F))+' \u00d7 '+fovS(fovA(sh,p,F));
+g('ds-fov').textContent=g('pl-fov').textContent;
+g('d-val').textContent=daw.toFixed(2);
+g('r-val').textContent=ray.toFixed(2);
+if(curF===1)g('bl-note').textContent=t.blNone;
+else if(curF<1)g('bl-note').textContent=t.blR(curF,Math.round(Fb),Math.round(F));
+else g('bl-note').textContent=t.blB(curF,Math.round(Fb),Math.round(F));
+calcMoon(ps,sw,sh);
+var pMin=ray/4,pMax=ray/2,pMid=(pMin+pMax)/2;
+g('pl-opt').textContent=pMin.toFixed(2)+'\u2013'+pMax.toFixed(2);
+var pC=g('pl-card'),pB=g('pl-badge');
+if(ps>=pMin&&ps<=pMax){sC(pC,'s-ok');pB.textContent=t.badgeOk;g('pl-sug').textContent=t.plOk(ps.toFixed(3),(ray/ps).toFixed(1));}
+else if(ps>pMax){sC(pC,'s-under');pB.textContent=t.badgeUnder;g('pl-sug').textContent=t.plU((ps/pMid).toFixed(1),pMin.toFixed(2),pMax.toFixed(2));}
+else{sC(pC,'s-over');pB.textContent=t.badgeOver;g('pl-sug').textContent=t.plO((ps/pMid).toFixed(2));}
+var dMin=see/4,dMax=see/2,dMid=(dMin+dMax)/2,stars=see/ps;
+g('ds-opt').textContent=dMin.toFixed(2)+'\u2013'+dMax.toFixed(2);
+g('ds-stars').textContent=stars.toFixed(1);
+g('see-disp').textContent=see.toFixed(1)+'"';
+var dC=g('ds-card'),dB=g('ds-badge');
+if(ps>=dMin&&ps<=dMax){sC(dC,'s-ok');dB.textContent=t.badgeOk;g('ds-sug').textContent=t.dsOk(see.toFixed(1),stars.toFixed(1));}
+else if(ps>dMax){sC(dC,'s-under');dB.textContent=t.badgeUnder;g('ds-sug').textContent=t.dsU((ps/dMid).toFixed(1),(ps*2).toFixed(1));}
+else{sC(dC,'s-over');dB.textContent=t.badgeOver;g('ds-sug').textContent=t.dsO((ps/dMid).toFixed(2),(ps*2).toFixed(2));}
 }
 g('seeing').addEventListener('input',calc);
 g('moon-dist').addEventListener('input',calc);
-['diam','focal','pixsize','sw','sh'].forEach(function(id){g(id).addEventListener('input',calc);});
+g('moon-dist').addEventListener('change',function(){
+var v=parseFloat(this.value);
+if(isNaN(v))return;
+var msg='',icon='';
+if(v>406700){
+icon='🌕🛸';
+msg='<strong>The Moon... or beyond?</strong><br><span style="font-size:13px">At '+Math.round(v).toLocaleString()+' km you\'re past the Moon\'s maximum apogee.<br>Maybe you\'re imaging something else up there. 👀<br><span style="font-size:11px;opacity:.7">The calculation will run anyway — no judgment here.</span></span>';} else if(v<363000){
+icon='📏';
+msg='<strong>Please use km — the only correct unit 😄</strong><br><span style="font-size:13px">'+Math.round(v).toLocaleString()+' km? The Moon\'s minimum perigee is ~356,000 km.<br>Did you mean miles? Multiply by 1.609 and try again!</span>';}
 
-/* ── CITY DATABASE ───────────────────────────────────────────── */
+if(Math.abs(lat-46.2327)<0.135&&Math.abs(lon-6.0552)<0.135){
+var dc=document.createElement('div');
+dc.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;padding:2rem;text-align:center';
+var style=document.createElement('style');
+style.textContent='@keyframes n1{0%{transform:translateX(-60px)}100%{transform:translateX(60px)}}@keyframes n2{0%{transform:translateX(60px)}100%{transform:translateX(-60px)}}@keyframes boom{0%{transform:scale(0);opacity:1}100%{transform:scale(3);opacity:0}}.n1{animation:n1 0.6s ease-in-out infinite alternate;display:inline-block;font-size:36px}.n2{animation:n2 0.6s ease-in-out infinite alternate;display:inline-block;font-size:36px}.boom{animation:boom 1.2s ease-out infinite;display:inline-block;font-size:28px;position:absolute}';
+document.head.appendChild(style);
+dc.innerHTML='<div style="position:relative;height:80px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem">'
++'<span class="n1">⚛️</span>'
++'<span class="boom">💥</span>'
++'<span class="n2">⚛️</span>'
++'</div>'
++'<div style="color:#f0dede;font-size:16px;font-weight:500;margin-bottom:.5rem">Did you find antimatter?</div>'
++'<div style="color:#b08080;font-size:13px;max-width:300px;line-height:1.7">CERN detected — 46.23°N 6.06°E<br>LHC circumference: 27 km<br><span style="font-size:11px;color:#7a5555">The only collisions here are particles.<br>Tap to close.</span></div>';
+dc.addEventListener('click',function(){document.body.removeChild(dc);});
+document.body.appendChild(dc);}
+if(msg){
+var d=document.createElement('div');
+d.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,0.82);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;padding:2rem;text-align:center';
+d.innerHTML='<div style="font-size:52px;margin-bottom:1rem">'+icon+'</div>'
++'<div style="color:#f0dede;font-size:15px;line-height:1.8;max-width:320px">'+msg+'</div>'
++'<div style="color:#7a5555;font-size:11px;margin-top:1.5rem">Tap to close — your value is kept</div>';
+d.addEventListener('click',function(){document.body.removeChild(d);});
+document.body.appendChild(d);}});
+['diam','focal','pixsize','sw','sh'].forEach(function(id){g(id).addEventListener('input',calc);});
 var CD=[
-['Novezzina (M.Baldo-CAV)',45.68,10.83,1,'I'],['Rome',41.90,12.49,1,'I'],['Milan',45.47,9.19,1,'I'],['Naples',40.85,14.27,1,'I'],['Turin',45.07,7.69,1,'I'],['Florence',43.77,11.26,1,'I'],['Bologna',44.49,11.34,1,'I'],['Venice',45.44,12.33,1,'I'],['Genoa',44.41,8.93,1,'I'],['Palermo',38.12,13.36,1,'I'],['Catania',37.50,15.09,1,'I'],['Bari',41.12,16.87,1,'I'],['Verona',45.44,10.99,1,'I'],['Trento',46.07,11.12,1,'I'],['Trieste',45.65,13.77,1,'I'],['Cagliari',39.22,9.11,1,'I'],['Brescia',45.54,10.22,1,'I'],['Padua',45.41,11.88,1,'I'],['Perugia',43.11,12.39,1,'I'],['Ancona',43.62,13.51,1,'I'],['Reggio Calabria',38.11,15.65,1,'I'],['Pisa',43.72,10.40,1,'I'],['Ravenna',44.42,12.20,1,'I'],['Lecce',40.36,18.17,1,'I'],['Aosta',45.74,7.32,1,'I'],["L'Aquila",42.35,13.40,1,'I'],['Sommacampagna',45.40,10.85,1,'I'],['Messina',38.19,15.55,1,'I'],['Ferrara',44.84,11.62,1,'I'],['Salerno',40.68,14.76,1,'I'],['Bergamo',45.70,9.67,1,'I'],['Modena',44.65,10.93,1,'I'],['Sassari',40.73,8.56,1,'I'],['Reggio Emilia',44.70,10.63,1,'I'],['Cesena',44.13,12.24,1,'I'],['Cuneo',44.39,7.55,1,'I'],['Novara',45.45,8.62,1,'I'],['Alessandria',44.91,8.62,1,'I'],['Asti',44.90,8.21,1,'I'],['Vicenza',45.55,11.55,1,'I'],['Treviso',45.67,12.24,1,'I'],['Udine',46.06,13.24,1,'I'],['Parma',44.80,10.33,1,'I'],['Piacenza',45.05,9.69,1,'I'],['Rimini',44.06,12.57,1,'I'],['Forli',44.22,12.04,1,'I'],['Siena',43.32,11.33,1,'I'],['Livorno',43.55,10.31,1,'I'],['Arezzo',43.46,11.88,1,'I'],['Grosseto',42.76,11.11,1,'I'],['Lucca',43.84,10.50,1,'I'],['Pistoia',43.93,10.91,1,'I'],['Prato',43.88,11.10,1,'I'],['Latina',41.47,12.91,1,'I'],['Viterbo',42.42,12.10,1,'I'],['Frosinone',41.64,13.35,1,'I'],['Pescara',42.46,14.21,1,'I'],['Chieti',42.35,14.17,1,'I'],['Teramo',42.66,13.70,1,'I'],['Campobasso',41.56,14.66,1,'I'],['Caserta',41.07,14.33,1,'I'],['Benevento',41.13,14.78,1,'I'],['Avellino',40.91,14.79,1,'I'],['Potenza',40.64,15.80,1,'I'],['Matera',40.67,16.61,1,'I'],['Catanzaro',38.91,16.59,1,'I'],['Cosenza',39.31,16.25,1,'I'],['Crotone',39.08,17.12,1,'I'],['Foggia',41.46,15.55,1,'I'],['Taranto',40.46,17.25,1,'I'],['Brindisi',40.63,17.94,1,'I'],['Agrigento',37.31,13.58,1,'I'],['Syracuse',37.07,15.29,1,'I'],['Trapani',38.02,12.52,1,'I'],['Ragusa',36.93,14.73,1,'I'],['Mantua',45.16,10.79,1,'I'],['Como',45.81,9.08,1,'I'],['Varese',45.82,8.83,1,'I'],['Bolzano',46.50,11.35,1,'I'],['Belluno',46.14,12.22,1,'I'],['Pordenone',45.96,12.66,1,'I'],['La Spezia',44.10,9.82,1,'I'],['Imperia',43.89,8.03,1,'I'],['Savona',44.31,8.48,1,'I'],['Monza',45.58,9.27,1,'I'],['Cremona',45.13,10.02,1,'I'],['Busto Arsizio',45.61,8.85,1,'I'],['Terni',42.56,12.64,1,'I'],['Pesaro',43.91,12.91,1,'I'],['Ascoli Piceno',42.85,13.57,1,'I'],['Macerata',43.30,13.45,1,'I'],['Olbia',40.92,9.50,1,'I'],['Nuoro',40.32,9.33,1,'I'],['Oristano',39.90,8.59,1,'I'],['Rovigo',45.07,11.79,1,'I'],['Gorizia',45.94,13.62,1,'I'],['Vercelli',45.32,8.42,1,'I'],['Biella',45.56,8.05,1,'I'],['Verbania',45.92,8.55,1,'I'],['Sondrio',46.17,9.87,1,'I'],['Lecco',45.86,9.39,1,'I'],['Lodi',45.31,9.50,1,'I'],['Rieti',42.40,12.86,1,'I'],['Isernia',41.60,14.23,1,'I'],['Vibo Valentia',38.68,16.10,1,'I'],['Caltanissetta',37.49,14.06,1,'I'],['Enna',37.56,14.28,1,'I'],
-['Obs. Asiago (OAPd)',45.8736,11.5322,1,'I'],['Obs. Loiano (OAB)',44.2588,11.3358,1,'I'],['Obs. Arcetri (Firenze)',43.7510,11.2521,1,'I'],['Obs. Campo Imperatore',42.4582,13.5484,1,'I'],['Obs. Catania (Etna)',37.6913,14.9736,1,'I'],
-['London',51.51,-0.13,0,'E'],['Paris',48.85,2.35,1,'E'],['Berlin',52.52,13.41,1,'E'],['Madrid',40.42,-3.70,1,'E'],['Barcelona',41.39,2.16,1,'E'],['Lisbon',38.72,-9.14,0,'E'],['Amsterdam',52.37,4.90,1,'E'],['Brussels',50.85,4.35,1,'E'],['Vienna',48.21,16.37,1,'E'],['Zurich',47.38,8.54,1,'E'],['Bern',46.95,7.45,1,'E'],['Geneva',46.20,6.15,1,'E'],['Athens',37.98,23.73,2,'E'],['Warsaw',52.23,21.01,1,'E'],['Prague',50.08,14.44,1,'E'],['Budapest',47.50,19.04,1,'E'],['Stockholm',59.33,18.07,1,'E'],['Oslo',59.91,10.75,1,'E'],['Helsinki',60.17,24.94,2,'E'],['Reykjavik',64.13,-21.94,0,'E'],['Moscow',55.75,37.62,3,'E'],['Istanbul',41.01,28.95,3,'E'],['Kyiv',50.45,30.52,2,'E'],['Bucharest',44.43,26.10,2,'E'],['Sofia',42.70,23.32,2,'E'],['Belgrade',44.80,20.46,1,'E'],['Zagreb',45.81,15.98,1,'E'],['Ljubljana',46.05,14.50,1,'E'],['Dublin',53.33,-6.25,0,'E'],['Edinburgh',55.95,-3.19,0,'E'],['Copenhagen',55.68,12.57,1,'E'],['Bratislava',48.15,17.11,1,'E'],['Valletta',35.90,14.51,1,'E'],['Ankara',39.93,32.86,3,'E'],['Saint Petersburg',59.95,30.32,3,'E'],['Seville',37.39,-5.99,1,'E'],['Valencia',39.47,-0.38,1,'E'],['Porto',41.15,-8.61,0,'E'],['Marseille',43.30,5.37,1,'E'],['Lyon',45.75,4.84,1,'E'],['Hamburg',53.55,9.99,1,'E'],['Munich',48.14,11.58,1,'E'],['Frankfurt',50.11,8.68,1,'E'],['Cologne',50.94,6.96,1,'E'],['Rotterdam',51.92,4.48,1,'E'],['Manchester',53.48,-2.24,0,'E'],['Birmingham',52.48,-1.90,0,'E'],['Glasgow',55.86,-4.25,0,'E'],['Krakow',50.06,19.94,1,'E'],['Thessaloniki',40.64,22.94,2,'E'],['Izmir',38.42,27.13,3,'E'],['Nicosia',35.17,33.37,2,'E'],['Luxembourg',49.61,6.13,1,'E'],
-['Obs. Roque/La Palma',28.7603,-17.8903,0,'E'],['Obs. Calar Alto',37.2235,-2.5461,1,'E'],['Obs. Pic du Midi',42.9362,0.1422,1,'E'],['Obs. Wendelstein',47.7364,11.9731,1,'E'],
-['New York',40.71,-74.01,-5,'A'],['Los Angeles',34.05,-118.24,-8,'A'],['Chicago',41.88,-87.63,-6,'A'],['Toronto',43.65,-79.38,-5,'A'],['Vancouver',49.25,-123.12,-8,'A'],['Montreal',45.50,-73.57,-5,'A'],['Miami',25.77,-80.19,-5,'A'],['Houston',29.76,-95.37,-6,'A'],['Dallas',32.78,-96.80,-6,'A'],['Phoenix',33.45,-112.07,-7,'A'],['Seattle',47.61,-122.33,-8,'A'],['Boston',42.36,-71.06,-5,'A'],['San Francisco',37.77,-122.42,-8,'A'],['Denver',39.74,-104.98,-7,'A'],['Atlanta',33.75,-84.39,-5,'A'],['Las Vegas',36.17,-115.14,-8,'A'],['Washington DC',38.91,-77.04,-5,'A'],['San Diego',32.72,-117.16,-8,'A'],['Mexico City',19.43,-99.13,-6,'A'],['Guadalajara',20.66,-103.35,-6,'A'],['Bogota',4.71,-74.07,-5,'A'],['Lima',-12.05,-77.04,-5,'A'],['Santiago',-33.46,-70.65,-3,'A'],['Buenos Aires',-34.61,-58.38,-3,'A'],['Sao Paulo',-23.55,-46.63,-3,'A'],['Rio de Janeiro',-22.91,-43.17,-3,'A'],['Caracas',10.48,-66.88,-4,'A'],['Havana',23.14,-82.36,-5,'A'],['Honolulu',21.31,-157.86,-10,'A'],['Anchorage',61.22,-149.90,-9,'A'],['Calgary',51.05,-114.07,-7,'A'],['Ottawa',45.42,-75.69,-5,'A'],
-['Obs. Mauna Kea',19.8207,-155.4681,-10,'A'],['Obs. Kitt Peak (KPNO)',31.9638,-111.5999,-7,'A'],['Obs. Palomar',33.3563,-116.8648,-8,'A'],['Obs. Mt Wilson',34.2239,-118.0571,-8,'A'],['Obs. Apache Point (APO)',32.7797,-105.8189,-7,'A'],['Obs. Cerro Paranal (VLT)',-24.6275,-70.4044,-3,'A'],['Obs. La Silla (ESO)',-29.2569,-70.7301,-3,'A'],['Obs. Cerro Tololo (CTIO)',-30.1653,-70.8148,-3,'A'],['Obs. Las Campanas',-29.0033,-70.6915,-3,'A'],['Obs. Gemini South',-30.2407,-70.7367,-3,'A'],
-['Tokyo',35.69,139.69,9,'S'],['Beijing',39.91,116.39,8,'S'],['Shanghai',31.23,121.47,8,'S'],['Seoul',37.57,126.98,9,'S'],['Mumbai',19.08,72.88,5.5,'S'],['New Delhi',28.61,77.21,5.5,'S'],['Dubai',25.20,55.27,4,'S'],['Singapore',1.35,103.82,8,'S'],['Bangkok',13.75,100.52,7,'S'],['Jakarta',-6.21,106.85,7,'S'],['Kuala Lumpur',3.14,101.69,8,'S'],['Hong Kong',22.32,114.17,8,'S'],['Taipei',25.04,121.52,8,'S'],['Osaka',34.69,135.50,9,'S'],['Karachi',24.86,67.01,5,'S'],['Tehran',35.69,51.42,3.5,'S'],['Riyadh',24.69,46.72,3,'S'],['Islamabad',33.72,73.04,5,'S'],['Hanoi',21.03,105.84,7,'S'],['Manila',14.60,120.98,8,'S'],['Dhaka',23.72,90.41,6,'S'],['Tashkent',41.30,69.24,5,'S'],['Baku',40.41,49.87,4,'S'],['Baghdad',33.34,44.40,3,'S'],
-['Obs. Xinglong (NAOC)',40.3956,117.5753,8,'S'],
-['Sydney',-33.87,151.21,10,'O'],['Melbourne',-37.81,144.96,10,'O'],['Brisbane',-27.47,153.03,10,'O'],['Perth',-31.95,115.86,8,'O'],['Adelaide',-34.93,138.60,9.5,'O'],['Auckland',-36.86,174.77,12,'O'],['Wellington',-41.29,174.78,12,'O'],['Christchurch',-43.53,172.64,12,'O'],
-['Obs. Siding Spring',-31.2734,149.0613,10,'O'],
-['Cairo',30.04,31.24,2,'F'],['Nairobi',-1.29,36.82,3,'F'],['Johannesburg',-26.20,28.04,2,'F'],['Casablanca',33.59,-7.62,1,'F'],['Lagos',6.45,3.39,1,'F'],['Addis Ababa',9.02,38.75,3,'F'],['Cape Town',-33.93,18.42,2,'F'],['Tunis',36.82,10.18,1,'F'],['Algiers',36.74,3.06,1,'F'],['Accra',5.56,-0.20,0,'F'],['Khartoum',15.55,32.53,3,'F'],['Kampala',0.32,32.58,3,'F'],['Dakar',14.71,-17.47,0,'F'],['Dar es Salaam',-6.80,39.27,3,'F'],['Lusaka',-15.42,28.28,2,'F'],['Harare',-17.83,31.05,2,'F'],['Windhoek',-22.56,17.08,2,'F'],
-['Obs. Sutherland (SAAO)',-32.3761,20.8107,2,'F']
-];
+['Novezzina (M.Baldo-CAV)',45.68,10.83,1,'I'],['Roma',41.9,12.49,1,'I'],['Milan',45.47,9.19,1,'I'],['Napoli',40.85,14.27,1,'I'],['Torino',45.07,7.69,1,'I'],['Firenze',43.77,11.26,1,'I'],['Bologna',44.49,11.34,1,'I'],['Venezia',45.44,12.33,1,'I'],['Genova',44.41,8.93,1,'I'],['Palermo',38.12,13.36,1,'I'],['Catania',37.5,15.09,1,'I'],['Bari',41.12,16.87,1,'I'],['Verona',45.44,10.99,1,'I'],['Trento',46.07,11.12,1,'I'],['Trieste',45.65,13.77,1,'I'],['Cagliari',39.22,9.11,1,'I'],['Brescia',45.54,10.22,1,'I'],['Padova',45.41,11.88,1,'I'],['Perugia',43.11,12.39,1,'I'],['Ancona',43.62,13.51,1,'I'],['Reggio Calabria',38.11,15.65,1,'I'],['Pisa',43.72,10.4,1,'I'],['Ravenna',44.42,12.2,1,'I'],['Lecce',40.36,18.17,1,'I'],['Aosta',45.74,7.32,1,'I'],["L'Aquila",42.35,13.40,1,'I'],['Sommacampagna',45.4,10.85,1,'I'],['Messina',38.19,15.55,1,'I'],['Ferrara',44.84,11.62,1,'I'],['Salerno',40.68,14.76,1,'I'],['Bergamo',45.7,9.67,1,'I'],['Modena',44.65,10.93,1,'I'],['Sassari',40.73,8.56,1,'I'],['Reggio Emilia',44.7,10.63,1,'I'],['Cesena',44.13,12.24,1,'I'],['Cuneo',44.39,7.55,1,'I'],['Novara',45.45,8.62,1,'I'],['Alessandria',44.91,8.62,1,'I'],['Asti',44.9,8.21,1,'I'],['Vicenza',45.55,11.55,1,'I'],['Treviso',45.67,12.24,1,'I'],['Udine',46.06,13.24,1,'I'],['Parma',44.8,10.33,1,'I'],['Piacenza',45.05,9.69,1,'I'],['Rimini',44.06,12.57,1,'I'],['Forlì',44.22,12.04,1,'I'],['Siena',43.32,11.33,1,'I'],['Livorno',43.55,10.31,1,'I'],['Arezzo',43.46,11.88,1,'I'],['Grosseto',42.76,11.11,1,'I'],['Lucca',43.84,10.5,1,'I'],['Pistoia',43.93,10.91,1,'I'],['Prato',43.88,11.1,1,'I'],['Latina',41.47,12.91,1,'I'],['Viterbo',42.42,12.1,1,'I'],['Frosinone',41.64,13.35,1,'I'],['Pescara',42.46,14.21,1,'I'],['Chieti',42.35,14.17,1,'I'],['Teramo',42.66,13.7,1,'I'],['Campobasso',41.56,14.66,1,'I'],['Caserta',41.07,14.33,1,'I'],['Benevento',41.13,14.78,1,'I'],['Avellino',40.91,14.79,1,'I'],['Potenza',40.64,15.8,1,'I'],['Matera',40.67,16.61,1,'I'],['Catanzaro',38.91,16.59,1,'I'],['Cosenza',39.31,16.25,1,'I'],['Crotone',39.08,17.12,1,'I'],['Foggia',41.46,15.55,1,'I'],['Taranto',40.46,17.25,1,'I'],['Brindisi',40.63,17.94,1,'I'],['Agrigento',37.31,13.58,1,'I'],['Siracusa',37.07,15.29,1,'I'],['Trapani',38.02,12.52,1,'I'],['Ragusa',36.93,14.73,1,'I'],['Mantova',45.16,10.79,1,'I'],['Como',45.81,9.08,1,'I'],['Varese',45.82,8.83,1,'I'],['Bolzano',46.5,11.35,1,'I'],['Belluno',46.14,12.22,1,'I'],['Pordenone',45.96,12.66,1,'I'],['La Spezia',44.1,9.82,1,'I'],['Imperia',43.89,8.03,1,'I'],['Savona',44.31,8.48,1,'I'],['Monza',45.58,9.27,1,'I'],['Cremona',45.13,10.02,1,'I'],['Busto Arsizio',45.61,8.85,1,'I'],['Terni',42.56,12.64,1,'I'],['Pesaro',43.91,12.91,1,'I'],['Ascoli Piceno',42.85,13.57,1,'I'],['Macerata',43.3,13.45,1,'I'],['Olbia',40.92,9.5,1,'I'],['Nuoro',40.32,9.33,1,'I'],['Oristano',39.9,8.59,1,'I'],['Rovigo',45.07,11.79,1,'I'],['Gorizia',45.94,13.62,1,'I'],['Vercelli',45.32,8.42,1,'I'],['Biella',45.56,8.05,1,'I'],['Verbania',45.92,8.55,1,'I'],['Sondrio',46.17,9.87,1,'I'],['Lecco',45.86,9.39,1,'I'],['Lodi',45.31,9.5,1,'I'],['Rieti',42.4,12.86,1,'I'],['Isernia',41.6,14.23,1,'I'],['Vibo Valentia',38.68,16.1,1,'I'],['Caltanissetta',37.49,14.06,1,'I'],['Enna',37.56,14.28,1,'I'],
+['Obs. Asiago (OAPd)',45.87,11.53,1,'I'],['Obs. Loiano (OAB)',44.26,11.34,1,'I'],['Obs. Arcetri (Firenze)',43.75,11.25,1,'I'],['Obs. Campo Imperatore',42.46,13.55,1,'I'],['Obs. Catania (Etna)',37.69,14.97,1,'I'],
+['London',51.51,-0.13,0,'E'],['Paris',48.85,2.35,1,'E'],['Berlin',52.52,13.41,1,'E'],['Madrid',40.42,-3.7,1,'E'],['Barcelona',41.39,2.16,1,'E'],['Lisbon',38.72,-9.14,0,'E'],['Amsterdam',52.37,4.9,1,'E'],['Brussels',50.85,4.35,1,'E'],['Vienna',48.21,16.37,1,'E'],['Zurich',47.38,8.54,1,'E'],['Bern',46.95,7.45,1,'E'],['Geneva',46.2,6.15,1,'E'],['Athens',37.98,23.73,2,'E'],['Warsaw',52.23,21.01,1,'E'],['Prague',50.08,14.44,1,'E'],['Budapest',47.5,19.04,1,'E'],['Stockholm',59.33,18.07,1,'E'],['Oslo',59.91,10.75,1,'E'],['Helsinki',60.17,24.94,2,'E'],['Reykjavik',64.13,-21.94,0,'E'],['Moscow',55.75,37.62,3,'E'],['Istanbul',41.01,28.95,3,'E'],['Kyiv',50.45,30.52,2,'E'],['Bucharest',44.43,26.1,2,'E'],['Sofia',42.7,23.32,2,'E'],['Belgrade',44.8,20.46,1,'E'],['Zagreb',45.81,15.98,1,'E'],['Ljubljana',46.05,14.5,1,'E'],['Dublin',53.33,-6.25,0,'E'],['Edinburgh',55.95,-3.19,0,'E'],['Copenhagen',55.68,12.57,1,'E'],['Bratislava',48.15,17.11,1,'E'],['Valletta',35.9,14.51,1,'E'],['Ankara',39.93,32.86,3,'E'],['Saint Petersburg',59.95,30.32,3,'E'],['Seville',37.39,-5.99,1,'E'],['Valencia',39.47,-0.38,1,'E'],['Porto',41.15,-8.61,0,'E'],['Marseille',43.3,5.37,1,'E'],['Lyon',45.75,4.84,1,'E'],['Hamburg',53.55,9.99,1,'E'],['Munich',48.14,11.58,1,'E'],['Frankfurt',50.11,8.68,1,'E'],['Cologne',50.94,6.96,1,'E'],['Rotterdam',51.92,4.48,1,'E'],['Manchester',53.48,-2.24,0,'E'],['Birmingham',52.48,-1.9,0,'E'],['Glasgow',55.86,-4.25,0,'E'],['Krakow',50.06,19.94,1,'E'],['Thessaloniki',40.64,22.94,2,'E'],['Izmir',38.42,27.13,3,'E'],['Nicosia',35.17,33.37,2,'E'],['Luxembourg',49.61,6.13,1,'E'],
+['Obs. Roque/La Palma',28.76,-17.89,0,'E'],['Obs. Calar Alto',37.22,-2.55,1,'E'],['Obs. Pic du Midi',42.94,0.14,1,'E'],['Obs. Wendelstein',47.74,11.97,1,'E'],
+['New York',40.71,-74.01,-5,'A'],['Los Angeles',34.05,-118.24,-8,'A'],['Chicago',41.88,-87.63,-6,'A'],['Toronto',43.65,-79.38,-5,'A'],['Vancouver',49.25,-123.12,-8,'A'],['Montreal',45.5,-73.57,-5,'A'],['Miami',25.77,-80.19,-5,'A'],['Houston',29.76,-95.37,-6,'A'],['Dallas',32.78,-96.8,-6,'A'],['Phoenix',33.45,-112.07,-7,'A'],['Seattle',47.61,-122.33,-8,'A'],['Boston',42.36,-71.06,-5,'A'],['San Francisco',37.77,-122.42,-8,'A'],['Denver',39.74,-104.98,-7,'A'],['Atlanta',33.75,-84.39,-5,'A'],['Las Vegas',36.17,-115.14,-8,'A'],['Washington DC',38.91,-77.04,-5,'A'],['San Diego',32.72,-117.16,-8,'A'],['Mexico City',19.43,-99.13,-6,'A'],['Guadalajara',20.66,-103.35,-6,'A'],['Bogota',4.71,-74.07,-5,'A'],['Lima',-12.05,-77.04,-5,'A'],['Santiago',-33.46,-70.65,-3,'A'],['Buenos Aires',-34.61,-58.38,-3,'A'],['Sao Paulo',-23.55,-46.63,-3,'A'],['Rio de Janeiro',-22.91,-43.17,-3,'A'],['Caracas',10.48,-66.88,-4,'A'],['Havana',23.14,-82.36,-5,'A'],['Honolulu',21.31,-157.86,-10,'A'],['Anchorage',61.22,-149.9,-9,'A'],['Calgary',51.05,-114.07,-7,'A'],['Ottawa',45.42,-75.69,-5,'A'],
+['Obs. Mauna Kea',19.82,-155.47,-10,'A'],['Obs. Kitt Peak (KPNO)',31.96,-111.6,-7,'A'],['Obs. Palomar',33.36,-116.86,-8,'A'],['Obs. Mt Wilson',34.22,-118.06,-8,'A'],['Obs. Apache Point (APO)',32.78,-105.82,-7,'A'],['Obs. Cerro Paranal (VLT)',-24.63,-70.4,-3,'A'],['Obs. La Silla (ESO)',-29.26,-70.73,-3,'A'],['Obs. Cerro Tololo (CTIO)',-30.17,-70.81,-3,'A'],['Obs. Las Campanas',-29.0,-70.69,-3,'A'],['Obs. Gemini South',-30.24,-70.74,-3,'A'],
+['Tokyo',35.69,139.69,9,'S'],['Beijing',39.91,116.39,8,'S'],['Shanghai',31.23,121.47,8,'S'],['Seoul',37.57,126.98,9,'S'],['Mumbai',19.08,72.88,5.5,'S'],['New Delhi',28.61,77.21,5.5,'S'],['Dubai',25.2,55.27,4,'S'],['Singapore',1.35,103.82,8,'S'],['Bangkok',13.75,100.52,7,'S'],['Jakarta',-6.21,106.85,7,'S'],['Kuala Lumpur',3.14,101.69,8,'S'],['Hong Kong',22.32,114.17,8,'S'],['Taipei',25.04,121.52,8,'S'],['Osaka',34.69,135.5,9,'S'],['Karachi',24.86,67.01,5,'S'],['Tehran',35.69,51.42,3.5,'S'],['Riyadh',24.69,46.72,3,'S'],['Islamabad',33.72,73.04,5,'S'],['Hanoi',21.03,105.84,7,'S'],['Manila',14.6,120.98,8,'S'],['Dhaka',23.72,90.41,6,'S'],['Tashkent',41.3,69.24,5,'S'],['Baku',40.41,49.87,4,'S'],['Baghdad',33.34,44.4,3,'S'],
+['Obs. Xinglong (NAOC)',40.4,117.58,8,'S'],
+['Sydney',-33.87,151.21,10,'O'],['Melbourne',-37.81,144.96,10,'O'],['Brisbane',-27.47,153.03,10,'O'],['Perth',-31.95,115.86,8,'O'],['Adelaide',-34.93,138.6,9.5,'O'],['Auckland',-36.86,174.77,12,'O'],['Wellington',-41.29,174.78,12,'O'],['Christchurch',-43.53,172.64,12,'O'],
+['Obs. Siding Spring',-31.27,149.06,10,'O'],
+['Cairo',30.04,31.24,2,'F'],['Nairobi',-1.29,36.82,3,'F'],['Johannesburg',-26.2,28.04,2,'F'],['Casablanca',33.59,-7.62,1,'F'],['Lagos',6.45,3.39,1,'F'],['Addis Ababa',9.02,38.75,3,'F'],['Cape Town',-33.93,18.42,2,'F'],['Tunis',36.82,10.18,1,'F'],['Algiers',36.74,3.06,1,'F'],['Accra',5.56,-0.2,0,'F'],['Khartoum',15.55,32.53,3,'F'],['Kampala',0.32,32.58,3,'F'],['Dakar',14.71,-17.47,0,'F'],['Dar es Salaam',-6.8,39.27,3,'F'],['Lusaka',-15.42,28.28,2,'F'],['Harare',-17.83,31.05,2,'F'],['Windhoek',-22.56,17.08,2,'F'],
+['Obs. Sutherland (SAAO)',-32.38,20.81,2,'F']];
 var GN={'I':'Italy','E':'Europe','A':'Americas','S':'Asia','O':'Oceania','F':'Africa'};
 var seen={};var CIT=[];CD.forEach(function(c){if(!seen[c[0]]){seen[c[0]]=true;CIT.push(c);}});
-
-/* ── TIMEZONE SELECT ─────────────────────────────────────────── */
 var TZ=[{l:'UTC-12',o:-12},{l:'UTC-11',o:-11},{l:'UTC-10 Hawaii',o:-10},{l:'UTC-9 Alaska',o:-9},{l:'UTC-8 Los Angeles',o:-8},{l:'UTC-7 Denver',o:-7},{l:'UTC-6 Chicago',o:-6},{l:'UTC-5 New York',o:-5},{l:'UTC-4 Caracas',o:-4},{l:'UTC-3 Buenos Aires',o:-3},{l:'UTC-2',o:-2},{l:'UTC-1 Azores',o:-1},{l:'UTC+0 London',o:0},{l:'UTC+1 Rome/Paris',o:1},{l:'UTC+2 Cairo/Athens',o:2},{l:'UTC+3 Moscow/Nairobi',o:3},{l:'UTC+3:30 Tehran',o:3.5},{l:'UTC+4 Dubai',o:4},{l:'UTC+4:30 Kabul',o:4.5},{l:'UTC+5 Karachi',o:5},{l:'UTC+5:30 New Delhi',o:5.5},{l:'UTC+5:45 Kathmandu',o:5.75},{l:'UTC+6 Dhaka',o:6},{l:'UTC+6:30 Yangon',o:6.5},{l:'UTC+7 Bangkok',o:7},{l:'UTC+8 Beijing',o:8},{l:'UTC+8:45 Eucla',o:8.75},{l:'UTC+9 Tokyo',o:9},{l:'UTC+9:30 Adelaide',o:9.5},{l:'UTC+10 Sydney',o:10},{l:'UTC+10:30',o:10.5},{l:'UTC+11 Vladivostok',o:11},{l:'UTC+12 Auckland',o:12},{l:'UTC+13 Tonga',o:13},{l:'UTC+14 Line Islands',o:14}];
 var tzSel=g('ov-tz');
 TZ.forEach(function(t,i){var o=document.createElement('option');o.value=i;o.textContent=t.l;if(t.o===1)o.selected=true;tzSel.appendChild(o);});
-
-/* ── CITY AUTOCOMPLETE ───────────────────────────────────────── */
 var cs=g('city-search'),dd=g('city-dd');
-cs.addEventListener('input',function(){var q=this.value.toLowerCase().trim();dd.innerHTML='';if(q.length<2){dd.style.display='none';return;}var m=[];for(var i=0;i<CIT.length;i++){if(CIT[i][0].toLowerCase().indexOf(q)!==-1){m.push(i);if(m.length>=12)break;}}if(!m.length){dd.style.display='none';return;}m.forEach(function(idx){var c=CIT[idx];var it=document.createElement('div');it.className='city-item';it.innerHTML='<span>'+c[0]+'</span><span class="city-gtag">'+GN[c[4]]+'</span>';it.addEventListener('click',function(){cs.value=c[0];g('ov-lat').value=c[1];g('ov-lon').value=c[2];var bi=0,bd=999;TZ.forEach(function(t,i){var d=Math.abs(t.o-c[3]);if(d<bd){bd=d;bi=i;}});tzSel.value=bi;g('city-note').textContent=c[0]+' \u2014 lat '+c[1]+', lon '+c[2]+' (approximate)';dd.style.display='none';});dd.appendChild(it);});dd.style.display='block';});
+cs.addEventListener('input',function(){var q=this.value.toLowerCase().trim();dd.innerHTML='';if(q.length<2){dd.style.display='none';return;}var m=[];for(var i=0;i<CIT.length;i++){if(CIT[i][0].toLowerCase().indexOf(q)!==-1){m.push(i);if(m.length>=12)break;}}if(!m.length){dd.style.display='none';return;}m.forEach(function(idx){var c=CIT[idx];var it=document.createElement('div');it.className='city-item';it.innerHTML='<span>'+c[0]+'</span><span class="city-gtag">'+GN[c[4]]+'</span>';it.addEventListener('click',function(){cs.value=c[0];g('ov-lat').value=String(c[1]).replace(',','.'); g('ov-lon').value=String(c[2]).replace(',','.');var bi=0,bd=999;TZ.forEach(function(t,i){var d=Math.abs(t.o-c[3]);if(d<bd){bd=d;bi=i;}});tzSel.value=bi;g('city-note').textContent=c[0]+' \u2014 lat '+c[1]+', lon '+c[2]+' (approximate)';dd.style.display='none';});dd.appendChild(it);});dd.style.display='block';});
 document.addEventListener('click',function(e){var t=e.target,iW=false;while(t){if(t.className&&typeof t.className==='string'&&t.className.indexOf('search-wrap')!==-1){iW=true;break;}t=t.parentNode;}if(!iW)dd.style.display='none';});
-
-/* ── DST TOGGLE ──────────────────────────────────────────────── */
 document.querySelectorAll('.dst-opt').forEach(function(b){b.addEventListener('click',function(){document.querySelectorAll('.dst-opt').forEach(function(x){x.classList.remove('active');});b.classList.add('active');dst=parseInt(b.getAttribute('data-dst'));});});
-
-/* ── DSO DATABASE (100 objects) ──────────────────────────────── */
 var OBJ=[
-{id:'M1',name:'Crab Nebula',type:'Nebula',ra:5.576,dec:22.01,mag:8.4},
-{id:'M2',name:'NGC 7089',type:'Globular',ra:21.558,dec:-0.823,mag:6.5},
-{id:'M3',name:'NGC 5272',type:'Globular',ra:13.703,dec:28.378,mag:6.2},
-{id:'M4',name:'NGC 6121',type:'Globular',ra:16.393,dec:-26.526,mag:5.6},
-{id:'M5',name:'NGC 5904',type:'Globular',ra:15.309,dec:2.081,mag:5.6},
-{id:'M6',name:'Butterfly Cluster',type:'Open Cl.',ra:17.667,dec:-32.217,mag:4.2},
-{id:'M7',name:"Ptolemy's Cluster",type:'Open Cl.',ra:17.900,dec:-34.817,mag:3.3},
-{id:'M8',name:'Lagoon Nebula',type:'Nebula',ra:18.060,dec:-24.384,mag:6.0},
-{id:'M10',name:'NGC 6254',type:'Globular',ra:16.950,dec:-4.100,mag:6.6},
-{id:'M11',name:'Wild Duck Cluster',type:'Open Cl.',ra:18.852,dec:-6.267,mag:5.8},
-{id:'M12',name:'NGC 6218',type:'Globular',ra:16.783,dec:-1.950,mag:6.7},
-{id:'M13',name:'Hercules Cluster',type:'Globular',ra:16.695,dec:36.460,mag:5.8},
-{id:'M14',name:'NGC 6402',type:'Globular',ra:17.617,dec:-3.250,mag:7.6},
-{id:'M15',name:'NGC 7078',type:'Globular',ra:21.499,dec:12.167,mag:6.2},
-{id:'M16',name:'Eagle Nebula',type:'Nebula',ra:18.313,dec:-13.787,mag:6.4},
-{id:'M17',name:'Omega Nebula',type:'Nebula',ra:18.341,dec:-16.183,mag:6.0},
-{id:'M19',name:'NGC 6273',type:'Globular',ra:17.033,dec:-26.267,mag:6.8},
-{id:'M20',name:'Trifid Nebula',type:'Nebula',ra:18.040,dec:-23.033,mag:6.3},
-{id:'M22',name:'NGC 6656',type:'Globular',ra:18.607,dec:-23.905,mag:5.1},
-{id:'M27',name:'Dumbbell Nebula',type:'Pla. Neb.',ra:19.993,dec:22.721,mag:7.4},
-{id:'M28',name:'NGC 6626',type:'Globular',ra:18.417,dec:-24.867,mag:6.9},
-{id:'M31',name:'Andromeda Galaxy',type:'Galaxy',ra:0.712,dec:41.269,mag:3.4},
-{id:'M33',name:'Triangulum Galaxy',type:'Galaxy',ra:1.564,dec:30.660,mag:5.7},
-{id:'M35',name:'NGC 2168',type:'Open Cl.',ra:6.148,dec:24.333,mag:5.1},
-{id:'M36',name:'NGC 1960',type:'Open Cl.',ra:5.605,dec:34.133,mag:6.0},
-{id:'M37',name:'NGC 2099',type:'Open Cl.',ra:5.872,dec:32.550,mag:5.6},
-{id:'M38',name:'NGC 1912',type:'Open Cl.',ra:5.483,dec:35.850,mag:7.4},
-{id:'M41',name:'NGC 2287',type:'Open Cl.',ra:6.783,dec:-20.733,mag:4.5},
-{id:'M42',name:'Orion Nebula',type:'Nebula',ra:5.588,dec:-5.390,mag:4.0},
-{id:'M44',name:'Beehive Cluster',type:'Open Cl.',ra:8.673,dec:19.667,mag:3.1},
-{id:'M45',name:'Pleiades',type:'Open Cl.',ra:3.790,dec:24.117,mag:1.6},
-{id:'M46',name:'NGC 2437',type:'Open Cl.',ra:7.700,dec:-14.817,mag:6.1},
-{id:'M47',name:'NGC 2422',type:'Open Cl.',ra:7.617,dec:-14.483,mag:4.4},
-{id:'M51',name:'Whirlpool Galaxy',type:'Galaxy',ra:13.498,dec:47.195,mag:8.4},
-{id:'M52',name:'NGC 7654',type:'Open Cl.',ra:23.400,dec:61.583,mag:7.3},
-{id:'M53',name:'NGC 5024',type:'Globular',ra:13.217,dec:18.167,mag:7.6},
-{id:'M55',name:'NGC 6809',type:'Globular',ra:19.667,dec:-30.967,mag:6.3},
-{id:'M56',name:'NGC 6779',type:'Globular',ra:19.283,dec:30.183,mag:8.3},
-{id:'M57',name:'Ring Nebula',type:'Pla. Neb.',ra:18.893,dec:33.030,mag:8.8},
-{id:'M63',name:'Sunflower Galaxy',type:'Galaxy',ra:13.264,dec:42.029,mag:8.6},
-{id:'M64',name:'Black Eye Galaxy',type:'Galaxy',ra:12.946,dec:21.683,mag:8.5},
-{id:'M65',name:'Leo Triplet I',type:'Galaxy',ra:11.316,dec:13.092,mag:9.3},
-{id:'M66',name:'Leo Triplet II',type:'Galaxy',ra:11.338,dec:12.992,mag:8.9},
-{id:'M67',name:'NGC 2682',type:'Open Cl.',ra:8.850,dec:11.817,mag:6.9},
-{id:'M74',name:'Phantom Galaxy',type:'Galaxy',ra:1.612,dec:15.783,mag:9.4},
-{id:'M77',name:'Cetus A',type:'Galaxy',ra:2.711,dec:-0.013,mag:8.9},
-{id:'M81',name:"Bode's Galaxy",type:'Galaxy',ra:9.926,dec:69.065,mag:6.9},
-{id:'M82',name:'Cigar Galaxy',type:'Galaxy',ra:9.931,dec:69.680,mag:8.4},
-{id:'M83',name:'Southern Pinwheel',type:'Galaxy',ra:13.617,dec:-29.866,mag:7.5},
-{id:'M87',name:'Virgo A',type:'Galaxy',ra:12.517,dec:12.383,mag:8.6},
-{id:'M92',name:'NGC 6341',type:'Globular',ra:17.285,dec:43.136,mag:6.4},
-{id:'M93',name:'NGC 2447',type:'Open Cl.',ra:7.750,dec:-23.867,mag:6.0},
-{id:'M97',name:'Owl Nebula',type:'Pla. Neb.',ra:11.247,dec:55.018,mag:9.9},
-{id:'M101',name:'Pinwheel Galaxy',type:'Galaxy',ra:14.054,dec:54.349,mag:7.9},
-{id:'M104',name:'Sombrero Galaxy',type:'Galaxy',ra:12.666,dec:-11.623,mag:8.0},
-{id:'M106',name:'NGC 4258',type:'Galaxy',ra:12.316,dec:47.304,mag:8.4},
-{id:'M108',name:'NGC 3556',type:'Galaxy',ra:11.193,dec:55.674,mag:10.0},
-{id:'M109',name:'NGC 3992',type:'Galaxy',ra:11.960,dec:53.375,mag:9.8},
-{id:'M110',name:'NGC 205',type:'Galaxy',ra:0.673,dec:41.685,mag:8.1},
-{id:'NGC 869',name:'Double Cluster h',type:'Open Cl.',ra:2.370,dec:57.133,mag:4.3},
-{id:'NGC 884',name:'Double Cluster \u03c7',type:'Open Cl.',ra:2.377,dec:57.133,mag:4.4},
-{id:'NGC 2237',name:'Rosette Nebula',type:'Nebula',ra:6.550,dec:5.050,mag:9.0},
-{id:'NGC 2244',name:'Rosette Cl.',type:'Open Cl.',ra:6.533,dec:4.950,mag:4.8},
-{id:'NGC 2392',name:'Eskimo Nebula',type:'Pla. Neb.',ra:7.487,dec:20.911,mag:9.2},
-{id:'NGC 3242',name:'Ghost of Jupiter',type:'Pla. Neb.',ra:10.413,dec:-18.637,mag:8.6},
-{id:'NGC 4565',name:'Needle Galaxy',type:'Galaxy',ra:12.606,dec:25.988,mag:9.6},
-{id:'NGC 5128',name:'Centaurus A',type:'Galaxy',ra:13.425,dec:-43.019,mag:6.8},
-{id:'NGC 5139',name:'Omega Centauri',type:'Globular',ra:13.447,dec:-47.479,mag:3.9},
-{id:'NGC 104',name:'47 Tucanae',type:'Globular',ra:0.401,dec:-72.081,mag:4.0},
-{id:'NGC 6752',name:'NGC 6752',type:'Globular',ra:19.183,dec:-59.983,mag:5.4},
-{id:'NGC 6992',name:'Eastern Veil',type:'Nebula',ra:20.940,dec:31.717,mag:7.0},
-{id:'NGC 6960',name:'Western Veil',type:'Nebula',ra:20.763,dec:30.717,mag:7.0},
-{id:'NGC 7009',name:'Saturn Nebula',type:'Pla. Neb.',ra:21.070,dec:-11.364,mag:8.0},
-{id:'NGC 7293',name:'Helix Nebula',type:'Pla. Neb.',ra:22.494,dec:-20.837,mag:7.6},
-{id:'NGC 3372',name:'Eta Carinae Neb.',type:'Nebula',ra:10.750,dec:-59.867,mag:6.2},
-{id:'NGC 6523',name:'Lagoon (core)',type:'Nebula',ra:18.067,dec:-24.383,mag:6.0},
-{id:'NGC 7331',name:'NGC 7331',type:'Galaxy',ra:22.617,dec:34.417,mag:9.5},
-{id:'NGC 891',name:'Edge-on Galaxy',type:'Galaxy',ra:2.376,dec:42.349,mag:9.9},
-{id:'NGC 1499',name:'California Nebula',type:'Nebula',ra:4.050,dec:36.417,mag:6.0},
-{id:'IC 434',name:'Horsehead Neb.',type:'Nebula',ra:5.683,dec:-2.450,mag:7.5},
-{id:'IC 1805',name:'Heart Nebula',type:'Nebula',ra:2.550,dec:61.467,mag:6.5},
-{id:'IC 1848',name:'Soul Nebula',type:'Nebula',ra:2.900,dec:60.467,mag:6.5},
-{id:'IC 5070',name:'Pelican Nebula',type:'Nebula',ra:20.833,dec:44.367,mag:8.0},
-{id:'IC 5146',name:'Cocoon Nebula',type:'Nebula',ra:21.900,dec:47.267,mag:7.2},
-{id:'NGC 6188',name:'Fighting Dragons',type:'Nebula',ra:16.550,dec:-53.733,mag:8.5},
-{id:'NGC 2359',name:"Thor's Helmet",type:'Nebula',ra:7.283,dec:-13.233,mag:9.0},
-{id:'NGC 7380',name:'Wizard Nebula',type:'Nebula',ra:22.783,dec:58.133,mag:7.2},
-{id:'NGC 281',name:'Pacman Nebula',type:'Nebula',ra:0.883,dec:56.617,mag:7.4},
-{id:'NGC 7789',name:"Caroline's Rose",type:'Open Cl.',ra:23.950,dec:56.717,mag:6.7},
-{id:'NGC 457',name:'Owl Cluster',type:'Open Cl.',ra:1.325,dec:58.283,mag:6.4},
-{id:'NGC 663',name:'NGC 663',type:'Open Cl.',ra:1.767,dec:61.233,mag:7.1},
-{id:'NGC 2403',name:'NGC 2403',type:'Galaxy',ra:7.617,dec:65.600,mag:8.4},
-{id:'NGC 4631',name:'Whale Galaxy',type:'Galaxy',ra:12.700,dec:32.542,mag:9.2},
-{id:'NGC 4038',name:'Antennae Gal.',type:'Galaxy',ra:12.017,dec:-18.867,mag:10.3},
-{id:'NGC 3628',name:'Hamburger Gal.',type:'Galaxy',ra:11.333,dec:13.583,mag:9.5},
-{id:'M49',name:'NGC 4472',type:'Galaxy',ra:12.496,dec:8.000,mag:8.4},
-{id:'M58',name:'NGC 4579',type:'Galaxy',ra:12.627,dec:11.817,mag:9.7},
-{id:'M84',name:'NGC 4374',type:'Galaxy',ra:12.419,dec:12.887,mag:9.1},
-{id:'M86',name:'NGC 4406',type:'Galaxy',ra:12.436,dec:12.946,mag:8.9}
-];
-
-/* ── ASTRONOMY FUNCTIONS ─────────────────────────────────────── */
+{id:'M1',name:'Crab Nebula',type:'Nebula',ra:5.576,dec:22.01,mag:8.4,sz:"7'×5'"},
+{id:'M2',name:'NGC 7089',type:'Globular',ra:21.558,dec:-0.823,mag:6.5,sz:"16'"},
+{id:'M3',name:'NGC 5272',type:'Globular',ra:13.703,dec:28.378,mag:6.2,sz:"18'"},
+{id:'M4',name:'NGC 6121',type:'Globular',ra:16.393,dec:-26.526,mag:5.6,sz:"36'"},
+{id:'M5',name:'NGC 5904',type:'Globular',ra:15.309,dec:2.081,mag:5.6,sz:"23'"},
+{id:'M6',name:'Butterfly Cluster',type:'Open Cl.',ra:17.667,dec:-32.217,mag:4.2,sz:"25'"},
+{id:'M7',name:"Ptolemy's Cluster",type:'Open Cl.',ra:17.900,dec:-34.817,mag:3.3,sz:"80'"},
+{id:'M8',name:'Lagoon Nebula',type:'Nebula',ra:18.060,dec:-24.384,mag:6.0,sz:"90'×40'"},
+{id:'M10',name:'NGC 6254',type:'Globular',ra:16.950,dec:-4.100,mag:6.6,sz:"20'"},
+{id:'M11',name:'Wild Duck Cluster',type:'Open Cl.',ra:18.852,dec:-6.267,mag:5.8,sz:"14'"},
+{id:'M12',name:'NGC 6218',type:'Globular',ra:16.783,dec:-1.950,mag:6.7,sz:"16'"},
+{id:'M13',name:'Hercules Cluster',type:'Globular',ra:16.695,dec:36.460,mag:5.8,sz:"23'"},
+{id:'M14',name:'NGC 6402',type:'Globular',ra:17.617,dec:-3.250,mag:7.6,sz:"12'"},
+{id:'M15',name:'NGC 7078',type:'Globular',ra:21.499,dec:12.167,mag:6.2,sz:"18'"},
+{id:'M16',name:'Eagle Nebula',type:'Nebula',ra:18.313,dec:-13.787,mag:6.4,sz:"35'×28'"},
+{id:'M17',name:'Omega Nebula',type:'Nebula',ra:18.341,dec:-16.183,mag:6.0,sz:"46'×37'"},
+{id:'M19',name:'NGC 6273',type:'Globular',ra:17.033,dec:-26.267,mag:6.8,sz:"17'"},
+{id:'M20',name:'Trifid Nebula',type:'Nebula',ra:18.040,dec:-23.033,mag:6.3,sz:"28'"},
+{id:'M22',name:'NGC 6656',type:'Globular',ra:18.607,dec:-23.905,mag:5.1,sz:"32'"},
+{id:'M27',name:'Dumbbell Nebula',type:'Pla. Neb.',ra:19.993,dec:22.721,mag:7.4,sz:"8'×6'"},
+{id:'M28',name:'NGC 6626',type:'Globular',ra:18.417,dec:-24.867,mag:6.9,sz:"13'"},
+{id:'M31',name:'Andromeda Galaxy',type:'Galaxy',ra:0.712,dec:41.269,mag:3.4,sz:"190'×60'"},
+{id:'M33',name:'Triangulum Galaxy',type:'Galaxy',ra:1.564,dec:30.660,mag:5.7,sz:"67'×42'"},
+{id:'M35',name:'NGC 2168',type:'Open Cl.',ra:6.148,dec:24.333,mag:5.1,sz:"28'"},
+{id:'M36',name:'NGC 1960',type:'Open Cl.',ra:5.605,dec:34.133,mag:6.0,sz:"12'"},
+{id:'M37',name:'NGC 2099',type:'Open Cl.',ra:5.872,dec:32.550,mag:5.6,sz:"24'"},
+{id:'M38',name:'NGC 1912',type:'Open Cl.',ra:5.483,dec:35.850,mag:7.4,sz:"21'"},
+{id:'M41',name:'NGC 2287',type:'Open Cl.',ra:6.783,dec:-20.733,mag:4.5,sz:"38'"},
+{id:'M42',name:'Orion Nebula',type:'Nebula',ra:5.588,dec:-5.390,mag:4.0,sz:"65'×60'"},
+{id:'M44',name:'Beehive Cluster',type:'Open Cl.',ra:8.673,dec:19.667,mag:3.1,sz:"95'"},
+{id:'M45',name:'Pleiades',type:'Open Cl.',ra:3.790,dec:24.117,mag:1.6,sz:"110'"},
+{id:'M46',name:'NGC 2437',type:'Open Cl.',ra:7.700,dec:-14.817,mag:6.1,sz:"27'"},
+{id:'M47',name:'NGC 2422',type:'Open Cl.',ra:7.617,dec:-14.483,mag:4.4,sz:"30'"},
+{id:'M51',name:'Whirlpool Galaxy',type:'Galaxy',ra:13.498,dec:47.195,mag:8.4,sz:"11'×7'"},
+{id:'M52',name:'NGC 7654',type:'Open Cl.',ra:23.400,dec:61.583,mag:7.3,sz:"13'"},
+{id:'M53',name:'NGC 5024',type:'Globular',ra:13.217,dec:18.167,mag:7.6,sz:"13'"},
+{id:'M55',name:'NGC 6809',type:'Globular',ra:19.667,dec:-30.967,mag:6.3,sz:"19'"},
+{id:'M56',name:'NGC 6779',type:'Globular',ra:19.283,dec:30.183,mag:8.3,sz:"7'"},
+{id:'M57',name:'Ring Nebula',type:'Pla. Neb.',ra:18.893,dec:33.030,mag:8.8,sz:'86"×62"'},
+{id:'M63',name:'Sunflower Galaxy',type:'Galaxy',ra:13.264,dec:42.029,mag:8.6,sz:"12'×8'"},
+{id:'M64',name:'Black Eye Galaxy',type:'Galaxy',ra:12.946,dec:21.683,mag:8.5,sz:"10'×5'"},
+{id:'M65',name:'Leo Triplet I',type:'Galaxy',ra:11.316,dec:13.092,mag:9.3,sz:"8'×2'"},
+{id:'M66',name:'Leo Triplet II',type:'Galaxy',ra:11.338,dec:12.992,mag:8.9,sz:"9'×4'"},
+{id:'M67',name:'NGC 2682',type:'Open Cl.',ra:8.850,dec:11.817,mag:6.9,sz:"30'"},
+{id:'M74',name:'Phantom Galaxy',type:'Galaxy',ra:1.612,dec:15.783,mag:9.4,sz:"11'×10'"},
+{id:'M77',name:'Cetus A',type:'Galaxy',ra:2.711,dec:-0.013,mag:8.9,sz:"7'×6'"},
+{id:'M81',name:"Bode's Galaxy",type:'Galaxy',ra:9.926,dec:69.065,mag:6.9,sz:"27'×14'"},
+{id:'M82',name:'Cigar Galaxy',type:'Galaxy',ra:9.931,dec:69.680,mag:8.4,sz:"11'×5'"},
+{id:'M83',name:'Southern Pinwheel',type:'Galaxy',ra:13.617,dec:-29.866,mag:7.5,sz:"13'×12'"},
+{id:'M87',name:'Virgo A',type:'Galaxy',ra:12.517,dec:12.383,mag:8.6,sz:"8'×7'"},
+{id:'M92',name:'NGC 6341',type:'Globular',ra:17.285,dec:43.136,mag:6.4,sz:"14'"},
+{id:'M93',name:'NGC 2447',type:'Open Cl.',ra:7.750,dec:-23.867,mag:6.0,sz:"22'"},
+{id:'M97',name:'Owl Nebula',type:'Pla. Neb.',ra:11.247,dec:55.018,mag:9.9,sz:"3'"},
+{id:'M101',name:'Pinwheel Galaxy',type:'Galaxy',ra:14.054,dec:54.349,mag:7.9,sz:"29'×27'"},
+{id:'M104',name:'Sombrero Galaxy',type:'Galaxy',ra:12.666,dec:-11.623,mag:8.0,sz:"9'×4'"},
+{id:'M106',name:'NGC 4258',type:'Galaxy',ra:12.316,dec:47.304,mag:8.4,sz:"18'×8'"},
+{id:'M108',name:'NGC 3556',type:'Galaxy',ra:11.193,dec:55.674,mag:10.0,sz:"8'×2'"},
+{id:'M109',name:'NGC 3992',type:'Galaxy',ra:11.960,dec:53.375,mag:9.8,sz:"7'×5'"},
+{id:'M110',name:'NGC 205',type:'Galaxy',ra:0.673,dec:41.685,mag:8.1,sz:"22'×11'"},
+{id:'NGC 869',name:'Double Cluster h',type:'Open Cl.',ra:2.370,dec:57.133,mag:4.3,sz:"30'"},
+{id:'NGC 884',name:'Double Cluster \u03c7',type:'Open Cl.',ra:2.377,dec:57.133,mag:4.4,sz:"30'"},
+{id:'NGC 2237',name:'Rosette Nebula',type:'Nebula',ra:6.550,dec:5.050,mag:9.0,sz:"80'×60'"},
+{id:'NGC 2244',name:'Rosette Cl.',type:'Open Cl.',ra:6.533,dec:4.950,mag:4.8,sz:"24'"},
+{id:'NGC 2392',name:'Eskimo Nebula',type:'Pla. Neb.',ra:7.487,dec:20.911,mag:9.2,sz:'48"×43"'},
+{id:'NGC 3242',name:'Ghost of Jupiter',type:'Pla. Neb.',ra:10.413,dec:-18.637,mag:8.6,sz:'40"×35"'},
+{id:'NGC 4565',name:'Needle Galaxy',type:'Galaxy',ra:12.606,dec:25.988,mag:9.6,sz:"16'×3'"},
+{id:'NGC 5128',name:'Centaurus A',type:'Galaxy',ra:13.425,dec:-43.019,mag:6.8,sz:"25'×20'"},
+{id:'NGC 5139',name:'Omega Centauri',type:'Globular',ra:13.447,dec:-47.479,mag:3.9,sz:"55'"},
+{id:'NGC 104',name:'47 Tucanae',type:'Globular',ra:0.401,dec:-72.081,mag:4.0,sz:"50'"},
+{id:'NGC 6752',name:'NGC 6752',type:'Globular',ra:19.183,dec:-59.983,mag:5.4,sz:"20'"},
+{id:'NGC 6992',name:'Eastern Veil',type:'Nebula',ra:20.940,dec:31.717,mag:7.0,sz:"60'×8'"},
+{id:'NGC 6960',name:'Western Veil',type:'Nebula',ra:20.763,dec:30.717,mag:7.0,sz:"70'×6'"},
+{id:'NGC 7009',name:'Saturn Nebula',type:'Pla. Neb.',ra:21.070,dec:-11.364,mag:8.0,sz:'44"×23"'},
+{id:'NGC 7293',name:'Helix Nebula',type:'Pla. Neb.',ra:22.494,dec:-20.837,mag:7.6,sz:"25'×21'"},
+{id:'NGC 3372',name:'Eta Carinae Neb.',type:'Nebula',ra:10.750,dec:-59.867,mag:6.2,sz:"120'×120'"},
+{id:'NGC 6523',name:'Lagoon (core)',type:'Nebula',ra:18.067,dec:-24.383,mag:6.0,sz:"90'×40'"},
+{id:'NGC 7331',name:'NGC 7331',type:'Galaxy',ra:22.617,dec:34.417,mag:9.5,sz:"10'×4'"},
+{id:'NGC 891',name:'Edge-on Galaxy',type:'Galaxy',ra:2.376,dec:42.349,mag:9.9,sz:"14'×3'"},
+{id:'NGC 1499',name:'California Nebula',type:'Nebula',ra:4.050,dec:36.417,mag:6.0,sz:"160'×40'"},
+{id:'IC 434',name:'Horsehead Neb.',type:'Nebula',ra:5.683,dec:-2.450,mag:7.5,sz:"60'×10'"},
+{id:'IC 1805',name:'Heart Nebula',type:'Nebula',ra:2.550,dec:61.467,mag:6.5,sz:"150'×150'"},
+{id:'IC 1848',name:'Soul Nebula',type:'Nebula',ra:2.900,dec:60.467,mag:6.5,sz:"150'×75'"},
+{id:'IC 5070',name:'Pelican Nebula',type:'Nebula',ra:20.833,dec:44.367,mag:8.0,sz:"80'×70'"},
+{id:'IC 5146',name:'Cocoon Nebula',type:'Nebula',ra:21.900,dec:47.267,mag:7.2,sz:"10'"},
+{id:'NGC 6188',name:'Fighting Dragons',type:'Nebula',ra:16.550,dec:-53.733,mag:8.5,sz:"20'×12'"},
+{id:'NGC 2359',name:"Thor's Helmet",type:'Nebula',ra:7.283,dec:-13.233,mag:9.0,sz:"22'×15'"},
+{id:'NGC 7380',name:'Wizard Nebula',type:'Nebula',ra:22.783,dec:58.133,mag:7.2,sz:"25'"},
+{id:'NGC 281',name:'Pacman Nebula',type:'Nebula',ra:0.883,dec:56.617,mag:7.4,sz:"35'×30'"},
+{id:'NGC 7789',name:"Caroline's Rose",type:'Open Cl.',ra:23.950,dec:56.717,mag:6.7,sz:"25'"},
+{id:'NGC 457',name:'Owl Cluster',type:'Open Cl.',ra:1.325,dec:58.283,mag:6.4,sz:"13'"},
+{id:'NGC 663',name:'NGC 663',type:'Open Cl.',ra:1.767,dec:61.233,mag:7.1,sz:"16'"},
+{id:'NGC 2403',name:'NGC 2403',type:'Galaxy',ra:7.617,dec:65.600,mag:8.4,sz:"26'×14'"},
+{id:'NGC 4631',name:'Whale Galaxy',type:'Galaxy',ra:12.700,dec:32.542,mag:9.2,sz:"15'×3'"},
+{id:'NGC 4038',name:'Antennae Gal.',type:'Galaxy',ra:12.017,dec:-18.867,mag:10.3,sz:"5'×3'"},
+{id:'NGC 3628',name:'Hamburger Gal.',type:'Galaxy',ra:11.333,dec:13.583,mag:9.5,sz:"15'×4'"},
+{id:'M49',name:'NGC 4472',type:'Galaxy',ra:12.496,dec:8.000,mag:8.4,sz:"10'×8'"},
+{id:'M58',name:'NGC 4579',type:'Galaxy',ra:12.627,dec:11.817,mag:9.7,sz:"6'×5'"},
+{id:'M84',name:'NGC 4374',type:'Galaxy',ra:12.419,dec:12.887,mag:9.1,sz:"5'×4'"},
+{id:'M86',name:'NGC 4406',type:'Galaxy',ra:12.436,dec:12.946,mag:8.9,sz:"9'×6'"}];
 function toR(d){return d*Math.PI/180;}
 function toD(r){return r*180/Math.PI;}
 function alt(ra,dec,lat,lst){var ha=(lst-ra)*15,s=Math.sin(toR(dec))*Math.sin(toR(lat))+Math.cos(toR(dec))*Math.cos(toR(lat))*Math.cos(toR(ha));return toD(Math.asin(Math.max(-1,Math.min(1,s))));}
@@ -610,37 +561,272 @@ function lst(jd,lon){var T=(jd-2451545)/36525,gst=280.46061837+360.98564736629*(
 function p2(n){return n<10?'0'+n:''+n;}
 function rS(h){var hh=Math.floor(h),mm=Math.floor((h-hh)*60),ss=Math.round(((h-hh)*60-mm)*60);return p2(hh)+'h'+p2(mm)+'m'+p2(ss)+'s';}
 function dS(d){var s=d<0?'\u2212':'+',a=Math.abs(d),dg=Math.floor(a),mm=Math.floor((a-dg)*60),ss=Math.round(((a-dg)*60-mm)*60);return s+p2(dg)+'\u00b0'+p2(mm)+"'"+p2(ss)+'"';}
-
-/* ── VISIBLE OBJECTS ─────────────────────────────────────────── */
 function showObj(){
-  var lat=parseFloat(g('ov-lat').value),lon=parseFloat(g('ov-lon').value),
-      minA=parseFloat(g('ov-minalt').value)||15,
-      tz=TZ[parseInt(tzSel.value)].o,
-      ds=g('ov-date').value.trim(),ts=g('ov-time').value.trim();
-  if(isNaN(lat)||isNaN(lon)){g('ov-results').innerHTML='<p class="no-results">Please enter latitude and longitude.</p>';return;}
-  if(!ds||!ts){g('ov-results').innerHTML='<p class="no-results">Please enter date and time.</p>';return;}
-  var dp=ds.split('/'),tp=ts.split(':');
-  if(dp.length<3||tp.length<2){g('ov-results').innerHTML='<p class="no-results">Invalid format. Use YYYY/MM/DD and HH:MM.</p>';return;}
-  var y=parseInt(dp[0]),mo=parseInt(dp[1]),d=parseInt(dp[2]),
-      utcH=parseInt(tp[0])+parseInt(tp[1])/60-tz-dst;
-  if(utcH<0){utcH+=24;d--;}if(utcH>=24){utcH-=24;d++;}
-  var J=jd(y,mo,d,utcH),L=lst(J,lon),res=[];
-  OBJ.forEach(function(o){var a=Math.round(alt(o.ra,o.dec,lat,L)*10)/10;if(a>=minA)res.push({id:o.id,name:o.name,type:o.type,ra:o.ra,dec:o.dec,mag:o.mag,alt:a});});
-  res.sort(function(a,b){return b.alt-a.alt;});
-  if(!res.length){g('ov-results').innerHTML='<p class="no-results">No objects above '+minA+'&deg; at this time and location.</p>';return;}
-  var html='<div class="results-info">'+res.length+' objects above '+minA+'&deg; &mdash; LST '+rS(L)+'</div><table class="obj-table"><thead><tr><th>ID</th><th>Name</th><th>Type</th><th>RA</th><th>Dec</th><th>Mag</th><th>Alt</th></tr></thead><tbody>';
-  res.forEach(function(o){var cl=o.alt>30?'alt-good':'alt-low';html+='<tr><td class="obj-name">'+o.id+'</td><td>'+o.name+'</td><td>'+o.type+'</td><td style="font-family:var(--mono);font-size:12px">'+rS(o.ra)+'</td><td style="font-family:var(--mono);font-size:12px">'+dS(o.dec)+'</td><td style="font-family:var(--mono)">'+o.mag+'</td><td><span class="alt-badge '+cl+'">'+o.alt+'&deg;</span></td></tr>';});
-  g('ov-results').innerHTML=html+'</tbody></table>';
-}
-g('show-btn').addEventListener('click',showObj);
+var lat=parseFloat(g('ov-lat').value.replace(',','.')),lon=parseFloat(g('ov-lon').value.replace(',','.')),
+minA=parseFloat(g('ov-minalt').value)||15,
+tz=TZ[parseInt(tzSel.value)].o,
+ds=g('ov-date').value.trim(),ts=g('ov-time').value.trim();
+if(isNaN(lat)||isNaN(lon)){g('ov-results').innerHTML='<p class="no-results">Please enter latitude and longitude.</p>';return;}
+if(!ds||!ts){g('ov-results').innerHTML='<p class="no-results">Please enter date and time.</p>';return;}
+var dp=ds.replace(/-/g,'/').split('/'),tp=ts.split(':');
+if(dp.length<3||tp.length<2){g('ov-results').innerHTML='<p class="no-results">Invalid format. Use YYYY/MM/DD and HH:MM.</p>';return;}
+var y=parseInt(dp[0]),mo=parseInt(dp[1]),d=parseInt(dp[2]),
+utcH=parseInt(tp[0])+parseInt(tp[1])/60-tz-dst;
+checkArea51(lat,lon);
+if(utcH<0){utcH+=24;d--;}if(utcH>=24){utcH-=24;d++;}
+var J=jd(y,mo,d,utcH),L=lst(J,lon),res=[];
+OBJ.forEach(function(o){var a=Math.round(alt(o.ra,o.dec,lat,L)*10)/10;if(a>=minA)res.push({id:o.id,name:o.name,type:o.type,ra:o.ra,dec:o.dec,mag:o.mag,alt:a,sz:o.sz});});
+res.sort(function(a,b){return b.alt-a.alt;});
+if(!res.length){g('ov-results').innerHTML='<p class="no-results">No objects above '+minA+'&deg; at this time and location.</p>';return;}
+window._zacRes=res;window._zacSort={col:'alt',dir:-1};
+renderObjTable(res,'alt',-1,res.length,L);
+updatePolar(L);}
+function renderObjTable(res,col,dir,total,L){
+var sorted=res.slice().sort(function(a,b){
+var va=a[col],vb=b[col];
+if(col==='id'||col==='name'||col==='type'){va=String(va);vb=String(vb);return dir*(va<vb?-1:va>vb?1:0);}
+return dir*(vb-va);});
+function th(label,key){
+var isActive=window._zacSort.col===key;
+var arrow=isActive?(window._zacSort.dir===-1?' ↓':' ↑'):'';
+return '<th style="cursor:pointer;user-select:none;'+(isActive?'color:var(--text)':'')+'" data-col="'+key+'">'+label+arrow+'</th>';}
+var html='<div class="results-info">'+total+' objects above &mdash; LST '+rS(L||0)+'</div>'
++'<table class="obj-table"><thead><tr>'
++th('ID','id')+th('Name','name')+th('Type','type')
++'<th>RA</th><th>Dec</th>'
++th('Mag','mag')+th('Alt','alt')
++'</tr></thead><tbody>';
+sorted.forEach(function(o){var cl=o.alt>30?'alt-good':'alt-low';html+='<tr><td class="obj-name">'+o.id+'</td><td>'+o.name+'<br><span style="font-size:10px;color:var(--text3);font-family:var(--mono)">'+o.sz+'</span></td><td>'+o.type+'</td><td style="font-family:var(--mono);font-size:12px">'+rS(o.ra)+'</td><td style="font-family:var(--mono);font-size:12px">'+dS(o.dec)+'</td><td style="font-family:var(--mono)">'+o.mag+'</td><td><span class="alt-badge '+cl+'">'+o.alt+'&deg;</span></td></tr>';});
+g('ov-results').innerHTML=html+'</tbody></table>';
 
-/* ── PAGE NAVIGATION ─────────────────────────────────────────── */
+g('ov-results').querySelectorAll('th[data-col]').forEach(function(th){
+th.addEventListener('click',function(){
+var c=this.getAttribute('data-col');
+var d=(window._zacSort.col===c)?-window._zacSort.dir:-1;
+window._zacSort={col:c,dir:d};
+renderObjTable(window._zacRes,c,d,window._zacRes.length,window._zacL);});});
+
+g('ov-results').querySelectorAll('tbody tr').forEach(function(tr,i){
+tr.style.cursor='pointer';
+tr.addEventListener('click',function(){
+showObjModal(sorted[i]);});});
+window._zacL=L||window._zacL;}
+function azimuth(ra,dec,lat,lst){
+var ha=(lst-ra)*15;
+var haR=ha*Math.PI/180,decR=dec*Math.PI/180,latR=lat*Math.PI/180;
+var sinAlt=Math.sin(decR)*Math.sin(latR)+Math.cos(decR)*Math.cos(latR)*Math.cos(haR);
+var altR=Math.asin(Math.max(-1,Math.min(1,sinAlt)));
+var cosAz=(Math.sin(decR)-Math.sin(latR)*sinAlt)/(Math.cos(latR)*Math.cos(altR));
+var az=Math.acos(Math.max(-1,Math.min(1,cosAz)))*180/Math.PI;
+if(Math.sin(haR)>0)az=360-az;
+return az;}
+function showObjModal(o){
+var lat=parseFloat(g('ov-lat').value.replace(',','.'));
+var L=window._zacL||0;
+var az=azimuth(o.ra,o.dec,lat,L);
+var altR=(90-o.alt)*Math.PI/180;
+var r=80;
+var cx=110,cy=110;
+var px=cx+r*(o.alt<90?Math.sin(altR)*Math.sin(az*Math.PI/180):0);
+var py=cy-r*(o.alt<90?Math.sin(altR)*Math.cos(az*Math.PI/180):0);
+
+var raStr=rS(o.ra)+' ('+o.ra.toFixed(4)+'h)';
+var decStr=dS(o.dec)+' ('+(o.dec>=0?'+':'')+o.dec.toFixed(4)+'°)';
+var overlay=document.createElement('div');
+overlay.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:9999;display:flex;align-items:center;justify-content:center;padding:1rem;cursor:pointer';
+overlay.innerHTML=
+'<div style="background:#1a0000;border:.5px solid rgba(255,100,100,0.3);border-radius:12px;padding:1.5rem;max-width:360px;width:100%;cursor:default;position:relative" onclick="event.stopPropagation()">'
+
++'<button id="zac-modal-close" style="position:absolute;top:.75rem;right:.75rem;background:none;border:none;color:var(--text3);font-size:18px;cursor:pointer;line-height:1">✕</button>'
+
++'<div style="font-size:11px;color:var(--text3);letter-spacing:.07em;text-transform:uppercase;margin-bottom:.25rem">'+o.type+'</div>'
++'<div style="font-size:22px;font-weight:500;color:var(--text);margin-bottom:.1rem">'+o.name+'</div>'
++'<div style="font-size:13px;color:var(--text3);margin-bottom:1rem">'+o.id+'</div>'
+
++'<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.5rem;margin-bottom:1rem">'
++'<div style="background:#220000;border-radius:8px;padding:.5rem;text-align:center"><div style="font-size:10px;color:var(--text3)">Mag</div><div style="font-size:16px;font-family:var(--mono);color:var(--text)">'+o.mag+'</div></div>'
++'<div style="background:#220000;border-radius:8px;padding:.5rem;text-align:center"><div style="font-size:10px;color:var(--text3)">Alt</div><div style="font-size:16px;font-family:var(--mono);color:var(--text)">'+o.alt+'°</div></div>'
++'<div style="background:#220000;border-radius:8px;padding:.5rem;text-align:center"><div style="font-size:10px;color:var(--text3)">Az</div><div style="font-size:16px;font-family:var(--mono);color:var(--text)">'+az.toFixed(1)+'°</div></div>'
++'</div>'
+
++'<div style="background:#220000;border-radius:8px;padding:.75rem;margin-bottom:.5rem">'
++'<div style="font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.4rem">Coordinates</div>'
++'<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.3rem">'
++'<span style="font-size:12px;color:var(--text2)">RA</span>'
++'<span style="font-family:var(--mono);font-size:12px;color:var(--text)">'+raStr+'</span>'
++'</div>'
++'<div style="display:flex;justify-content:space-between;align-items:center">'
++'<span style="font-size:12px;color:var(--text2)">Dec</span>'
++'<span style="font-family:var(--mono);font-size:12px;color:var(--text)">'+decStr+'</span>'
++'</div>'
++'</div>'
++(o.sz?'<div style="font-size:12px;color:var(--text2);text-align:center;margin-bottom:1rem">Size: <span style="font-family:var(--mono);color:var(--text)">'+o.sz+'</span></div>':'')
+
++'<div style="text-align:center">'
++'<svg width="220" height="220" viewBox="0 0 220 220">'
++'<circle cx="110" cy="110" r="100" fill="#0d0000" stroke="rgba(255,100,100,0.15)" stroke-width="1"/>'
++'<circle cx="110" cy="110" r="67" fill="none" stroke="rgba(255,100,100,0.08)" stroke-width="1" stroke-dasharray="3,3"/>'
++'<circle cx="110" cy="110" r="33" fill="none" stroke="rgba(255,100,100,0.08)" stroke-width="1" stroke-dasharray="3,3"/>'
++'<line x1="110" y1="10" x2="110" y2="210" stroke="rgba(255,100,100,0.1)" stroke-width=".5"/>'
++'<line x1="10" y1="110" x2="210" y2="110" stroke="rgba(255,100,100,0.1)" stroke-width=".5"/>'
++'<text x="110" y="7" text-anchor="middle" font-size="9" fill="rgba(255,180,180,0.5)">N</text>'
++'<text x="213" y="113" text-anchor="start" font-size="9" fill="rgba(255,180,180,0.5)">E</text>'
++'<text x="110" y="218" text-anchor="middle" font-size="9" fill="rgba(255,180,180,0.5)">S</text>'
++'<text x="7" y="113" text-anchor="end" font-size="9" fill="rgba(255,180,180,0.5)">W</text>'
++'<text x="110" y="113" text-anchor="middle" font-size="8" fill="rgba(255,180,180,0.3)">Z</text>'
+
++'<circle cx="'+px.toFixed(1)+'" cy="'+py.toFixed(1)+'" r="6" fill="#f5c842" opacity=".9"/>'
++'<line x1="'+(px-8).toFixed(1)+'" y1="'+py.toFixed(1)+'" x2="'+(px+8).toFixed(1)+'" y2="'+py.toFixed(1)+'" stroke="#f5c842" stroke-width="1" opacity=".5"/>'
++'<line x1="'+px.toFixed(1)+'" y1="'+(py-8).toFixed(1)+'" x2="'+px.toFixed(1)+'" y2="'+(py+8).toFixed(1)+'" stroke="#f5c842" stroke-width="1" opacity=".5"/>'
++'</svg>'
++'<div style="font-size:10px;color:var(--text3);margin-top:.25rem">Sky view from observer — zenith at center</div>'
++'</div>'
++'</div>';
+overlay.addEventListener('click',function(){document.body.removeChild(overlay);});
+document.body.appendChild(overlay);
+document.getElementById('zac-modal-close').addEventListener('click',function(e){e.stopPropagation();document.body.removeChild(overlay);});}
+g('show-btn').addEventListener('click',showObj);
+g('conv-toggle').addEventListener('click',function(){
+var s=g('conv-section');
+var open=s.style.display==='none';
+s.style.display=open?'block':'none';
+g('conv-toggle').innerHTML=open
+?'&#8645; Coordinate Converter: decimal &#8596; DMS &uarr;'
+:'&#8645; Coordinate Converter: decimal &#8596; DMS &darr;';});
+function ddToDms(dd){
+var abs=Math.abs(dd);
+var d=Math.floor(abs);
+var m=Math.floor((abs-d)*60);
+var s=((abs-d)*60-m)*60;
+return d+'\u00b0'+('0'+m).slice(-2)+"'"+s.toFixed(1)+'"';}
+function dmsToDD(d,m,s,hem){return hem*(parseFloat(d)||0+(parseFloat(m)||0)/60+(parseFloat(s)||0)/3600);}
+['dd-lat','dd-lon'].forEach(function(id){
+g(id).addEventListener('input',function(){
+var lat=parseFloat(g('dd-lat').value),lon=parseFloat(g('dd-lon').value);
+if(isNaN(lat)&&isNaN(lon)){g('dd-result').textContent='';return;}
+var r='';
+if(!isNaN(lat))r+=(lat>=0?'N ':'S ')+ddToDms(lat);
+if(!isNaN(lat)&&!isNaN(lon))r+=' ';
+if(!isNaN(lon))r+=(lon>=0?'E ':'W ')+ddToDms(lon);
+g('dd-result').textContent=r;});});
+['dms-latd','dms-latm','dms-lats','dms-lond','dms-lonm','dms-lons','dms-lath','dms-lonh'].forEach(function(id){
+g(id).addEventListener('change',convDMS);g(id).addEventListener('input',convDMS);});
+function convDMS(){
+var latDD=dmsToDD(g('dms-latd').value,g('dms-latm').value,g('dms-lats').value,parseInt(g('dms-lath').value));
+var lonDD=dmsToDD(g('dms-lond').value,g('dms-lonm').value,g('dms-lons').value,parseInt(g('dms-lonh').value));
+var hasLat=g('dms-latd').value!=='',hasLon=g('dms-lond').value!=='';
+if(!hasLat&&!hasLon){g('dms-result').textContent='';g('dms-use-btn').style.display='none';return;}
+var r='';
+if(hasLat)r+='Lat: '+latDD.toFixed(6);
+if(hasLat&&hasLon)r+=' ';
+if(hasLon)r+='Lon: '+lonDD.toFixed(6);
+g('dms-result').textContent=r;
+g('dms-use-btn').style.display=(hasLat&&hasLon)?'block':'none';
+g('dms-use-btn')._lat=latDD;g('dms-use-btn')._lon=lonDD;}
+g('dms-use-btn').addEventListener('click',function(){
+if(this._lat!==undefined){g('ov-lat').value=this._lat.toFixed(6);}
+if(this._lon!==undefined){g('ov-lon').value=this._lon.toFixed(6);}
+g('city-note').textContent='Coordinates from converter';});
+g('clear-btn').addEventListener('click',function(){
+g('city-search').value='';
+g('city-note').textContent='';
+g('ov-lat').value='';
+g('ov-lon').value='';
+g('ov-date').value='';
+g('ov-time').value='';
+g('ov-minalt').value='15';
+g('ov-results').innerHTML='';
+g('polar-info').innerHTML='<span style="color:var(--text3);font-size:12px">Inserisci data, ora e posizione, poi clicca "Show objects now!"</span>';});
+g('polar-toggle').addEventListener('click',function(){
+var s=g('polar-section');
+var open=s.style.display==='none';
+s.style.display=open?'block':'none';
+g('polar-toggle').innerHTML=open
+?'&#11088; Polar Alignment &mdash; Posizione Polaris &uarr;'
+:'&#11088; Polar Alignment &mdash; Posizione Polaris &darr;';});
+(function(){
+var g2=document.getElementById('polar-ticks');
+for(var i=0;i<48;i++){
+var ang=i*7.5-90;
+var rad=ang*Math.PI/180;
+var isMaj=(i%4===0);
+var r1=isMaj?94:97,r2=112;
+var x1=130+r1*Math.cos(rad),y1=130+r1*Math.sin(rad);
+var x2=130+r2*Math.cos(rad),y2=130+r2*Math.sin(rad);
+var ln=document.createElementNS('http://www.w3.org/2000/svg','line');
+ln.setAttribute('x1',x1.toFixed(1));ln.setAttribute('y1',y1.toFixed(1));
+ln.setAttribute('x2',x2.toFixed(1));ln.setAttribute('y2',y2.toFixed(1));
+ln.setAttribute('stroke','var(--text3)');
+ln.setAttribute('stroke-width',isMaj?'1.2':'0.6');
+g2.appendChild(ln);}})();
+function updatePolar(L){
+
+var RA_POL=2.9167;
+var ha=((L-RA_POL)%24+24)%24;
+var haMod=ha/2;
+var angDeg=haMod*30-90;
+var angRad=angDeg*Math.PI/180;
+var r=92;
+var cx=130,cy=130;
+var px=cx+r*Math.cos(angRad);
+var py=cy+r*Math.sin(angRad);
+var dot=document.getElementById('polaris-dot');
+var lbl=document.getElementById('polaris-label');
+dot.setAttribute('cx',px.toFixed(1));
+dot.setAttribute('cy',py.toFixed(1));
+
+var lx=cx+(r+14)*Math.cos(angRad);
+var ly=cy+(r+14)*Math.sin(angRad);
+lbl.setAttribute('x',lx.toFixed(1));
+lbl.setAttribute('y',(ly+4).toFixed(1));
+
+var lat=parseFloat(g('ov-lat').value.replace(',','.'));
+if(!isNaN(lat)&&lat<0){
+document.getElementById('polar-info').innerHTML=
+'<span style="color:var(--warn-txt);font-size:13px">&#9888; Southern hemisphere detected.<br>Polaris is not visible from your location.<br><span style="font-size:11px;color:var(--text3)">Southern polar alignment uses Sigma Octantis (mag 5.4) &mdash; a different procedure applies.</span></span>';
+return;}
+
+var hh=Math.floor(haMod),mm=Math.floor((haMod-hh)*60);
+var p2=function(n){return n<10?'0'+n:''+n;};
+document.getElementById('polar-info').innerHTML=
+'<strong style="font-size:16px;font-family:var(--mono)">'+p2(hh)+'h '+p2(mm)+'m</strong><br>'+
+'<span style="color:var(--text2);font-size:12px">Polaris position on reticle &mdash; hour angle '+p2(hh)+'h '+p2(mm)+'m</span><br>'+
+'<span style="color:var(--text3);font-size:11px">Rotate the mount until Polaris coincides with the dot on the reticle</span>';}
+function checkArea51(lat,lon){
+
+if(Math.abs(lat-42.4582)<0.135&&Math.abs(lon-13.5484)<0.135){
+var dgs=document.createElement('div');
+dgs.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;padding:2rem;text-align:center';
+dgs.innerHTML='<div style="font-size:64px;margin-bottom:1rem">🔭🏔️</div>'
++'<div style="color:#f0dede;font-size:16px;font-weight:500;margin-bottom:.5rem">Campo Imperatore — 2135m asl</div>'
++'<div style="color:#b08080;font-size:13px;max-width:300px;line-height:1.8">One of the darkest skies in Italy.<br>And 1400m below you, INFN is hunting neutrinos and dark matter.<br><span style="font-size:11px;color:#7a5555">You image the sky. They image the void.<br>Tap to close.</span></div>';
+dgs.addEventListener('click',function(){document.body.removeChild(dgs);});
+document.body.appendChild(dgs);}
+
+if(Math.abs(lat-46.2327)<0.135&&Math.abs(lon-6.0552)<0.135){
+var dc=document.createElement('div');
+dc.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;padding:2rem;text-align:center';
+var stc=document.createElement('style');
+stc.textContent='@keyframes n1{0%{transform:translateX(-60px)}100%{transform:translateX(60px)}}@keyframes n2{0%{transform:translateX(60px)}100%{transform:translateX(-60px)}}@keyframes boom{0%{transform:scale(0);opacity:1}100%{transform:scale(3);opacity:0}}.zn1{animation:n1 0.6s ease-in-out infinite alternate;display:inline-block;font-size:36px}.zn2{animation:n2 0.6s ease-in-out infinite alternate;display:inline-block;font-size:36px}.zboom{animation:boom 1.2s ease-out infinite;display:inline-block;font-size:28px;position:absolute}';
+document.head.appendChild(stc);
+dc.innerHTML='<div style="position:relative;height:80px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem">'
++'<span class="zn1">⚛️</span><span class="zboom">💥</span><span class="zn2">⚛️</span></div>'
++'<div style="color:#f0dede;font-size:16px;font-weight:500;margin-bottom:.5rem">Did you find antimatter?</div>'
++'<div style="color:#b08080;font-size:13px;max-width:300px;line-height:1.8">CERN detected — 46.23°N 6.06°E<br>LHC circumference: 27 km<br><span style="font-size:11px;color:#7a5555">The only collisions here are particles.<br>Tap to close.</span></div>';
+dc.addEventListener('click',function(){document.body.removeChild(dc);});
+document.body.appendChild(dc);}
+if(Math.abs(lat-37.235)<0.15&&Math.abs(lon-(-115.811))<0.15){
+var d=document.createElement('div');
+d.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer';
+d.innerHTML='<div style="font-size:80px;animation:ufo 1s infinite alternate">&#128125;</div>'
++'<div style="color:#0f0;font-family:monospace;font-size:14px;margin-top:1rem;text-align:center">CLASSIFIED LOCATION DETECTED<br><span style="font-size:11px;color:#0a0">Area 51 — 37.235°N 115.811°W</span><br><span style="font-size:10px;color:#060;margin-top:.5rem;display:block">You did not see this.<br>Tap to close.</span></div>';
+d.addEventListener('click',function(){document.body.removeChild(d);});
+document.body.appendChild(d);
+var st=document.createElement('style'); st.textContent='@keyframes ufo{from{transform:translateY(-8px) rotate(-5deg)}to{transform:translateY(8px) rotate(5deg)}}';
+document.head.appendChild(st);}}
 g('open-ov').addEventListener('click',function(){g('main-page').style.display='none';g('ov-page').style.display='block';});
 g('back-btn').addEventListener('click',function(){g('ov-page').style.display='none';g('main-page').style.display='block';});
-
-/* ── INIT ────────────────────────────────────────────────────── */
 wlNote();
-applyLang();
-</script>
+applyLang();</script>
 </body>
 </html>
