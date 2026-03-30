@@ -99,6 +99,17 @@ HOW TO USE
 ============================================================
 Download `Z-Astro-Calculator.html` from the Releases section (https://github.com/astrozullo/Z-Astro-Calculator/releases) and open it with any browser. That's it.
 
+🔒 Privacy — Check for new release
+
+Quando clicchi il pulsante "Check for new release", vieni reindirizzato alla pagina GitHub delle release. In quel momento GitHub riceve il tuo indirizzo IP, come accade con qualsiasi link che apri nel browser. Nessun altro dato viene trasmesso. Il tool stesso non invia nulla — né automaticamente né in background.
+
+---
+
+🔒 Privacy — Check for new release
+
+When you click the "Check for new release" button, you are redirected to the GitHub releases page. At that point GitHub receives your IP address, as happens with any link you open in a browser. No other data is transmitted. The tool itself sends nothing — neither automatically nor in the background.
+
+
 AUTHOR
 ============================================================
 Andrea Zullo — Astronomia Spiccia (https://www.instagram.com/astronomiaspiccia/)
