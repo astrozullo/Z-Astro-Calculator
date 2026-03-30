@@ -23,10 +23,17 @@ FUNZIONALITÀ PRINCIPALI
 - VISIBLE OBJECTS TONIGHT — calcola gli oggetti DSO (100+ tra Messier e NGC) visibili da qualsiasi posizione geografica in una data e ora specifiche, con ricerca città autocomplete (200+ città nel database)
 - POLAR ALIGNMENT (beta) — diagramma interattivo per il posizionamento di Polaris sul reticolo del polare. Calcola automaticamente l'angolo orario in base a data, ora e posizione. Dati riferiti all'epoca 2025 — aggiornamenti previsti.
 - COORDINATE CONVERTER — conversione decimale ↔ DMS integrata, con trasferimento diretto ai campi di calcolo
+- AVVISI SUI VALORI — messaggi contestuali quando si inseriscono valori fisicamente improbabili, per evitare errori di input
 - 4 LINGUE — Italiano, English, Español, Русский
 - DARK MODE automatica
 
   ⓘ App in revisione continua — alcune funzionalità sono ancora in fase di verifica.
+
+NOVITÀ v1.3
+============================================================
+- Fix convertitore DMS→Decimale: i minuti e i secondi venivano ignorati in presenza di gradi diversi da zero. Errore risolto.
+- Avvisi contestuali sui campi di input per valori fuori dai range tipici dell'astrofotografia
+- Comportamento del campo Diametro migliorato: la validazione avviene all'uscita dal campo, senza interferire durante la digitazione
 
 PRIVACY E REQUISITI
 ============================================================
@@ -42,8 +49,8 @@ Scarica `Z-Astro-Calculator.html` dalla sezione Releases (https://github.com/ast
 
 AUTORE
 ============================================================
-Andrea Zullo — Astronomia Spiccia (https://www.instagram.com/astronomiaspiccia/)  
-ORCID: 0009-0006-6178-7654 (https://orcid.org/0009-0006-6178-7654)  
+Andrea Zullo — Astronomia Spiccia (https://www.instagram.com/astronomiaspiccia/)
+ORCID: 0009-0006-6178-7654 (https://orcid.org/0009-0006-6178-7654)
 zullo.spacehistory@gmail.com
 
 Contributors: Davide Lavarini, Mattia Cipriani
@@ -68,10 +75,17 @@ KEY FEATURES
 - VISIBLE OBJECTS TONIGHT — calculates which DSO objects (100+ Messier and NGC) are visible from any location on a given date and time, with city autocomplete search (200+ cities in database)
 - POLAR ALIGNMENT (beta) — interactive diagram for positioning Polaris on the polar scope reticle. Automatically calculates the hour angle from date, time and location. Data based on epoch 2025 — updates planned.
 - COORDINATE CONVERTER — decimal ↔ DMS conversion built in, with direct transfer to calculation fields
+- INPUT WARNINGS — contextual messages when physically unlikely values are entered, to prevent input errors
 - 4 LANGUAGES — Italiano, English, Español, Русский
 - AUTOMATIC DARK MODE
 
   ⓘ App under continuous development — some features are still being verified.
+
+WHAT'S NEW IN v1.3
+============================================================
+- Fix DMS→Decimal converter: minutes and seconds were being ignored when degrees were non-zero. Bug resolved.
+- Contextual warnings on input fields for values outside typical astrophotography ranges
+- Diameter field behaviour improved: validation now triggers on focus loss, without interfering while typing
 
 PRIVACY AND REQUIREMENTS
 ============================================================
@@ -83,12 +97,12 @@ PRIVACY AND REQUIREMENTS
 
 HOW TO USE
 ============================================================
-Download `Z-Astro-Calculator.html` from the Releases (https://github.com/astrozullo/Z-Astro-Calculator/releases) section and open it with any browser. That's it.
+Download `Z-Astro-Calculator.html` from the Releases section (https://github.com/astrozullo/Z-Astro-Calculator/releases) and open it with any browser. That's it.
 
 AUTHOR
 ============================================================
-Andrea Zullo — Astronomia Spiccia (https://www.instagram.com/astronomiaspiccia/)  
-ORCID: 0009-0006-6178-7654 (https://orcid.org/0009-0006-6178-7654)  
+Andrea Zullo — Astronomia Spiccia (https://www.instagram.com/astronomiaspiccia/)
+ORCID: 0009-0006-6178-7654 (https://orcid.org/0009-0006-6178-7654)
 zullo.spacehistory@gmail.com
 
 Contributors: Davide Lavarini, Mattia Cipriani
