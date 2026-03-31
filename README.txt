@@ -43,9 +43,19 @@ PRIVACY E REQUISITI
 - ✅ FILE SINGOLO — un solo file `.html`, niente cartelle, niente installazione
 - ✅ OPEN SOURCE — codice leggibile e ispezionabile direttamente nel browser (Ctrl+U)
 
+🔒 Privacy — Pulsante "Check for new release"
+Quando clicchi il pulsante "Check for new release", vieni reindirizzato alla pagina GitHub delle release. In quel momento GitHub riceve il tuo indirizzo IP, come accade con qualsiasi link che apri nel browser. Nessun altro dato viene trasmesso. Il tool stesso non invia nulla — né automaticamente né in background.
+
+LICENZA
+============================================================
+Distribuito sotto licenza MIT — Copyright (c) 2026 Andrea Zullo
+https://github.com/astrozullo/Z-Astro-Calculator/blob/main/LICENSE
+
 COME SI USA
 ============================================================
-Scarica `Z-Astro-Calculator.html` dalla sezione Releases (https://github.com/astrozullo/Z-Astro-Calculator/releases) e aprilo con qualsiasi browser. Fine.
+Scarica `Z-Astro-Calculator.html` dalla sezione Releases
+(https://github.com/astrozullo/Z-Astro-Calculator/releases)
+e aprilo con qualsiasi browser. Fine.
 
 AUTORE
 ============================================================
@@ -95,20 +105,19 @@ PRIVACY AND REQUIREMENTS
 - ✅ SINGLE FILE — one `.html` file, no folders, no installation
 - ✅ OPEN SOURCE — code is readable and inspectable directly in the browser (Ctrl+U)
 
-HOW TO USE
-============================================================
-Download `Z-Astro-Calculator.html` from the Releases section (https://github.com/astrozullo/Z-Astro-Calculator/releases) and open it with any browser. That's it.
-
-🔒 Privacy — Check for new release
-
-Quando clicchi il pulsante "Check for new release", vieni reindirizzato alla pagina GitHub delle release. In quel momento GitHub riceve il tuo indirizzo IP, come accade con qualsiasi link che apri nel browser. Nessun altro dato viene trasmesso. Il tool stesso non invia nulla — né automaticamente né in background.
-
----
-
-🔒 Privacy — Check for new release
-
+🔒 Privacy — Check for new release button
 When you click the "Check for new release" button, you are redirected to the GitHub releases page. At that point GitHub receives your IP address, as happens with any link you open in a browser. No other data is transmitted. The tool itself sends nothing — neither automatically nor in the background.
 
+LICENSE
+============================================================
+Released under the MIT License — Copyright (c) 2026 Andrea Zullo
+https://github.com/astrozullo/Z-Astro-Calculator/blob/main/LICENSE
+
+HOW TO USE
+============================================================
+Download `Z-Astro-Calculator.html` from the Releases section
+(https://github.com/astrozullo/Z-Astro-Calculator/releases)
+and open it with any browser. That's it.
 
 AUTHOR
 ============================================================
