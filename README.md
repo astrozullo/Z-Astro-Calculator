@@ -43,6 +43,13 @@ Z-Astro-Calculator è un file HTML standalone progettato per astrofotografi. Cal
 - ✅ **File singolo** — un solo `.html`, niente cartelle, niente installazione
 - ✅ **Open source** — codice leggibile direttamente nel browser (`Ctrl+U`)
 
+> 🔒 **Pulsante "Check for new release"** — cliccando vieni reindirizzato alla pagina GitHub delle release. In quel momento GitHub riceve il tuo indirizzo IP, come accade con qualsiasi link aperto nel browser. Il tool stesso non invia nulla — né automaticamente né in background.
+
+### Licenza
+
+Distribuito sotto licenza **MIT** — Copyright (c) 2026 Andrea Zullo
+Vedi il file [LICENSE](LICENSE) per il testo completo.
+
 ### Come si usa
 
 Scarica `Z-Astro-Calculator.html` dalla sezione [Releases](https://github.com/astrozullo/Z-Astro-Calculator/releases) e aprilo con qualsiasi browser. Fine.
@@ -88,21 +95,18 @@ Z-Astro-Calculator is a standalone HTML file designed for astrophotographers. It
 - ✅ **Single file** — one `.html` file, no folders, no installation
 - ✅ **Open source** — code is readable directly in the browser (`Ctrl+U`)
 
+> 🔒 **"Check for new release" button** — clicking it redirects you to the GitHub releases page. At that point GitHub receives your IP address, as happens with any link you open in a browser. The tool itself sends nothing — neither automatically nor in the background.
+
+### License
+
+Released under the **MIT License** — Copyright (c) 2026 Andrea Zullo
+See the [LICENSE](LICENSE) file for the full text.
+
 ### How to use
 
 Download `Z-Astro-Calculator.html` from the [Releases](https://github.com/astrozullo/Z-Astro-Calculator/releases) section and open it with any browser. That's it.
 
 ---
-
-🔒 Privacy — Check for new release
-
-Quando clicchi il pulsante "Check for new release", vieni reindirizzato alla pagina GitHub delle release. In quel momento GitHub riceve il tuo indirizzo IP, come accade con qualsiasi link che apri nel browser. Nessun altro dato viene trasmesso. Il tool stesso non invia nulla — né automaticamente né in background.
-
----
-
-🔒 Privacy — Check for new release
-
-When you click the "Check for new release" button, you are redirected to the GitHub releases page. At that point GitHub receives your IP address, as happens with any link you open in a browser. No other data is transmitted. The tool itself sends nothing — neither automatically nor in the background.
 
 ## Autore / Author
 
