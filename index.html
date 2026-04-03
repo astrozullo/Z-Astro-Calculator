@@ -38,13 +38,30 @@
   .star {
     position: absolute;
     border-radius: 50%;
-    background: rgba(255,200,180,0.7);
+    background: var(--sc, rgba(255,200,180,0.7));
     animation: twinkle var(--d, 4s) ease-in-out infinite;
     animation-delay: var(--delay, 0s);
   }
   @keyframes twinkle {
-    0%, 100% { opacity: 0.2; transform: scale(1); }
-    50%       { opacity: 0.9; transform: scale(1.4); }
+    0%, 100% { opacity: 0.15; transform: scale(1); }
+    50%       { opacity: 1; transform: scale(1.5); }
+  }
+  .shooting {
+    position: absolute;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(255,255,255,0.9), transparent);
+    border-radius: 1px;
+    opacity: 0;
+    pointer-events: none;
+    animation: shoot var(--sd, 1.2s) ease-in forwards;
+    animation-delay: var(--sdelay, 0s);
+    transform-origin: left center;
+  }
+  @keyframes shoot {
+    0%   { opacity: 0; transform: translateX(0) rotate(var(--angle,-20deg)); width: 0; }
+    10%  { opacity: 1; }
+    70%  { opacity: 0.8; }
+    100% { opacity: 0; transform: translateX(var(--dist,120px)) rotate(var(--angle,-20deg)); width: var(--len,80px); }
   }
 
   /* ── RADIAL GLOW ── */
@@ -67,7 +84,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 3rem 2rem;
+    padding: clamp(2rem, 8vh, 4rem) 1.5rem;
     text-align: center;
   }
 
@@ -126,12 +143,12 @@
 
   /* ── SUBTITLE ── */
   .subtitle {
-    font-size: clamp(.9rem, 2.5vw, 1.15rem);
+    font-size: clamp(1rem, 4vw, 1.15rem);
     font-style: italic;
     color: var(--text2);
     letter-spacing: .04em;
     line-height: 1.7;
-    max-width: 480px;
+    max-width: 90%;
     opacity: 0;
     animation: fadeUp .8s ease forwards .75s;
   }
@@ -226,7 +243,11 @@
   }
 
   @media (max-width: 480px) {
-    .cta { padding: 12px 32px; }
+    .cta { padding: 12px 32px; width: 90%; }
+    .badges { gap: .4rem; }
+    .badge { font-size: 11px; padding: 3px 10px; }
+    h1 { letter-spacing: .03em; }
+    .ornament { letter-spacing: .3em; }
   }
 </style>
 </head>
@@ -269,19 +290,55 @@
 </footer>
 
 <script>
-  // genera stelle
+  // genera stelle colorate
   var sf = document.getElementById('stars');
-  for (var i = 0; i < 120; i++) {
+  var starColors = [
+    'rgba(255,200,180,0.75)',  // rosate (originali)
+    'rgba(255,200,180,0.75)',  // rosate (più frequenti)
+    'rgba(255,240,140,0.8)',   // gialline
+    'rgba(140,210,255,0.8)',   // azzurrine
+    'rgba(255,255,255,0.85)',  // bianche
+  ];
+  for (var i = 0; i < 130; i++) {
     var s = document.createElement('div');
     s.className = 'star';
-    var sz = (Math.random() * 1.8 + .4).toFixed(1);
+    var sz = (Math.random() * 2 + .3).toFixed(1);
+    var col = starColors[Math.floor(Math.random() * starColors.length)];
     s.style.cssText =
       'width:' + sz + 'px;height:' + sz + 'px;' +
       'left:' + (Math.random()*100).toFixed(2) + '%;' +
       'top:'  + (Math.random()*100).toFixed(2) + '%;' +
-      '--d:'  + (3 + Math.random()*5).toFixed(1) + 's;' +
-      '--delay:' + (Math.random()*5).toFixed(2) + 's;';
+      '--sc:' + col + ';' +
+      '--d:'  + (2.5 + Math.random()*6).toFixed(1) + 's;' +
+      '--delay:' + (Math.random()*6).toFixed(2) + 's;';
     sf.appendChild(s);
+  }
+  // stelle cadenti
+  function spawnShooting() {
+    var sh = document.createElement('div');
+    sh.className = 'shooting';
+    var angle = -(10 + Math.random()*25);
+    var len = 60 + Math.random()*100;
+    var dist = len * 2.5;
+    sh.style.cssText =
+      'left:' + (Math.random()*80).toFixed(1) + '%;' +
+      'top:'  + (Math.random()*50).toFixed(1) + '%;' +
+      '--angle:' + angle.toFixed(1) + 'deg;' +
+      '--len:' + len.toFixed(0) + 'px;' +
+      '--dist:' + dist.toFixed(0) + 'px;' +
+      '--sd:' + (0.8 + Math.random()*0.8).toFixed(2) + 's;' +
+      '--sdelay:0s;';
+    sf.appendChild(sh);
+    setTimeout(function(){ try{sf.removeChild(sh);}catch(e){} }, 2500);
+  }
+  // prima stella cadente dopo 2s, poi ogni 4-8s
+  setTimeout(function(){
+    spawnShooting();
+    setInterval(spawnShooting, 4000 + Math.random()*4000);
+  }, 2000);
+  // Service Worker
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./sw.js').catch(function(){});
   }
 </script>
 </body>
