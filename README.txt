@@ -24,7 +24,7 @@ FUNZIONALITÀ PRINCIPALI
 - POLAR ALIGNMENT (beta) — diagramma interattivo per il posizionamento di Polaris sul reticolo del polare. Calcola automaticamente l'angolo orario in base a data, ora e posizione. Dati riferiti all'epoca 2025 — aggiornamenti previsti.
 - COORDINATE CONVERTER — conversione decimale ↔ DMS integrata, con trasferimento diretto ai campi di calcolo
 - AVVISI SUI VALORI — messaggi contestuali quando si inseriscono valori fisicamente improbabili, per evitare errori di input
-- 4 LINGUE — Italiano, English, Español, Русский
+- 4 LINGUE — Italiano, English, Español, Русский (preferenza salvata tra sessioni)
 - DARK MODE automatica
 
   ⓘ App in revisione continua — alcune funzionalità sono ancora in fase di verifica.
@@ -34,28 +34,43 @@ NOVITÀ v1.3
 - Fix convertitore DMS→Decimale: i minuti e i secondi venivano ignorati in presenza di gradi diversi da zero. Errore risolto.
 - Avvisi contestuali sui campi di input per valori fuori dai range tipici dell'astrofotografia
 - Comportamento del campo Diametro migliorato: la validazione avviene all'uscita dal campo, senza interferire durante la digitazione
+- Lingua di default: inglese. La preferenza viene ricordata tra una sessione e l'altra.
+- Versione web disponibile su GitHub Pages (vedi sotto)
+
+COME SI USA
+============================================================
+File scaricabile (consigliato per uso offline totale):
+Scarica Z-Astro-Calculator.html dalla sezione Releases
+(https://github.com/astrozullo/Z-Astro-Calculator/releases)
+e aprilo con qualsiasi browser. Funziona sempre, anche senza connessione,
+anche sul WiFi del telescopio.
+
+Versione web (GitHub Pages):
+https://astrozullo.github.io/Z-Astro-Calculator
+Dopo la prima visita con internet, funziona anche offline
+grazie al service worker.
 
 PRIVACY E REQUISITI
 ============================================================
 - ✅ NESSUN DATO RACCOLTO — il file non trasmette nulla, non ha analytics, non ha cookie
 - ✅ FUNZIONA OFFLINE — non richiede connessione internet, zero dipendenze esterne
 - ✅ MULTIPIATTAFORMA — funziona su qualsiasi browser moderno (Chrome, Firefox, Safari, Edge) su Windows, macOS, Linux, Android, iOS
-- ✅ FILE SINGOLO — un solo file `.html`, niente cartelle, niente installazione
+- ✅ FILE SINGOLO — un solo file .html, niente cartelle, niente installazione
 - ✅ OPEN SOURCE — codice leggibile e ispezionabile direttamente nel browser (Ctrl+U)
 
-🔒 Privacy — Pulsante "Check for new release"
-Quando clicchi il pulsante "Check for new release", vieni reindirizzato alla pagina GitHub delle release. In quel momento GitHub riceve il tuo indirizzo IP, come accade con qualsiasi link che apri nel browser. Nessun altro dato viene trasmesso. Il tool stesso non invia nulla — né automaticamente né in background.
+Versione GitHub Pages: al primo accesso GitHub riceve l'IP del visitatore
+(come qualsiasi sito web). Un service worker mette in cache i file localmente
+per l'uso offline. La preferenza di lingua è salvata in localStorage sul
+dispositivo. Nessun dato viene trasmesso all'autore.
+
+Pulsante "Check for new release": cliccando vieni reindirizzato alla pagina
+GitHub delle release. GitHub riceve il tuo IP come con qualsiasi link aperto
+nel browser. Il tool stesso non invia nulla automaticamente.
 
 LICENZA
 ============================================================
 Distribuito sotto licenza MIT — Copyright (c) 2026 Andrea Zullo
 https://github.com/astrozullo/Z-Astro-Calculator/blob/main/LICENSE
-
-COME SI USA
-============================================================
-Scarica `Z-Astro-Calculator.html` dalla sezione Releases
-(https://github.com/astrozullo/Z-Astro-Calculator/releases)
-e aprilo con qualsiasi browser. Fine.
 
 AUTORE
 ============================================================
@@ -86,7 +101,7 @@ KEY FEATURES
 - POLAR ALIGNMENT (beta) — interactive diagram for positioning Polaris on the polar scope reticle. Automatically calculates the hour angle from date, time and location. Data based on epoch 2025 — updates planned.
 - COORDINATE CONVERTER — decimal ↔ DMS conversion built in, with direct transfer to calculation fields
 - INPUT WARNINGS — contextual messages when physically unlikely values are entered, to prevent input errors
-- 4 LANGUAGES — Italiano, English, Español, Русский
+- 4 LANGUAGES — Italiano, English, Español, Русский (preference saved between sessions)
 - AUTOMATIC DARK MODE
 
   ⓘ App under continuous development — some features are still being verified.
@@ -96,28 +111,43 @@ WHAT'S NEW IN v1.3
 - Fix DMS→Decimal converter: minutes and seconds were being ignored when degrees were non-zero. Bug resolved.
 - Contextual warnings on input fields for values outside typical astrophotography ranges
 - Diameter field behaviour improved: validation now triggers on focus loss, without interfering while typing
+- Default language: English. Preference is remembered between sessions.
+- Web version now available on GitHub Pages (see below)
+
+HOW TO USE
+============================================================
+Downloadable file (recommended for full offline use):
+Download Z-Astro-Calculator.html from the Releases section
+(https://github.com/astrozullo/Z-Astro-Calculator/releases)
+and open it with any browser. Works always, even without a connection,
+even on telescope WiFi networks.
+
+Web version (GitHub Pages):
+https://astrozullo.github.io/Z-Astro-Calculator
+After the first visit with internet, it works offline too
+thanks to the service worker.
 
 PRIVACY AND REQUIREMENTS
 ============================================================
 - ✅ NO DATA COLLECTED — the file transmits nothing, has no analytics, no cookies
 - ✅ WORKS OFFLINE — no internet connection required, zero external dependencies
 - ✅ CROSS-PLATFORM — works on any modern browser (Chrome, Firefox, Safari, Edge) on Windows, macOS, Linux, Android, iOS
-- ✅ SINGLE FILE — one `.html` file, no folders, no installation
+- ✅ SINGLE FILE — one .html file, no folders, no installation
 - ✅ OPEN SOURCE — code is readable and inspectable directly in the browser (Ctrl+U)
 
-🔒 Privacy — Check for new release button
-When you click the "Check for new release" button, you are redirected to the GitHub releases page. At that point GitHub receives your IP address, as happens with any link you open in a browser. No other data is transmitted. The tool itself sends nothing — neither automatically nor in the background.
+GitHub Pages version: on first access GitHub receives the visitor's IP address
+(as with any website). A service worker caches files locally for offline use.
+Language preference is saved in localStorage on the device. No data is
+transmitted to the author.
+
+"Check for new release" button: clicking it redirects you to the GitHub
+releases page. GitHub receives your IP as with any link opened in the browser.
+The tool itself sends nothing automatically.
 
 LICENSE
 ============================================================
 Released under the MIT License — Copyright (c) 2026 Andrea Zullo
 https://github.com/astrozullo/Z-Astro-Calculator/blob/main/LICENSE
-
-HOW TO USE
-============================================================
-Download `Z-Astro-Calculator.html` from the Releases section
-(https://github.com/astrozullo/Z-Astro-Calculator/releases)
-and open it with any browser. That's it.
 
 AUTHOR
 ============================================================
