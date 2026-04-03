@@ -34,6 +34,16 @@ Z-Astro-Calculator è un file HTML standalone progettato per astrofotografi. Cal
 - 🐛 **Fix convertitore DMS→Decimale** — i minuti e i secondi venivano ignorati in presenza di gradi diversi da zero. Errore risolto.
 - 💬 **Avvisi contestuali** — messaggi sui campi di input per valori fuori dai range tipici dell'astrofotografia
 - ✨ **Campo Diametro migliorato** — la validazione avviene all'uscita dal campo, senza interferire durante la digitazione
+- 🌐 **Lingua salvata** — la preferenza di lingua viene ricordata tra una sessione e l'altra
+- 🌐 **Lingua di default: inglese**
+
+### Come usarla
+
+**File scaricabile (consigliato per uso offline totale)**
+Scarica `Z-Astro-Calculator.html` dalla sezione [Releases](https://github.com/astrozullo/Z-Astro-Calculator/releases) e aprilo con qualsiasi browser. Funziona sempre, anche senza connessione, anche sul WiFi del telescopio.
+
+**Versione web (GitHub Pages)**
+Apri [astrozullo.github.io/Z-Astro-Calculator](https://astrozullo.github.io/Z-Astro-Calculator) dal browser. Dopo la prima visita con internet, funziona anche offline grazie al service worker.
 
 ### Privacy e requisiti
 
@@ -43,16 +53,14 @@ Z-Astro-Calculator è un file HTML standalone progettato per astrofotografi. Cal
 - ✅ **File singolo** — un solo `.html`, niente cartelle, niente installazione
 - ✅ **Open source** — codice leggibile direttamente nel browser (`Ctrl+U`)
 
-> 🔒 **Pulsante "Check for new release"** — cliccando vieni reindirizzato alla pagina GitHub delle release. In quel momento GitHub riceve il tuo indirizzo IP, come accade con qualsiasi link aperto nel browser. Il tool stesso non invia nulla — né automaticamente né in background.
+> 🔒 **Versione GitHub Pages** — al primo accesso GitHub riceve l'IP del visitatore (come qualsiasi sito web). Un service worker mette in cache i file localmente per l'uso offline. La preferenza di lingua è salvata in localStorage sul dispositivo. Nessun dato viene trasmesso all'autore.
+
+> 🔒 **Pulsante "Check for new release"** — cliccando vieni reindirizzato alla pagina GitHub delle release. GitHub riceve il tuo IP come con qualsiasi link. Il tool stesso non invia nulla automaticamente.
 
 ### Licenza
 
 Distribuito sotto licenza **MIT** — Copyright (c) 2026 Andrea Zullo
 Vedi il file [LICENSE](LICENSE) per il testo completo.
-
-### Come si usa
-
-Scarica `Z-Astro-Calculator.html` dalla sezione [Releases](https://github.com/astrozullo/Z-Astro-Calculator/releases) e aprilo con qualsiasi browser. Fine.
 
 ---
 
@@ -86,6 +94,16 @@ Z-Astro-Calculator is a standalone HTML file designed for astrophotographers. It
 - 🐛 **Fix DMS→Decimal converter** — minutes and seconds were being ignored when degrees were non-zero. Bug resolved.
 - 💬 **Contextual input warnings** — messages on input fields for values outside typical astrophotography ranges
 - ✨ **Diameter field improved** — validation now triggers on focus loss, without interfering while typing
+- 🌐 **Language saved** — language preference is remembered between sessions
+- 🌐 **Default language: English**
+
+### How to use
+
+**Downloadable file (recommended for full offline use)**
+Download `Z-Astro-Calculator.html` from the [Releases](https://github.com/astrozullo/Z-Astro-Calculator/releases) section and open it with any browser. Works always, even without a connection, even on telescope WiFi networks.
+
+**Web version (GitHub Pages)**
+Open [astrozullo.github.io/Z-Astro-Calculator](https://astrozullo.github.io/Z-Astro-Calculator) in your browser. After the first visit with internet, it works offline too thanks to the service worker.
 
 ### Privacy and requirements
 
@@ -95,16 +113,14 @@ Z-Astro-Calculator is a standalone HTML file designed for astrophotographers. It
 - ✅ **Single file** — one `.html` file, no folders, no installation
 - ✅ **Open source** — code is readable directly in the browser (`Ctrl+U`)
 
-> 🔒 **"Check for new release" button** — clicking it redirects you to the GitHub releases page. At that point GitHub receives your IP address, as happens with any link you open in a browser. The tool itself sends nothing — neither automatically nor in the background.
+> 🔒 **GitHub Pages version** — on first access GitHub receives the visitor's IP address (as with any website). A service worker caches files locally for offline use. Language preference is saved in localStorage on the device. No data is transmitted to the author.
+
+> 🔒 **"Check for new release" button** — clicking it redirects you to the GitHub releases page. GitHub receives your IP as with any link. The tool itself sends nothing automatically.
 
 ### License
 
 Released under the **MIT License** — Copyright (c) 2026 Andrea Zullo
 See the [LICENSE](LICENSE) file for the full text.
-
-### How to use
-
-Download `Z-Astro-Calculator.html` from the [Releases](https://github.com/astrozullo/Z-Astro-Calculator/releases) section and open it with any browser. That's it.
 
 ---
 
