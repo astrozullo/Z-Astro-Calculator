@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Z-Astro-Calculator</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap');
+
+  :root {
+    --bg:    #0a0000;
+    --bg2:   #150000;
+    --red:   #8b1a1a;
+    --red2:  #c43030;
+    --gold:  #c8922a;
+    --text:  #d4a0a0;
+    --text2: #8a5050;
+    --text3: #4a2828;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    height: 100%;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'EB Garamond', Georgia, serif;
+    overflow-x: hidden;
+  }
+
+  /* ── STAR FIELD ── */
+  .stars {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .star {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255,200,180,0.7);
+    animation: twinkle var(--d, 4s) ease-in-out infinite;
+    animation-delay: var(--delay, 0s);
+  }
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.2; transform: scale(1); }
+    50%       { opacity: 0.9; transform: scale(1.4); }
+  }
+
+  /* ── RADIAL GLOW ── */
+  .glow {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background: radial-gradient(ellipse 60% 50% at 50% 60%,
+      rgba(100,0,0,0.35) 0%,
+      transparent 70%);
+  }
+
+  /* ── LAYOUT ── */
+  .wrap {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 2rem;
+    text-align: center;
+  }
+
+  /* ── ORNAMENT ── */
+  .ornament {
+    font-size: 11px;
+    letter-spacing: .5em;
+    text-transform: uppercase;
+    color: var(--red2);
+    margin-bottom: 1.2rem;
+    opacity: 0;
+    animation: fadeUp .8s ease forwards .2s;
+  }
+
+  /* ── TITLE ── */
+  h1 {
+    font-family: 'Cinzel', serif;
+    font-weight: 600;
+    font-size: clamp(2rem, 8vw, 4.5rem);
+    letter-spacing: .06em;
+    line-height: 1.1;
+    color: #f0d0d0;
+    text-shadow: 0 0 60px rgba(180,30,30,.5);
+    opacity: 0;
+    animation: fadeUp .9s ease forwards .4s;
+  }
+
+  h1 span {
+    color: var(--red2);
+  }
+
+  /* ── DIVIDER ── */
+  .div-line {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 1.5rem auto;
+    width: min(400px, 80%);
+    opacity: 0;
+    animation: fadeUp .8s ease forwards .6s;
+  }
+  .div-line::before,
+  .div-line::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--red), transparent);
+  }
+  .div-line .diamond {
+    width: 6px;
+    height: 6px;
+    background: var(--red2);
+    transform: rotate(45deg);
+    flex-shrink: 0;
+  }
+
+  /* ── SUBTITLE ── */
+  .subtitle {
+    font-size: clamp(.9rem, 2.5vw, 1.15rem);
+    font-style: italic;
+    color: var(--text2);
+    letter-spacing: .04em;
+    line-height: 1.7;
+    max-width: 480px;
+    opacity: 0;
+    animation: fadeUp .8s ease forwards .75s;
+  }
+
+  /* ── BADGES ── */
+  .badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+    justify-content: center;
+    margin: 1.8rem 0;
+    opacity: 0;
+    animation: fadeUp .8s ease forwards .9s;
+  }
+  .badge {
+    font-family: 'EB Garamond', serif;
+    font-size: 12px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    border: 1px solid var(--text3);
+    color: var(--text2);
+  }
+
+  /* ── CTA BUTTON ── */
+  .cta {
+    display: inline-block;
+    margin-top: .5rem;
+    padding: 14px 44px;
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #f5d0d0;
+    background: transparent;
+    border: 1px solid var(--red2);
+    position: relative;
+    overflow: hidden;
+    transition: color .3s, border-color .3s;
+    opacity: 0;
+    animation: fadeUp .8s ease forwards 1.05s;
+  }
+  .cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--red);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .35s ease;
+    z-index: -1;
+  }
+  .cta:hover::before { transform: scaleX(1); }
+  .cta:hover { border-color: var(--red2); color: #fff; }
+
+  /* ── FOOTER ── */
+  footer {
+    position: relative;
+    z-index: 1;
+    padding: 1.5rem 2rem 2rem;
+    text-align: center;
+  }
+  .author {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--text3);
+    margin-bottom: .4rem;
+    opacity: 0;
+    animation: fadeUp .8s ease forwards 1.2s;
+  }
+  .links {
+    font-size: 12px;
+    color: var(--text3);
+    opacity: 0;
+    animation: fadeUp .8s ease forwards 1.35s;
+  }
+  .links a {
+    color: var(--text3);
+    text-decoration: none;
+    border-bottom: 1px solid var(--text3);
+    transition: color .2s, border-color .2s;
+  }
+  .links a:hover { color: var(--text2); border-color: var(--text2); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 480px) {
+    .cta { padding: 12px 32px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="stars" id="stars"></div>
+<div class="glow"></div>
+
+<div class="wrap">
+  <div class="ornament">&#9670; Astrophotography Tool &#9670;</div>
+  <h1>Z&#8209;Astro<br><span>Calculator</span></h1>
+
+  <div class="div-line"><div class="diamond"></div></div>
+
+  <p class="subtitle">
+    Pixel scale &middot; FOV &middot; Sampling analysis &middot; Lunar resolution<br>
+    Offline &middot; Single file &middot; No installation
+  </p>
+
+  <div class="badges">
+    <span class="badge">Offline-first</span>
+    <span class="badge">4 languages</span>
+    <span class="badge">Open source</span>
+  </div>
+
+  <a href="Z-Astro-Calculator.html" class="cta">Open the Calculator</a>
+</div>
+
+<footer>
+  <div class="author">Andrea Zullo &nbsp;&middot;&nbsp; Astronomia Spiccia</div>
+  <div class="links">
+    <a href="https://github.com/astrozullo/Z-Astro-Calculator" target="_blank" rel="noopener">GitHub</a>
+    &nbsp;&middot;&nbsp;
+    <a href="https://github.com/astrozullo/Z-Astro-Calculator/releases" target="_blank" rel="noopener">Releases</a>
+    &nbsp;&middot;&nbsp;
+    <a href="privacy.html" target="_blank" rel="noopener">Privacy</a>
+    &nbsp;&middot;&nbsp;
+    <a href="https://github.com/astrozullo/Z-Astro-Calculator/blob/main/LICENSE" target="_blank" rel="noopener">MIT License</a>
+  </div>
+</footer>
+
+<script>
+  // genera stelle
+  var sf = document.getElementById('stars');
+  for (var i = 0; i < 120; i++) {
+    var s = document.createElement('div');
+    s.className = 'star';
+    var sz = (Math.random() * 1.8 + .4).toFixed(1);
+    s.style.cssText =
+      'width:' + sz + 'px;height:' + sz + 'px;' +
+      'left:' + (Math.random()*100).toFixed(2) + '%;' +
+      'top:'  + (Math.random()*100).toFixed(2) + '%;' +
+      '--d:'  + (3 + Math.random()*5).toFixed(1) + 's;' +
+      '--delay:' + (Math.random()*5).toFixed(2) + 's;';
+    sf.appendChild(s);
+  }
+</script>
+</body>
+</html>
