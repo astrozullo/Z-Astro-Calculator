@@ -118,8 +118,11 @@
     pixel scale=206.265&times;pixel(&micro;m)/focale(mm) &middot; Dawes=116/D &middot; Rayleigh=1.22&times;&lambda;/D &middot; Nyquist: seeing/4&ndash;seeing/2
     <div class="footer-contrib"><span data-i18n="footerContrib"></span>: Davide Lavarini, Mattia Cipriani</div>
     <div style="margin-top:.75rem;font-size:11px;color:var(--text3);font-style:italic">&#9432; App in revisione continua &mdash; alcune funzionalit&agrave; sono ancora in fase di verifica.</div>
-    <a href="https://github.com/astrozullo/Z-Astro-Calculator/releases" target="_blank" rel="noopener" style="display:block;margin-top:1.25rem;padding:10px;background:var(--bg2);border:.5px solid var(--border2);border-radius:var(--radius-md);color:var(--text2);font-size:12px;text-decoration:none;letter-spacing:.04em;text-align:center" onmouseover="this.style.borderColor='var(--text2)';this.style.color='var(--text)'" onmouseout="this.style.borderColor='var(--border2)';this.style.color='var(--text2)'">&#11088; v1.3 &nbsp;&mdash;&nbsp; Check for new release &rarr;</a>
+    <a href="https://github.com/astrozullo/Z-Astro-Calculator/releases" target="_blank" rel="noopener" style="display:block;margin-top:1.25rem;padding:10px;background:var(--bg2);border:.5px solid var(--border2);border-radius:var(--radius-md);color:var(--text2);font-size:12px;text-decoration:none;letter-spacing:.04em;text-align:center" onmouseover="this.style.borderColor='var(--text2)';this.style.color='var(--text)'" onmouseout="this.style.borderColor='var(--border2)';this.style.color='var(--text2)'">&#11088; v1.4 &nbsp;&mdash;&nbsp; Check for new release &rarr;</a>
   <div style="margin-top:.75rem;font-size:11px;color:var(--text3);text-align:center"><a href="index.html" style="color:var(--text3);text-decoration:none">&#8592; Home</a> &nbsp;&middot;&nbsp; <a href="privacy.html" style="color:var(--text3);text-decoration:none">Privacy</a> &nbsp;&middot;&nbsp; <a href="https://github.com/astrozullo/Z-Astro-Calculator/blob/main/LICENSE" target="_blank" rel="noopener" style="color:var(--text3);text-decoration:none">MIT License</a></div>
+  <div id="integrity-warn" style="display:none;margin-top:.75rem;font-size:11px;color:#e07050;text-align:center;letter-spacing:.03em;">
+    ⚠ File integrity check failed — results may be inaccurate. Download the original from <a href="https://github.com/astrozullo/Z-Astro-Calculator/releases" target="_blank" rel="noopener" style="color:#e07050;">GitHub</a>.
+  </div>
   </footer>
 </div>
 
@@ -631,7 +634,29 @@ var OBJ=[
 {id:'M23',name:'NGC 6494',type:'Open Cl.',ra:17.947,dec:-19.017,mag:5.8,sz:"27'"},
 {id:'M25',name:'IC 4725',type:'Open Cl.',ra:18.527,dec:-19.233,mag:5.8,sz:"32'"},
 {id:'M18',name:'NGC 6613',type:'Open Cl.',ra:18.332,dec:-17.133,mag:6.0,sz:"9'"},
-{id:'M9',name:'NGC 6333',type:'Globular',ra:17.320,dec:-18.517,mag:6.2,sz:"12'"}];
+{id:'M9',name:'NGC 6333',type:'Globular',ra:17.320,dec:-18.517,mag:6.2,sz:"12'"},
+{id:'M32',name:'NGC 221',type:'Galaxy',ra:0.712,dec:40.867,mag:8.7,sz:"8'×6'"},
+{id:'M110',name:'NGC 205',type:'Galaxy',ra:0.672,dec:41.685,mag:8.1,sz:"17'×10'"},
+{id:'M94',name:'NGC 4736',type:'Galaxy',ra:12.848,dec:41.120,mag:8.2,sz:"11'×9'"},
+{id:'M85',name:'NGC 4382',type:'Galaxy',ra:12.423,dec:18.193,mag:9.1,sz:"7'×5'"},
+{id:'M88',name:'NGC 4501',type:'Galaxy',ra:12.532,dec:14.420,mag:9.6,sz:"7'×4'"},
+{id:'M89',name:'NGC 4552',type:'Galaxy',ra:12.593,dec:12.557,mag:9.8,sz:"4'×4'"},
+{id:'M90',name:'NGC 4569',type:'Galaxy',ra:12.613,dec:13.163,mag:9.5,sz:"10'×5'"},
+{id:'M91',name:'NGC 4548',type:'Galaxy',ra:12.592,dec:14.498,mag:10.2,sz:"5'×4'"},
+{id:'M95',name:'NGC 3351',type:'Galaxy',ra:10.703,dec:11.703,mag:9.7,sz:"7'×5'"},
+{id:'M96',name:'NGC 3368',type:'Galaxy',ra:10.780,dec:11.820,mag:9.2,sz:"7'×5'"},
+{id:'M98',name:'NGC 4192',type:'Galaxy',ra:12.228,dec:14.900,mag:10.1,sz:"10'×3'"},
+{id:'M99',name:'NGC 4254',type:'Galaxy',ra:12.315,dec:14.417,mag:9.9,sz:"5'×5'"},
+{id:'M100',name:'NGC 4321',type:'Galaxy',ra:12.382,dec:15.822,mag:9.3,sz:"7'×6'"},
+{id:'M105',name:'NGC 3379',type:'Galaxy',ra:10.797,dec:12.582,mag:9.3,sz:"4'×4'"},
+{id:'M79',name:'NGC 1904',type:'Globular',ra:5.403,dec:-24.517,mag:7.7,sz:"9'"},
+{id:'M80',name:'NGC 6093',type:'Globular',ra:16.285,dec:-22.975,mag:7.3,sz:"10'"},
+{id:'M62',name:'NGC 6266',type:'Globular',ra:17.020,dec:-30.113,mag:6.6,sz:"15'"},
+{id:'M68',name:'NGC 4590',type:'Globular',ra:12.657,dec:-26.745,mag:7.6,sz:"12'"},
+{id:'M107',name:'NGC 6171',type:'Globular',ra:16.542,dec:-13.053,mag:7.9,sz:"13'"},
+{id:'M76',name:'NGC 650',type:'Nebula',ra:1.703,dec:51.575,mag:10.1,sz:"3'×1'"},
+{id:'M78',name:'NGC 2068',type:'Nebula',ra:5.780,dec:0.078,mag:8.0,sz:"8'×6'"},
+{id:'M103',name:'NGC 581',type:'Open Cl.',ra:1.557,dec:60.655,mag:7.4,sz:"6'"}];
 function toR(d){return d*Math.PI/180;}
 function toD(r){return r*180/Math.PI;}
 function alt(ra,dec,lat,lst){var ha=(lst-ra)*15,s=Math.sin(toR(dec))*Math.sin(toR(lat))+Math.cos(toR(dec))*Math.cos(toR(lat))*Math.cos(toR(ha));return toD(Math.asin(Math.max(-1,Math.min(1,s))));}
@@ -930,6 +955,93 @@ ssTimer=setTimeout(showSS,SS_TIMEOUT);}
 document.addEventListener(ev,function(){if(!ssEl)resetTimer();},{passive:true});});
 resetTimer();})();
 (function(){var _lb=document.querySelector('.lang-btn[data-lang="'+lang+'"]');if(_lb){document.querySelectorAll('.lang-btn').forEach(function(x){x.classList.remove('active');});_lb.classList.add('active');}})();
-applyLang();</script>
+
+// SETUP SAVE/RESTORE
+var ZAC_SETUP_KEY='zac_setup_v1';
+function saveSetup(){
+  try{
+    var setup={
+      diam:g('diam').value,
+      focal:g('focal').value,
+      pixsize:g('pixsize').value,
+      sw:g('sw').value,
+      sh:g('sh').value,
+      camPreset:g('cam-preset').value,
+      ovLat:g('ov-lat').value,
+      ovLon:g('ov-lon').value,
+      ovTz:(function(){var s=g('ov-tz');return s?s.value:''}()),
+      citySearch:g('city-search').value,
+      ovMinalt:g('ov-minalt').value,
+      dst:dst,
+      curF:curF,
+      lang:lang
+    };
+    localStorage.setItem(ZAC_SETUP_KEY,JSON.stringify(setup));
+  }catch(e){}
+}
+function restoreSetup(){
+  try{
+    var raw=localStorage.getItem(ZAC_SETUP_KEY);
+    if(!raw)return;
+    var s=JSON.parse(raw);
+    if(s.diam)g('diam').value=s.diam;
+    if(s.focal)g('focal').value=s.focal;
+    if(s.pixsize)g('pixsize').value=s.pixsize;
+    if(s.sw)g('sw').value=s.sw;
+    if(s.sh)g('sh').value=s.sh;
+    if(s.camPreset&&g('cam-preset'))g('cam-preset').value=s.camPreset;
+    if(s.ovLat)g('ov-lat').value=s.ovLat;
+    if(s.ovLon)g('ov-lon').value=s.ovLon;
+    if(s.citySearch)g('city-search').value=s.citySearch;
+    if(s.ovMinalt)g('ov-minalt').value=s.ovMinalt;
+    if(typeof s.dst!=='undefined'){
+      dst=s.dst;
+      document.querySelectorAll('.dst-opt').forEach(function(b){
+        b.classList.toggle('active',parseInt(b.getAttribute('data-dst'))==dst);
+      });
+    }
+    if(typeof s.curF!=='undefined'&&s.curF){
+      curF=parseFloat(s.curF);
+      document.querySelectorAll('.bl-btn').forEach(function(b){
+        b.classList.toggle('active',parseFloat(b.getAttribute('data-v'))==curF);
+      });
+    }
+    if(s.ovTz){
+      setTimeout(function(){
+        var sel=g('ov-tz');
+        if(sel)sel.value=s.ovTz;
+      },100);
+    }
+    calc();
+  }catch(e){}
+}
+// Salva setup ad ogni modifica dei campi principali
+['diam','focal','pixsize','sw','sh'].forEach(function(id){
+  var el=g(id);
+  if(el)el.addEventListener('change',saveSetup);
+});
+// Salva quando cambia il barlow
+document.querySelectorAll('.bl-btn').forEach(function(b){
+  b.addEventListener('click',function(){setTimeout(saveSetup,50);});
+});
+// Salva quando cambia DST
+document.querySelectorAll('.dst-opt').forEach(function(b){
+  b.addEventListener('click',function(){setTimeout(saveSetup,50);});
+});
+// Salva quando cambia città o timezone
+var _csEl=g('city-search');
+if(_csEl)_csEl.addEventListener('change',saveSetup);
+var _tzEl=g('ov-tz');
+if(_tzEl)_tzEl.addEventListener('change',saveSetup);
+// Salva quando cambia lingua
+document.querySelectorAll('.lang-btn').forEach(function(b){
+  b.addEventListener('click',function(){setTimeout(saveSetup,100);});
+});
+// Ripristina al caricamento
+restoreSetup();
+
+applyLang();
+(function(){if(typeof _cAZ!=='undefined'&&_cAZ!==1){var w=document.getElementById('integrity-warn');if(w)w.style.display='block';}})();
+</script>
 </body>
 </html>

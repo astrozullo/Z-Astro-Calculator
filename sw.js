@@ -1,4 +1,4 @@
-const CACHE = 'zac-v1.3';
+const CACHE = 'zac-v1.4';
 const FILES = [
   './index.html',
   './Z-Astro-Calculator.html',

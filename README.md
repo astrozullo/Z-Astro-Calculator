@@ -20,7 +20,7 @@ Z-Astro-Calculator è un file HTML standalone progettato per astrofotografi. Cal
 | **Analisi campionamento** | Zone ottimali Nyquist per planetario e deep sky con indicatore visivo (ottimale / sottocampionato / sovracampionato) |
 | **Risoluzione lunare** | km/pixel e FOV sulla superficie lunare a distanza configurabile |
 | **Preset fotocamere** | 65+ modelli precaricati (ZWO, PlayerOne, QHY, ToupTek, Aiptek, Moravian, Atik, Canon EOS, Nikon DSLR) |
-| **Visible Objects Tonight** | DSO visibili (100+ Messier e NGC) da qualsiasi posizione, con ricerca città autocomplete (200+ città) |
+| **Visible Objects Tonight** | DSO visibili (130+ oggetti tra Messier, NGC e IC) da qualsiasi posizione, con ricerca città autocomplete (250+ città) |
 | **Polar Alignment** *(beta)* | Diagramma interattivo per posizionamento Polaris sul reticolo. Calcola l'angolo orario da data, ora e posizione. Dati epoca 2025. |
 | **Coordinate Converter** | Conversione decimale ↔ DMS con trasferimento diretto ai campi di calcolo |
 | **Avvisi sui valori** | Messaggi contestuali quando si inseriscono valori fuori dai range tipici dell'astrofotografia |
@@ -29,13 +29,14 @@ Z-Astro-Calculator è un file HTML standalone progettato per astrofotografi. Cal
 
 > ⓘ App in revisione continua — alcune funzionalità sono ancora in fase di verifica.
 
-### Novità v1.3
+### Novità v1.4
 
-- 🐛 **Fix convertitore DMS→Decimale** — i minuti e i secondi venivano ignorati in presenza di gradi diversi da zero. Errore risolto.
-- 💬 **Avvisi contestuali** — messaggi sui campi di input per valori fuori dai range tipici dell'astrofotografia
-- ✨ **Campo Diametro migliorato** — la validazione avviene all'uscita dal campo, senza interferire durante la digitazione
-- 🌐 **Lingua salvata** — la preferenza di lingua viene ricordata tra una sessione e l'altra
-- 🌐 **Lingua di default: inglese**
+- 💾 **Setup salvato automaticamente** — diametro, focale, pixel size, sensore, Barlow, città, timezone, DST e lingua vengono ricordati tra una sessione e l'altra
+- 🌐 **Lingua di default: inglese** — la preferenza viene ricordata tra sessioni
+- 🔭 **Database DSO ampliato** — da 108 a 130 oggetti (aggiunti 22 Messier rilevanti per l'astrofotografia)
+- ⚠️ **Avviso integrità file** — messaggio visibile se i marker di paternità vengono manomessi
+- 🔗 **Footer aggiornato** — link a Home, Privacy (nostra) e MIT License
+- 📄 **Licenza MIT** aggiunta al repository
 
 ### Come usarla
 
@@ -53,9 +54,9 @@ Apri [astrozullo.github.io/Z-Astro-Calculator](https://astrozullo.github.io/Z-As
 - ✅ **File singolo** — un solo `.html`, niente cartelle, niente installazione
 - ✅ **Open source** — codice leggibile direttamente nel browser (`Ctrl+U`)
 
-> 🔒 **Versione GitHub Pages** — al primo accesso GitHub riceve l'IP del visitatore (come qualsiasi sito web). Un service worker mette in cache i file localmente per l'uso offline. La preferenza di lingua è salvata in localStorage sul dispositivo. Nessun dato viene trasmesso all'autore.
+> 🔒 **Versione GitHub Pages** — al primo accesso GitHub riceve l'IP del visitatore (come qualsiasi sito web). Un service worker mette in cache i file localmente per l'uso offline. Il setup e la preferenza di lingua sono salvati in localStorage sul dispositivo. Nessun dato viene trasmesso all'autore.
 
-> 🔒 **Pulsante "Check for new release"** — cliccando vieni reindirizzato alla pagina GitHub delle release. GitHub riceve il tuo IP come con qualsiasi link. Il tool stesso non invia nulla automaticamente.
+> 🔒 **Pulsante "Check for new release"** — cliccando vieni reindirizzato alla pagina GitHub delle release. GitHub riceve il tuo IP come con qualsiasi link aperto nel browser. Il tool stesso non invia nulla automaticamente.
 
 ### Licenza
 
@@ -80,7 +81,7 @@ Z-Astro-Calculator is a standalone HTML file designed for astrophotographers. It
 | **Sampling analysis** | Nyquist optimal zones for planetary and deep sky with visual indicator (optimal / undersampled / oversampled) |
 | **Lunar resolution** | km/pixel and FOV on the lunar surface at configurable distance |
 | **Camera presets** | 65+ preloaded models (ZWO, PlayerOne, QHY, ToupTek, Aiptek, Moravian, Atik, Canon EOS, Nikon DSLR) |
-| **Visible Objects Tonight** | DSO objects visible (100+ Messier & NGC) from any location, with city autocomplete search (200+ cities) |
+| **Visible Objects Tonight** | DSO objects visible (130+ Messier, NGC and IC objects) from any location, with city autocomplete search (250+ cities) |
 | **Polar Alignment** *(beta)* | Interactive diagram for positioning Polaris on the polar scope reticle. Calculates hour angle from date, time and location. Epoch 2025 data. |
 | **Coordinate Converter** | Decimal ↔ DMS conversion with direct transfer to calculation fields |
 | **Input warnings** | Contextual messages when physically unlikely values are entered |
@@ -89,13 +90,14 @@ Z-Astro-Calculator is a standalone HTML file designed for astrophotographers. It
 
 > ⓘ App under continuous development — some features are still being verified.
 
-### What's new in v1.3
+### What's new in v1.4
 
-- 🐛 **Fix DMS→Decimal converter** — minutes and seconds were being ignored when degrees were non-zero. Bug resolved.
-- 💬 **Contextual input warnings** — messages on input fields for values outside typical astrophotography ranges
-- ✨ **Diameter field improved** — validation now triggers on focus loss, without interfering while typing
-- 🌐 **Language saved** — language preference is remembered between sessions
-- 🌐 **Default language: English**
+- 💾 **Setup auto-saved** — diameter, focal length, pixel size, sensor, Barlow, city, timezone, DST and language are remembered between sessions
+- 🌐 **Default language: English** — preference is remembered between sessions
+- 🔭 **Expanded DSO database** — from 108 to 130 objects (added 22 Messier objects relevant to astrophotography)
+- ⚠️ **File integrity warning** — visible message if authorship markers are tampered with
+- 🔗 **Updated footer** — links to Home, Privacy (ours) and MIT License
+- 📄 **MIT License** added to the repository
 
 ### How to use
 
@@ -113,9 +115,9 @@ Open [astrozullo.github.io/Z-Astro-Calculator](https://astrozullo.github.io/Z-As
 - ✅ **Single file** — one `.html` file, no folders, no installation
 - ✅ **Open source** — code is readable directly in the browser (`Ctrl+U`)
 
-> 🔒 **GitHub Pages version** — on first access GitHub receives the visitor's IP address (as with any website). A service worker caches files locally for offline use. Language preference is saved in localStorage on the device. No data is transmitted to the author.
+> 🔒 **GitHub Pages version** — on first access GitHub receives the visitor's IP address (as with any website). A service worker caches files locally for offline use. Setup and language preference are saved in localStorage on the device. No data is transmitted to the author.
 
-> 🔒 **"Check for new release" button** — clicking it redirects you to the GitHub releases page. GitHub receives your IP as with any link. The tool itself sends nothing automatically.
+> 🔒 **"Check for new release" button** — clicking it redirects you to the GitHub releases page. GitHub receives your IP as with any link opened in the browser. The tool itself sends nothing automatically.
 
 ### License
 

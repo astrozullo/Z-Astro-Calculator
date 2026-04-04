@@ -20,22 +20,23 @@ FUNZIONALITÀ PRINCIPALI
 - ANALISI CAMPIONAMENTO — zone ottimali Nyquist per planetario e deep sky con indicatore visivo (ottimale / sottocampionato / sovracampionato)
 - RISOLUZIONE LUNARE — km/pixel e FOV sulla superficie lunare a distanza configurabile
 - PRESET FOTOCAMERE — 65+ modelli precaricati (ZWO, PlayerOne, QHY, ToupTek, Aiptek, Moravian, Atik, Canon EOS, Nikon DSLR)
-- VISIBLE OBJECTS TONIGHT — calcola gli oggetti DSO (100+ tra Messier e NGC) visibili da qualsiasi posizione geografica in una data e ora specifiche, con ricerca città autocomplete (200+ città nel database)
-- POLAR ALIGNMENT (beta) — diagramma interattivo per il posizionamento di Polaris sul reticolo del polare. Calcola automaticamente l'angolo orario in base a data, ora e posizione. Dati riferiti all'epoca 2025 — aggiornamenti previsti.
+- VISIBLE OBJECTS TONIGHT — DSO visibili (130+ oggetti tra Messier, NGC e IC) da qualsiasi posizione, con ricerca città autocomplete (250+ città)
+- POLAR ALIGNMENT (beta) — diagramma interattivo per il posizionamento di Polaris sul reticolo del polare. Calcola automaticamente l'angolo orario in base a data, ora e posizione. Dati epoca 2025.
 - COORDINATE CONVERTER — conversione decimale ↔ DMS integrata, con trasferimento diretto ai campi di calcolo
-- AVVISI SUI VALORI — messaggi contestuali quando si inseriscono valori fisicamente improbabili, per evitare errori di input
+- AVVISI SUI VALORI — messaggi contestuali quando si inseriscono valori fisicamente improbabili
 - 4 LINGUE — Italiano, English, Español, Русский (preferenza salvata tra sessioni)
 - DARK MODE automatica
 
   ⓘ App in revisione continua — alcune funzionalità sono ancora in fase di verifica.
 
-NOVITÀ v1.3
+NOVITÀ v1.4
 ============================================================
-- Fix convertitore DMS→Decimale: i minuti e i secondi venivano ignorati in presenza di gradi diversi da zero. Errore risolto.
-- Avvisi contestuali sui campi di input per valori fuori dai range tipici dell'astrofotografia
-- Comportamento del campo Diametro migliorato: la validazione avviene all'uscita dal campo, senza interferire durante la digitazione
-- Lingua di default: inglese. La preferenza viene ricordata tra una sessione e l'altra.
-- Versione web disponibile su GitHub Pages (vedi sotto)
+- Setup salvato automaticamente — diametro, focale, pixel size, sensore, Barlow, città, timezone, DST e lingua vengono ricordati tra una sessione e l'altra
+- Lingua di default: inglese. La preferenza viene ricordata tra sessioni.
+- Database DSO ampliato: da 108 a 130 oggetti (aggiunti 22 Messier rilevanti per l'astrofotografia)
+- Avviso integrità file: messaggio visibile se i marker di paternità vengono manomessi
+- Footer aggiornato: link a Home, Privacy (nostra) e MIT License
+- Licenza MIT aggiunta al repository
 
 COME SI USA
 ============================================================
@@ -52,20 +53,19 @@ grazie al service worker.
 
 PRIVACY E REQUISITI
 ============================================================
-- ✅ NESSUN DATO RACCOLTO — il file non trasmette nulla, non ha analytics, non ha cookie
-- ✅ FUNZIONA OFFLINE — non richiede connessione internet, zero dipendenze esterne
-- ✅ MULTIPIATTAFORMA — funziona su qualsiasi browser moderno (Chrome, Firefox, Safari, Edge) su Windows, macOS, Linux, Android, iOS
-- ✅ FILE SINGOLO — un solo file .html, niente cartelle, niente installazione
-- ✅ OPEN SOURCE — codice leggibile e ispezionabile direttamente nel browser (Ctrl+U)
+- ✅ NESSUN DATO RACCOLTO — il file non trasmette nulla, niente analytics, niente cookie
+- ✅ FUNZIONA OFFLINE — zero dipendenze esterne, nessuna connessione richiesta
+- ✅ MULTIPIATTAFORMA — Chrome, Firefox, Safari, Edge su Windows, macOS, Linux, Android, iOS
+- ✅ FILE SINGOLO — un solo .html, niente cartelle, niente installazione
+- ✅ OPEN SOURCE — codice leggibile direttamente nel browser (Ctrl+U)
 
-Versione GitHub Pages: al primo accesso GitHub riceve l'IP del visitatore
-(come qualsiasi sito web). Un service worker mette in cache i file localmente
-per l'uso offline. La preferenza di lingua è salvata in localStorage sul
-dispositivo. Nessun dato viene trasmesso all'autore.
+Versione GitHub Pages: al primo accesso GitHub riceve l'IP del visitatore.
+Un service worker mette in cache i file localmente. Il setup e la preferenza
+di lingua sono salvati in localStorage sul dispositivo. Nessun dato viene
+trasmesso all'autore.
 
 Pulsante "Check for new release": cliccando vieni reindirizzato alla pagina
-GitHub delle release. GitHub riceve il tuo IP come con qualsiasi link aperto
-nel browser. Il tool stesso non invia nulla automaticamente.
+GitHub delle release. Il tool stesso non invia nulla automaticamente.
 
 LICENZA
 ============================================================
@@ -97,22 +97,23 @@ KEY FEATURES
 - SAMPLING ANALYSIS — Nyquist optimal zones for planetary and deep sky with visual indicator (optimal / undersampled / oversampled)
 - LUNAR RESOLUTION — km/pixel and FOV on the lunar surface at configurable distance
 - CAMERA PRESETS — 65+ preloaded models (ZWO, PlayerOne, QHY, ToupTek, Aiptek, Moravian, Atik, Canon EOS, Nikon DSLR)
-- VISIBLE OBJECTS TONIGHT — calculates which DSO objects (100+ Messier and NGC) are visible from any location on a given date and time, with city autocomplete search (200+ cities in database)
-- POLAR ALIGNMENT (beta) — interactive diagram for positioning Polaris on the polar scope reticle. Automatically calculates the hour angle from date, time and location. Data based on epoch 2025 — updates planned.
+- VISIBLE OBJECTS TONIGHT — DSO objects visible (130+ Messier, NGC and IC objects) from any location, with city autocomplete search (250+ cities)
+- POLAR ALIGNMENT (beta) — interactive diagram for positioning Polaris on the polar scope reticle. Automatically calculates the hour angle from date, time and location. Epoch 2025 data.
 - COORDINATE CONVERTER — decimal ↔ DMS conversion built in, with direct transfer to calculation fields
-- INPUT WARNINGS — contextual messages when physically unlikely values are entered, to prevent input errors
+- INPUT WARNINGS — contextual messages when physically unlikely values are entered
 - 4 LANGUAGES — Italiano, English, Español, Русский (preference saved between sessions)
 - AUTOMATIC DARK MODE
 
   ⓘ App under continuous development — some features are still being verified.
 
-WHAT'S NEW IN v1.3
+WHAT'S NEW IN v1.4
 ============================================================
-- Fix DMS→Decimal converter: minutes and seconds were being ignored when degrees were non-zero. Bug resolved.
-- Contextual warnings on input fields for values outside typical astrophotography ranges
-- Diameter field behaviour improved: validation now triggers on focus loss, without interfering while typing
+- Setup auto-saved — diameter, focal length, pixel size, sensor, Barlow, city, timezone, DST and language are remembered between sessions
 - Default language: English. Preference is remembered between sessions.
-- Web version now available on GitHub Pages (see below)
+- Expanded DSO database: from 108 to 130 objects (added 22 Messier objects relevant to astrophotography)
+- File integrity warning: visible message if authorship markers are tampered with
+- Updated footer: links to Home, Privacy (ours) and MIT License
+- MIT License added to the repository
 
 HOW TO USE
 ============================================================
@@ -129,20 +130,19 @@ thanks to the service worker.
 
 PRIVACY AND REQUIREMENTS
 ============================================================
-- ✅ NO DATA COLLECTED — the file transmits nothing, has no analytics, no cookies
+- ✅ NO DATA COLLECTED — the file transmits nothing, no analytics, no cookies
 - ✅ WORKS OFFLINE — no internet connection required, zero external dependencies
-- ✅ CROSS-PLATFORM — works on any modern browser (Chrome, Firefox, Safari, Edge) on Windows, macOS, Linux, Android, iOS
+- ✅ CROSS-PLATFORM — Chrome, Firefox, Safari, Edge on Windows, macOS, Linux, Android, iOS
 - ✅ SINGLE FILE — one .html file, no folders, no installation
 - ✅ OPEN SOURCE — code is readable and inspectable directly in the browser (Ctrl+U)
 
-GitHub Pages version: on first access GitHub receives the visitor's IP address
-(as with any website). A service worker caches files locally for offline use.
-Language preference is saved in localStorage on the device. No data is
-transmitted to the author.
+GitHub Pages version: on first access GitHub receives the visitor's IP address.
+A service worker caches files locally for offline use. Setup and language
+preference are saved in localStorage on the device. No data is transmitted
+to the author.
 
 "Check for new release" button: clicking it redirects you to the GitHub
-releases page. GitHub receives your IP as with any link opened in the browser.
-The tool itself sends nothing automatically.
+releases page. The tool itself sends nothing automatically.
 
 LICENSE
 ============================================================
