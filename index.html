@@ -242,6 +242,30 @@
     to   { opacity: 1; transform: translateY(0); }
   }
 
+  .offline-note {
+    margin-top: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .35rem;
+    opacity: 0;
+    animation: fadeUp .8s ease forwards 1.2s;
+  }
+  .dl-link {
+    font-family: 'EB Garamond', serif;
+    font-size: 13px;
+    letter-spacing: .08em;
+    color: var(--text2);
+    text-decoration: none;
+    border-bottom: 1px solid var(--text3);
+    transition: color .2s, border-color .2s;
+  }
+  .dl-link:hover { color: var(--text); border-color: var(--text2); }
+  .offline-sub {
+    font-size: 11px;
+    letter-spacing: .08em;
+    color: var(--text3);
+  }
   @media (max-width: 480px) {
     .cta { padding: 12px 32px; width: 90%; }
     .badges { gap: .4rem; }
@@ -274,6 +298,11 @@
   </div>
 
   <a href="Z-Astro-Calculator.html" class="cta">Open the Calculator</a>
+
+  <div class="offline-note">
+    <a href="https://github.com/astrozullo/Z-Astro-Calculator/releases/latest/download/Z-Astro-Calculator.html" class="dl-link" download>&#8659; Download HTML for offline use</a>
+    <span class="offline-sub">Single file &middot; No installation &middot; Works on telescope WiFi</span>
+  </div>
 </div>
 
 <footer>
