@@ -1,220 +1,233 @@
 Z-ASTRO-CALCULATOR
 ============================================================
 
-STRUMENTO DI CALCOLO PER ASTROFOTOGRAFI — Tool for astrophotographers
+STRUMENTO DI CALCOLO PER ASTROFOTOGRAFI - Tool for astrophotographers
+
+Pixel scale . FOV . Campionamento . Risoluzione lunare
+Offline . File singolo . Installabile come app . Open source
+
+Apri il calcolatore:  https://astrozullo.github.io/Z-Astro-Calculator
+Scarica il file:      https://github.com/astrozullo/Z-Astro-Calculator/releases/latest/download/Z-Astro-Calculator.html
+Changelog:            https://github.com/astrozullo/Z-Astro-Calculator/releases
 
 ============================================================
 
-🇮🇹 ITALIANO
+ITALIANO
 ============================================================
 
-COS'È
-============================================================
-Z-Astro-Calculator è un file HTML standalone progettato per astrofotografi. Calcola pixel scale, FOV, risoluzione teorica, crop factor e altri parametri ottici fondamentali per pianificare sessioni di ripresa.
+COS'E'
+------------------------------------------------------------
+Z-Astro-Calculator e' un tool standalone progettato per astrofotografi.
+Calcola pixel scale, FOV, risoluzione teorica, crop factor e altri parametri
+ottici fondamentali per pianificare sessioni di ripresa.
 
-FUNZIONALITÀ PRINCIPALI
-============================================================
-- PIXEL SCALE E FOV — calcolo automatico da diametro, focale, pixel size e risoluzione sensore
-- BARLOW E RIDUTTORI — da 0.5× a 5×, con indicazione del cambio di focale effettiva
-- MODALITÀ PRO — selezione lunghezza d'onda (nm) per il calcolo del limite di Rayleigh con luce specifica (Ha, OIII, SII, NIR, ecc.)
-- ANALISI CAMPIONAMENTO — zone ottimali Nyquist per planetario e deep sky con indicatore visivo (ottimale / sottocampionato / sovracampionato)
-- RISOLUZIONE LUNARE — km/pixel e FOV sulla superficie lunare a distanza configurabile
-- PRESET FOTOCAMERE — 64 modelli precaricati (ZWO, PlayerOne, QHY, ToupTek, Aiptek, Moravian, Atik, Canon EOS, Nikon DSLR)
-- VISIBLE OBJECTS TONIGHT — DSO visibili (129 oggetti tra Messier, NGC e IC) da qualsiasi posizione, con ricerca città autocomplete (516 città)
-- POLAR ALIGNMENT (beta) — diagramma interattivo per il posizionamento di Polaris sul reticolo del polare. Calcola automaticamente l'angolo orario in base a data, ora e posizione. Dati epoca 2025.
-- COORDINATE CONVERTER — conversione decimale ↔ DMS integrata, con trasferimento diretto ai campi di calcolo
-- AVVISI SUI VALORI — messaggi contestuali quando si inseriscono valori fisicamente improbabili
-- 4 LINGUE — Italiano, English, Español, Русский (preferenza salvata tra sessioni)
+Non richiede installazione, account o connessione. Tutti i calcoli avvengono
+nel browser, sul tuo dispositivo.
+
+FUNZIONALITA' PRINCIPALI
+------------------------------------------------------------
+- PIXEL SCALE E FOV - calcolo automatico da diametro, focale, pixel size e
+  risoluzione sensore
+- BARLOW E RIDUTTORI - da 0.5x a 5x, con indicazione del cambio di focale
+  effettiva
+- MODALITA' PRO - selezione lunghezza d'onda (nm) per il calcolo del limite di
+  Rayleigh con luce specifica (Ha, OIII, SII, NIR, ecc.)
+- ANALISI CAMPIONAMENTO - zone ottimali Nyquist per planetario e deep sky con
+  indicatore visivo (ottimale / sottocampionato / sovracampionato)
+- RISOLUZIONE LUNARE - km/pixel e FOV sulla superficie lunare a distanza
+  configurabile
+- PRESET FOTOCAMERE - 64 modelli precaricati (ZWO, PlayerOne, QHY, ToupTek,
+  Aiptek, Moravian, Atik, Canon EOS, Nikon DSLR)
+- VISIBLE OBJECTS TONIGHT - DSO visibili (129 oggetti tra Messier, NGC e IC) da
+  qualsiasi posizione, con ricerca citta' autocomplete (516 citta')
+- POLAR ALIGNMENT (beta) - diagramma interattivo per il posizionamento di
+  Polaris sul reticolo del polare. Calcola l'angolo orario da data, ora e
+  posizione. Dati epoca 2025.
+- COORDINATE CONVERTER - conversione decimale <-> DMS integrata, con
+  trasferimento diretto ai campi di calcolo
+- AVVISI SUI VALORI - messaggi contestuali quando si inseriscono valori
+  fisicamente improbabili
+- SETUP RICORDATO - diametro, focale, pixel size, sensore, Barlow, citta',
+  timezone, DST e lingua restano salvati tra una sessione e l'altra
+- 4 LINGUE - Italiano, English, Espanol, Russkij
 - DARK MODE automatica
 
-  ⓘ App in revisione continua — alcune funzionalità sono ancora in fase di verifica.
+  App in revisione continua: alcune funzionalita' sono ancora in fase di
+  verifica.
 
-NOVITA' v1.5
-============================================================
-- Rimosso il fattore di controllo paternita' dal calcolo. La pixel scale e' ora sempre
-  206.265 x pixel / focale, senza coefficienti correttivi. Il messaggio di avviso
-  sull'integrita' del file resta, ma non altera piu' alcun risultato.
-- Eliminato il record duplicato M110: il database DSO passa a 129 oggetti corretti.
-- Installazione come app: aggiunti manifest e icone. Su Android e su Chrome/Edge
-  desktop l'app si installa direttamente dalla home page.
-- Rimosso Google Fonts dalla home page: nessun file del progetto contatta piu'
-  server di terze parti.
-- Service worker riscritto: la home funziona offline anche dalla URL principale e
-  gli aggiornamenti arrivano subito quando c'e' connessione.
-- Conteggi corretti nella documentazione: 64 fotocamere, 129 oggetti, 516 citta'.
+COME SI USA
+------------------------------------------------------------
+Tre modi, tutti equivalenti nei risultati. Scegli in base a come lavori sul
+campo.
 
-COME INSTALLARLA SU ANDROID
-============================================================
-1) COME APP (consigliato)
+1) DAL BROWSER
+   Apri https://astrozullo.github.io/Z-Astro-Calculator
+   Dopo la prima visita con connessione funziona anche offline, grazie al
+   service worker.
+
+2) INSTALLANDOLA COME APP (Android, Chrome, Edge)
    1. Apri https://astrozullo.github.io/Z-Astro-Calculator con Chrome
    2. Tocca il menu tre puntini in alto a destra
    3. Tocca "Installa app" (oppure "Aggiungi a schermata Home")
-   4. Conferma: l'icona compare nella home del telefono
-   Dopo il primo avvio funziona anche senza connessione.
+   4. Conferma: l'icona compare tra le tue app
+   Da li' si apre a schermo intero e funziona senza connessione.
+   Su iPhone e iPad: pulsante Condividi -> Aggiungi a Home.
 
-2) COME FILE SINGOLO
-   1. Tocca "Download HTML for offline use" sulla home page
-   2. Accetta il download: il file finisce in Download
-   3. Tocca il file e aprilo con Chrome
-   Funziona senza alcuna connessione, WiFi del telescopio compreso.
-
-NOVITÀ v1.4
-============================================================
-- Setup salvato automaticamente — diametro, focale, pixel size, sensore, Barlow, città, timezone, DST e lingua vengono ricordati tra una sessione e l'altra
-- Lingua di default: inglese. La preferenza viene ricordata tra sessioni.
-- Database DSO ampliato: da 108 a 130 oggetti (aggiunti 22 Messier rilevanti per l'astrofotografia)
-- Avviso integrità file: messaggio visibile se i marker di paternità vengono manomessi
-- Footer aggiornato: link a Home, Privacy (nostra) e MIT License
-- Licenza MIT aggiunta al repository
-
-COME SI USA
-============================================================
-File scaricabile (consigliato per uso offline totale):
-Scarica Z-Astro-Calculator.html dalla sezione Releases
-(https://github.com/astrozullo/Z-Astro-Calculator/releases)
-e aprilo con qualsiasi browser. Funziona sempre, anche senza connessione,
-anche sul WiFi del telescopio.
-
-Versione web (GitHub Pages):
-https://astrozullo.github.io/Z-Astro-Calculator
-Dopo la prima visita con internet, funziona anche offline
-grazie al service worker.
+3) SCARICANDO IL FILE SINGOLO
+   1. Scarica Z-Astro-Calculator.html dalla sezione Releases
+      https://github.com/astrozullo/Z-Astro-Calculator/releases
+   2. Aprilo con qualsiasi browser, con un doppio clic o toccandolo
+   Un solo file, nessuna cartella, nessuna installazione. E' la via piu'
+   robusta per l'uso in postazione: funziona anche agganciato al WiFi del
+   telescopio, senza internet.
 
 PRIVACY E REQUISITI
-============================================================
-- ✅ NESSUN DATO RACCOLTO — il file non trasmette nulla, niente analytics, niente cookie
-- ✅ FUNZIONA OFFLINE — zero dipendenze esterne, nessuna connessione richiesta
-- ✅ MULTIPIATTAFORMA — Chrome, Firefox, Safari, Edge su Windows, macOS, Linux, Android, iOS
-- ✅ FILE SINGOLO — un solo .html, niente cartelle, niente installazione
-- ✅ OPEN SOURCE — codice leggibile direttamente nel browser (Ctrl+U)
+------------------------------------------------------------
+- NESSUN DATO RACCOLTO - niente analytics, niente cookie, niente tracciamento
+- ZERO RISORSE ESTERNE - nessun font, script o immagine caricato da server di
+  terze parti
+- FUNZIONA OFFLINE - nessuna connessione richiesta
+- MULTIPIATTAFORMA - Chrome, Firefox, Safari, Edge su Windows, macOS, Linux,
+  Android, iOS
+- OPEN SOURCE - codice leggibile direttamente nel browser (Ctrl+U)
 
-Versione GitHub Pages: al primo accesso GitHub riceve l'IP del visitatore.
-Un service worker mette in cache i file localmente. Il setup e la preferenza
-di lingua sono salvati in localStorage sul dispositivo. Nessun dato viene
-trasmesso all'autore.
+Versione GitHub Pages: al primo accesso GitHub riceve l'IP del visitatore, come
+qualsiasi sito web. Un service worker mette in cache i file localmente per l'uso
+offline. Setup e preferenza di lingua sono salvati in localStorage sul
+dispositivo. Nessun dato viene trasmesso all'autore.
 
 Pulsante "Check for new release": cliccando vieni reindirizzato alla pagina
-GitHub delle release. Il tool stesso non invia nulla automaticamente.
+GitHub delle release. Il tool non invia nulla automaticamente.
+
+Testo completo:
+https://astrozullo.github.io/Z-Astro-Calculator/privacy.html
+
+VERSIONI
+------------------------------------------------------------
+Il changelog di ogni versione sta nella pagina Releases:
+https://github.com/astrozullo/Z-Astro-Calculator/releases
 
 LICENZA
-============================================================
-Distribuito sotto licenza MIT — Copyright (c) 2026 Andrea Zullo
+------------------------------------------------------------
+Distribuito sotto licenza MIT - Copyright (c) 2026 Andrea Zullo
 https://github.com/astrozullo/Z-Astro-Calculator/blob/main/LICENSE
 
-AUTORE
-============================================================
-Andrea Zullo — Astronomia Spiccia (https://www.instagram.com/astronomiaspiccia/)
-ORCID: 0009-0006-6178-7654 (https://orcid.org/0009-0006-6178-7654)
-zullo.spacehistory@gmail.com
-
-Contributors: Davide Lavarini, Mattia Cipriani
-
 ============================================================
 
-🇬🇧 ENGLISH
+ENGLISH
 ============================================================
 
 WHAT IS IT
-============================================================
-Z-Astro-Calculator is a standalone HTML file designed for astrophotographers. It calculates pixel scale, FOV, theoretical resolution, crop factor and other fundamental optical parameters for planning imaging sessions.
+------------------------------------------------------------
+Z-Astro-Calculator is a standalone tool designed for astrophotographers. It
+calculates pixel scale, FOV, theoretical resolution, crop factor and other
+fundamental optical parameters for planning imaging sessions.
+
+No installation, no account, no connection required. Every calculation runs in
+your browser, on your own device.
 
 KEY FEATURES
-============================================================
-- PIXEL SCALE AND FOV — automatic calculation from diameter, focal length, pixel size and sensor resolution
-- BARLOW AND REDUCERS — from 0.5× to 5×, showing effective focal length change
-- PRO MODE — wavelength selection (nm) for Rayleigh limit calculation with specific light (Ha, OIII, SII, NIR, etc.)
-- SAMPLING ANALYSIS — Nyquist optimal zones for planetary and deep sky with visual indicator (optimal / undersampled / oversampled)
-- LUNAR RESOLUTION — km/pixel and FOV on the lunar surface at configurable distance
-- CAMERA PRESETS — 64 preloaded models (ZWO, PlayerOne, QHY, ToupTek, Aiptek, Moravian, Atik, Canon EOS, Nikon DSLR)
-- VISIBLE OBJECTS TONIGHT — DSO objects visible (129 Messier, NGC and IC objects) from any location, with city autocomplete search (516 cities)
-- POLAR ALIGNMENT (beta) — interactive diagram for positioning Polaris on the polar scope reticle. Automatically calculates the hour angle from date, time and location. Epoch 2025 data.
-- COORDINATE CONVERTER — decimal ↔ DMS conversion built in, with direct transfer to calculation fields
-- INPUT WARNINGS — contextual messages when physically unlikely values are entered
-- 4 LANGUAGES — Italiano, English, Español, Русский (preference saved between sessions)
+------------------------------------------------------------
+- PIXEL SCALE AND FOV - automatic calculation from diameter, focal length,
+  pixel size and sensor resolution
+- BARLOW AND REDUCERS - from 0.5x to 5x, showing effective focal length change
+- PRO MODE - wavelength selection (nm) for Rayleigh limit calculation with
+  specific light (Ha, OIII, SII, NIR, etc.)
+- SAMPLING ANALYSIS - Nyquist optimal zones for planetary and deep sky with
+  visual indicator (optimal / undersampled / oversampled)
+- LUNAR RESOLUTION - km/pixel and FOV on the lunar surface at configurable
+  distance
+- CAMERA PRESETS - 64 preloaded models (ZWO, PlayerOne, QHY, ToupTek, Aiptek,
+  Moravian, Atik, Canon EOS, Nikon DSLR)
+- VISIBLE OBJECTS TONIGHT - DSO objects visible (129 Messier, NGC and IC
+  objects) from any location, with city autocomplete search (516 cities)
+- POLAR ALIGNMENT (beta) - interactive diagram for positioning Polaris on the
+  polar scope reticle. Calculates the hour angle from date, time and location.
+  Epoch 2025 data.
+- COORDINATE CONVERTER - decimal <-> DMS conversion built in, with direct
+  transfer to calculation fields
+- INPUT WARNINGS - contextual messages when physically unlikely values are
+  entered
+- SETUP REMEMBERED - diameter, focal length, pixel size, sensor, Barlow, city,
+  timezone, DST and language are kept between sessions
+- 4 LANGUAGES - Italiano, English, Espanol, Russkij
 - AUTOMATIC DARK MODE
 
-  ⓘ App under continuous development — some features are still being verified.
+  App under continuous development: some features are still being verified.
 
-WHAT'S NEW IN v1.5
-============================================================
-- Authorship-check factor removed from the maths. Pixel scale is now always
-  206.265 x pixel / focal length, with no correction coefficient. The file
-  integrity notice remains, but it no longer alters any result.
-- Duplicate M110 record removed: the DSO database is now 129 correct objects.
-- Installable as an app: manifest and icons added. On Android and on desktop
-  Chrome/Edge the app installs straight from the home page.
-- Google Fonts removed from the home page: no file in the project contacts any
-  third-party server any more.
-- Service worker rewritten: the home page works offline from the main URL too,
-  and updates arrive immediately when a connection is available.
-- Corrected counts in the documentation: 64 cameras, 129 objects, 516 cities.
+HOW TO USE IT
+------------------------------------------------------------
+Three ways, all giving the same results. Pick the one that suits how you work
+in the field.
 
-HOW TO INSTALL IT ON ANDROID
-============================================================
-1) AS AN APP (recommended)
+1) IN THE BROWSER
+   Open https://astrozullo.github.io/Z-Astro-Calculator
+   After the first visit with a connection it works offline too, thanks to the
+   service worker.
+
+2) INSTALLED AS AN APP (Android, Chrome, Edge)
    1. Open https://astrozullo.github.io/Z-Astro-Calculator in Chrome
    2. Tap the three-dot menu, top right
    3. Tap "Install app" (or "Add to Home screen")
-   4. Confirm: the icon appears on your home screen
-   It works offline after the first launch.
+   4. Confirm: the icon appears among your apps
+   From there it opens full screen and runs with no connection.
+   On iPhone and iPad: Share button -> Add to Home Screen.
 
-2) AS A SINGLE FILE
-   1. Tap "Download HTML for offline use" on the home page
-   2. Accept the download: the file lands in Downloads
-   3. Tap the file and open it with Chrome
-   Works with no connection at all, telescope WiFi included.
-
-WHAT'S NEW IN v1.4
-============================================================
-- Setup auto-saved — diameter, focal length, pixel size, sensor, Barlow, city, timezone, DST and language are remembered between sessions
-- Default language: English. Preference is remembered between sessions.
-- Expanded DSO database: from 108 to 130 objects (added 22 Messier objects relevant to astrophotography)
-- File integrity warning: visible message if authorship markers are tampered with
-- Updated footer: links to Home, Privacy (ours) and MIT License
-- MIT License added to the repository
-
-HOW TO USE
-============================================================
-Downloadable file (recommended for full offline use):
-Download Z-Astro-Calculator.html from the Releases section
-(https://github.com/astrozullo/Z-Astro-Calculator/releases)
-and open it with any browser. Works always, even without a connection,
-even on telescope WiFi networks.
-
-Web version (GitHub Pages):
-https://astrozullo.github.io/Z-Astro-Calculator
-After the first visit with internet, it works offline too
-thanks to the service worker.
+3) AS A SINGLE DOWNLOADED FILE
+   1. Download Z-Astro-Calculator.html from the Releases section
+      https://github.com/astrozullo/Z-Astro-Calculator/releases
+   2. Open it with any browser, by double-clicking or tapping it
+   One file, no folders, no installation. This is the most robust option at the
+   telescope: it works even while connected to the mount's own WiFi, with no
+   internet at all.
 
 PRIVACY AND REQUIREMENTS
-============================================================
-- ✅ NO DATA COLLECTED — the file transmits nothing, no analytics, no cookies
-- ✅ WORKS OFFLINE — no internet connection required, zero external dependencies
-- ✅ CROSS-PLATFORM — Chrome, Firefox, Safari, Edge on Windows, macOS, Linux, Android, iOS
-- ✅ SINGLE FILE — one .html file, no folders, no installation
-- ✅ OPEN SOURCE — code is readable and inspectable directly in the browser (Ctrl+U)
+------------------------------------------------------------
+- NO DATA COLLECTED - no analytics, no cookies, no tracking
+- ZERO EXTERNAL RESOURCES - no font, script or image loaded from third-party
+  servers
+- WORKS OFFLINE - no internet connection required
+- CROSS-PLATFORM - Chrome, Firefox, Safari, Edge on Windows, macOS, Linux,
+  Android, iOS
+- OPEN SOURCE - code is readable directly in the browser (Ctrl+U)
 
-GitHub Pages version: on first access GitHub receives the visitor's IP address.
-A service worker caches files locally for offline use. Setup and language
-preference are saved in localStorage on the device. No data is transmitted
-to the author.
+GitHub Pages version: on first access GitHub receives the visitor's IP address,
+as with any website. A service worker caches files locally for offline use.
+Setup and language preference are saved in localStorage on the device. No data
+is transmitted to the author.
 
 "Check for new release" button: clicking it redirects you to the GitHub
-releases page. The tool itself sends nothing automatically.
+releases page. The tool sends nothing automatically.
+
+Full text:
+https://astrozullo.github.io/Z-Astro-Calculator/privacy.html
+
+VERSIONS
+------------------------------------------------------------
+The changelog for each version lives on the Releases page:
+https://github.com/astrozullo/Z-Astro-Calculator/releases
 
 LICENSE
-============================================================
-Released under the MIT License — Copyright (c) 2026 Andrea Zullo
+------------------------------------------------------------
+Released under the MIT License - Copyright (c) 2026 Andrea Zullo
 https://github.com/astrozullo/Z-Astro-Calculator/blob/main/LICENSE
 
-AUTHOR
 ============================================================
-Andrea Zullo — Astronomia Spiccia (https://www.instagram.com/astronomiaspiccia/)
-ORCID: 0009-0006-6178-7654 (https://orcid.org/0009-0006-6178-7654)
+
+AUTORE / AUTHOR
+============================================================
+Andrea Zullo - Astronomia Spiccia
+https://www.instagram.com/astronomiaspiccia/
+ORCID: 0009-0006-6178-7654  (https://orcid.org/0009-0006-6178-7654)
 zullo.spacehistory@gmail.com
 
 Contributors: Davide Lavarini, Mattia Cipriani
 
 ============================================================
 
-Formulas: pixel scale = 206.265 × pixel(µm) / focal(mm) · Dawes = 116/D · Rayleigh = 1.22 × λ / D · Nyquist: seeing/4 – seeing/2
+FORMULE / FORMULAS
+============================================================
+pixel scale = 206.265 x pixel(um) / focal(mm)
+Dawes       = 116 / D
+Rayleigh    = 1.22 x lambda / D
+Nyquist     = seeing/4 - seeing/2
