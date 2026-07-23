@@ -3,7 +3,7 @@
 **Strumento di calcolo per astrofotografi — Tool for astrophotographers**
 
 Pixel scale · FOV · Campionamento · Risoluzione lunare
-Offline · File singolo · Installabile come app · Open source
+Offline · File singolo · Installabile come app e aggiornamento manuale in-app · Open source
 
 [**Apri il calcolatore →**](https://astrozullo.github.io/Z-Astro-Calculator) · [Scarica il file](https://github.com/astrozullo/Z-Astro-Calculator/releases/latest/download/Z-Astro-Calculator.html) · [Changelog](https://github.com/astrozullo/Z-Astro-Calculator/releases)
 
@@ -15,7 +15,7 @@ Offline · File singolo · Installabile come app · Open source
 
 Z-Astro-Calculator è un tool standalone progettato per astrofotografi. Calcola pixel scale, FOV, risoluzione teorica, crop factor e altri parametri ottici fondamentali per pianificare sessioni di ripresa.
 
-Non richiede installazione, account o connessione. Tutti i calcoli avvengono nel browser, sul tuo dispositivo.
+Funziona anche offline. Tutti i calcoli avvengono nel browser, sul tuo dispositivo.
 
 ### Funzionalità principali
 
