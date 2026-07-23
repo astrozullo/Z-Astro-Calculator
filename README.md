@@ -67,13 +67,13 @@ Un solo file, nessuna cartella, nessuna installazione. È la via più robusta pe
 
 - ✅ **Nessun dato raccolto** — niente analytics, niente cookie, niente tracciamento
 - ✅ **Zero risorse esterne** — nessun font, script o immagine caricato da server di terze parti
-- ✅ **Funziona offline** — nessuna connessione richiesta
+- ✅ **Funziona offline** — nessuna connessione richiesta, aggiornamento con pulsante manuale
 - ✅ **Multipiattaforma** — Chrome, Firefox, Safari, Edge su Windows, macOS, Linux, Android, iOS
 - ✅ **Open source** — codice leggibile direttamente nel browser (`Ctrl+U`)
 
 > 🔒 **Versione GitHub Pages** — al primo accesso GitHub riceve l'IP del visitatore, come qualsiasi sito web. Un service worker mette in cache i file localmente per l'uso offline. Setup e preferenza di lingua sono salvati in localStorage sul dispositivo. Nessun dato viene trasmesso all'autore.
 
-> 🔒 **Pulsante "Check for new release"** — cliccando vieni reindirizzato alla pagina GitHub delle release. Il tool non invia nulla automaticamente.
+> 🔒 **Pulsante "Check for new release"** — cliccando viene verificato se ci sono aggiornamenti.
 
 Testo completo: [Privacy Policy](https://astrozullo.github.io/Z-Astro-Calculator/privacy.html)
 
@@ -94,7 +94,7 @@ Vedi il file [LICENSE](LICENSE) per il testo completo.
 
 Z-Astro-Calculator is a standalone tool designed for astrophotographers. It calculates pixel scale, FOV, theoretical resolution, crop factor and other fundamental optical parameters for planning imaging sessions.
 
-No installation, no account, no connection required. Every calculation runs in your browser, on your own device.
+Every calculation runs in your browser, on your own device.
 
 ### Key features
 
