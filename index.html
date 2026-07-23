@@ -302,6 +302,42 @@
     .opt li { font-size: 13px; }
   }
 
+
+  /* -- LANGUAGE BAR -- */
+  .langbar {
+    position: fixed;
+    top: 14px;
+    right: 14px;
+    z-index: 50;
+    display: flex;
+    gap: 4px;
+    opacity: 0;
+    animation: fadeUp .8s ease forwards .1s;
+  }
+  .langbar button {
+    font-family: inherit;
+    font-size: 10.5px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--text3);
+    background: rgba(10,0,0,.72);
+    border: 1px solid var(--text3);
+    border-radius: 3px;
+    padding: 4px 8px;
+    cursor: pointer;
+    transition: color .2s, border-color .2s;
+  }
+  .langbar button:hover { color: var(--text2); border-color: var(--text2); }
+  .langbar button.on {
+    color: var(--gold);
+    border-color: var(--gold);
+    background: rgba(21,0,0,.9);
+  }
+  @media (max-width: 480px) {
+    .langbar { top: 8px; right: 8px; gap: 3px; }
+    .langbar button { font-size: 9.5px; padding: 3px 6px; letter-spacing: .08em; }
+  }
+
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(18px); }
     to   { opacity: 1; transform: translateY(0); }
@@ -342,57 +378,64 @@
 </head>
 <body>
 
+<div class="langbar" id="langbar">
+  <button type="button" data-lang="it">IT</button>
+  <button type="button" data-lang="en">EN</button>
+  <button type="button" data-lang="es">ES</button>
+  <button type="button" data-lang="ru">RU</button>
+</div>
+
 <div class="stars" id="stars"></div>
 <div class="glow"></div>
 
 <div class="wrap">
-  <div class="ornament">&#9670; Astrophotography Tool &#9670;</div>
+  <div class="ornament" data-i18n="orn">&#9670; Astrophotography Tool &#9670;</div>
   <h1>Z&#8209;Astro<br><span>Calculator</span></h1>
 
   <div class="div-line"><div class="diamond"></div></div>
 
   <p class="subtitle">
-    Pixel scale &middot; FOV &middot; Sampling analysis &middot; Lunar resolution<br>
-    Offline &middot; Single file &middot; No installation
+    <span data-i18n="sub1">Pixel scale &middot; FOV &middot; Sampling analysis &middot; Lunar resolution</span><br>
+    <span data-i18n="sub2">Offline &middot; Single file &middot; No installation</span>
   </p>
 
   <div class="badges">
-    <span class="badge">Offline-first</span>
-    <span class="badge">4 languages</span>
-    <span class="badge">Open source</span>
+    <span class="badge" data-i18n="b1">Offline-first</span>
+    <span class="badge" data-i18n="b2">4 languages</span>
+    <span class="badge" data-i18n="b3">Open source</span>
   </div>
 
-  <a href="Z-Astro-Calculator.html" class="cta">Open the Calculator</a>
+  <a href="Z-Astro-Calculator.html" class="cta" data-i18n="cta">Open the Calculator</a>
 
   <div class="offline-note">
-    <a href="https://github.com/astrozullo/Z-Astro-Calculator/releases/latest/download/Z-Astro-Calculator.html" class="dl-link" download>&#8659; Download HTML for offline use</a>
-    <span class="offline-sub">Single file &middot; No installation &middot; Works on telescope WiFi</span>
+    <a href="https://github.com/astrozullo/Z-Astro-Calculator/releases/latest/download/Z-Astro-Calculator.html" class="dl-link" data-i18n="dl" download>&#8659; Download HTML for offline use</a>
+    <span class="offline-sub" data-i18n="dlsub">Single file &middot; No installation &middot; Works on telescope WiFi</span>
   </div>
 
   <div class="install">
     <div class="install-head">&#9670; Android &#9670;</div>
 
     <div class="opt">
-      <div class="opt-title">1 &middot; Install as an app</div>
-      <div class="opt-sub">Adds an icon to your home screen. Recommended.</div>
+      <div class="opt-title" data-i18n="o1t">1 &middot; Install as an app</div>
+      <div class="opt-sub" data-i18n="o1s">Adds an icon to your home screen. Recommended.</div>
       <ol>
-        <li>Open this page in <b>Chrome</b>.</li>
-        <li>Tap the <b>&#8942;</b> menu, top right.</li>
-        <li>Tap <b>Install app</b> (or <b>Add to Home screen</b>).</li>
-        <li>Confirm. The icon appears on your home screen.</li>
+        <li data-i18n="o1a">Open this page in <b>Chrome</b>.</li>
+        <li data-i18n="o1b">Tap the <b>&#8942;</b> menu, top right.</li>
+        <li data-i18n="o1c">Tap <b>Install app</b> (or <b>Add to Home screen</b>).</li>
+        <li data-i18n="o1d">Confirm. The icon appears on your home screen.</li>
       </ol>
-      <div class="opt-foot">Works offline after the first launch.</div>
+      <div class="opt-foot" data-i18n="o1f">Works offline after the first launch.</div>
     </div>
 
     <div class="opt">
-      <div class="opt-title">2 &middot; Download the file</div>
-      <div class="opt-sub">One HTML file on your phone. No app, no account.</div>
+      <div class="opt-title" data-i18n="o2t">2 &middot; Download the file</div>
+      <div class="opt-sub" data-i18n="o2s">One HTML file on your phone. No app, no account.</div>
       <ol>
-        <li>Tap <b>Download HTML for offline use</b> above.</li>
-        <li>Accept the download. The file lands in <b>Downloads</b>.</li>
-        <li>Tap the file and choose <b>Chrome</b> to open it.</li>
+        <li data-i18n="o2a">Tap <b>Download HTML for offline use</b> above.</li>
+        <li data-i18n="o2b">Accept the download. The file lands in <b>Downloads</b>.</li>
+        <li data-i18n="o2c">Tap the file and choose <b>Chrome</b> to open it.</li>
       </ol>
-      <div class="opt-foot">Works with no connection at all, telescope WiFi included.</div>
+      <div class="opt-foot" data-i18n="o2f">Works with no connection at all, telescope WiFi included.</div>
     </div>
   </div>
 </div>
@@ -404,7 +447,7 @@
     &nbsp;&middot;&nbsp;
     <a href="https://github.com/astrozullo/Z-Astro-Calculator/releases" target="_blank" rel="noopener">Releases</a>
     &nbsp;&middot;&nbsp;
-    <a href="privacy.html" target="_blank" rel="noopener">Privacy</a>
+    <a href="privacy.html" target="_blank" rel="noopener" data-i18n="priv">Privacy</a>
     &nbsp;&middot;&nbsp;
     <a href="https://github.com/astrozullo/Z-Astro-Calculator/blob/main/LICENSE" target="_blank" rel="noopener">MIT License</a>
   </div>
@@ -457,6 +500,141 @@
     spawnShooting();
     setInterval(spawnShooting, 4000 + Math.random()*4000);
   }, 2000);
+
+  // ---------- LINGUE ----------
+  // Stessa chiave del calcolatore: la scelta fatta qui si porta dietro nel tool.
+  var I18N = {
+    it: {
+      html:'it', title:'Z-Astro-Calculator \u2014 Calcolatore per astrofotografi',
+      orn:'\u25C6 Strumento per astrofotografi \u25C6',
+      sub1:'Pixel scale &middot; FOV &middot; Analisi campionamento &middot; Risoluzione lunare',
+      sub2:'Offline &middot; File singolo &middot; Nessuna installazione',
+      b1:'Funziona offline', b2:'4 lingue', b3:'Open source',
+      cta:'Apri il calcolatore',
+      dl:'&#8659; Scarica l\u2019HTML per l\u2019uso offline',
+      dlsub:'File singolo &middot; Nessuna installazione &middot; Funziona sul WiFi del telescopio',
+      o1t:'1 &middot; Installala come app',
+      o1s:'Aggiunge un\u2019icona alla schermata Home. Consigliato.',
+      o1a:'Apri questa pagina con <b>Chrome</b>.',
+      o1b:'Tocca il menu <b>&#8942;</b> in alto a destra.',
+      o1c:'Tocca <b>Installa app</b> (oppure <b>Aggiungi a schermata Home</b>).',
+      o1d:'Conferma. L\u2019icona compare nella schermata Home.',
+      o1f:'Dopo il primo avvio funziona anche senza connessione.',
+      o2t:'2 &middot; Scarica il file',
+      o2s:'Un file HTML sul telefono. Nessuna app, nessun account.',
+      o2a:'Tocca <b>Scarica l\u2019HTML per l\u2019uso offline</b> qui sopra.',
+      o2b:'Accetta il download. Il file finisce in <b>Download</b>.',
+      o2c:'Tocca il file e aprilo con <b>Chrome</b>.',
+      o2f:'Funziona senza alcuna connessione, WiFi del telescopio compreso.',
+      priv:'Privacy'
+    },
+    en: {
+      html:'en', title:'Z-Astro-Calculator',
+      orn:'\u25C6 Astrophotography Tool \u25C6',
+      sub1:'Pixel scale &middot; FOV &middot; Sampling analysis &middot; Lunar resolution',
+      sub2:'Offline &middot; Single file &middot; No installation',
+      b1:'Offline-first', b2:'4 languages', b3:'Open source',
+      cta:'Open the Calculator',
+      dl:'&#8659; Download HTML for offline use',
+      dlsub:'Single file &middot; No installation &middot; Works on telescope WiFi',
+      o1t:'1 &middot; Install as an app',
+      o1s:'Adds an icon to your home screen. Recommended.',
+      o1a:'Open this page in <b>Chrome</b>.',
+      o1b:'Tap the <b>&#8942;</b> menu, top right.',
+      o1c:'Tap <b>Install app</b> (or <b>Add to Home screen</b>).',
+      o1d:'Confirm. The icon appears on your home screen.',
+      o1f:'Works offline after the first launch.',
+      o2t:'2 &middot; Download the file',
+      o2s:'One HTML file on your phone. No app, no account.',
+      o2a:'Tap <b>Download HTML for offline use</b> above.',
+      o2b:'Accept the download. The file lands in <b>Downloads</b>.',
+      o2c:'Tap the file and choose <b>Chrome</b> to open it.',
+      o2f:'Works with no connection at all, telescope WiFi included.',
+      priv:'Privacy'
+    },
+    es: {
+      html:'es', title:'Z-Astro-Calculator \u2014 Calculadora para astrofot\u00F3grafos',
+      orn:'\u25C6 Herramienta de astrofotograf\u00EDa \u25C6',
+      sub1:'Pixel scale &middot; FOV &middot; An\u00E1lisis de muestreo &middot; Resoluci\u00F3n lunar',
+      sub2:'Sin conexi\u00F3n &middot; Archivo \u00FAnico &middot; Sin instalaci\u00F3n',
+      b1:'Funciona sin conexi\u00F3n', b2:'4 idiomas', b3:'C\u00F3digo abierto',
+      cta:'Abrir la calculadora',
+      dl:'&#8659; Descargar el HTML para uso sin conexi\u00F3n',
+      dlsub:'Archivo \u00FAnico &middot; Sin instalaci\u00F3n &middot; Funciona con el WiFi del telescopio',
+      o1t:'1 &middot; Instalar como app',
+      o1s:'A\u00F1ade un icono a la pantalla de inicio. Recomendado.',
+      o1a:'Abre esta p\u00E1gina en <b>Chrome</b>.',
+      o1b:'Toca el men\u00FA <b>&#8942;</b> arriba a la derecha.',
+      o1c:'Toca <b>Instalar aplicaci\u00F3n</b> (o <b>A\u00F1adir a pantalla de inicio</b>).',
+      o1d:'Confirma. El icono aparece en la pantalla de inicio.',
+      o1f:'Funciona sin conexi\u00F3n despu\u00E9s del primer inicio.',
+      o2t:'2 &middot; Descargar el archivo',
+      o2s:'Un archivo HTML en el tel\u00E9fono. Sin app, sin cuenta.',
+      o2a:'Toca <b>Descargar el HTML para uso sin conexi\u00F3n</b> arriba.',
+      o2b:'Acepta la descarga. El archivo va a <b>Descargas</b>.',
+      o2c:'Toca el archivo y \u00E1brelo con <b>Chrome</b>.',
+      o2f:'Funciona sin ninguna conexi\u00F3n, incluido el WiFi del telescopio.',
+      priv:'Privacidad'
+    },
+    ru: {
+      html:'ru', title:'Z-Astro-Calculator \u2014 \u043A\u0430\u043B\u044C\u043A\u0443\u043B\u044F\u0442\u043E\u0440 \u0434\u043B\u044F \u0430\u0441\u0442\u0440\u043E\u0444\u043E\u0442\u043E\u0433\u0440\u0430\u0444\u043E\u0432',
+      orn:'\u25C6 \u0418\u043D\u0441\u0442\u0440\u0443\u043C\u0435\u043D\u0442 \u0434\u043B\u044F \u0430\u0441\u0442\u0440\u043E\u0444\u043E\u0442\u043E\u0433\u0440\u0430\u0444\u043E\u0432 \u25C6',
+      sub1:'\u041C\u0430\u0441\u0448\u0442\u0430\u0431 \u043F\u0438\u043A\u0441\u0435\u043B\u044F &middot; \u041F\u043E\u043B\u0435 \u0437\u0440\u0435\u043D\u0438\u044F &middot; \u0410\u043D\u0430\u043B\u0438\u0437 \u0441\u044D\u043C\u043F\u043B\u0438\u043D\u0433\u0430 &middot; \u041B\u0443\u043D\u043D\u043E\u0435 \u0440\u0430\u0437\u0440\u0435\u0448\u0435\u043D\u0438\u0435',
+      sub2:'\u041E\u0444\u043B\u0430\u0439\u043D &middot; \u041E\u0434\u0438\u043D \u0444\u0430\u0439\u043B &middot; \u0411\u0435\u0437 \u0443\u0441\u0442\u0430\u043D\u043E\u0432\u043A\u0438',
+      b1:'\u0420\u0430\u0431\u043E\u0442\u0430\u0435\u0442 \u043E\u0444\u043B\u0430\u0439\u043D', b2:'4 \u044F\u0437\u044B\u043A\u0430', b3:'\u041E\u0442\u043A\u0440\u044B\u0442\u044B\u0439 \u043A\u043E\u0434',
+      cta:'\u041E\u0442\u043A\u0440\u044B\u0442\u044C \u043A\u0430\u043B\u044C\u043A\u0443\u043B\u044F\u0442\u043E\u0440',
+      dl:'&#8659; \u0421\u043A\u0430\u0447\u0430\u0442\u044C HTML \u0434\u043B\u044F \u0440\u0430\u0431\u043E\u0442\u044B \u043E\u0444\u043B\u0430\u0439\u043D',
+      dlsub:'\u041E\u0434\u0438\u043D \u0444\u0430\u0439\u043B &middot; \u0411\u0435\u0437 \u0443\u0441\u0442\u0430\u043D\u043E\u0432\u043A\u0438 &middot; \u0420\u0430\u0431\u043E\u0442\u0430\u0435\u0442 \u0447\u0435\u0440\u0435\u0437 Wi-Fi \u0442\u0435\u043B\u0435\u0441\u043A\u043E\u043F\u0430',
+      o1t:'1 &middot; \u0423\u0441\u0442\u0430\u043D\u043E\u0432\u0438\u0442\u044C \u043A\u0430\u043A \u043F\u0440\u0438\u043B\u043E\u0436\u0435\u043D\u0438\u0435',
+      o1s:'\u0414\u043E\u0431\u0430\u0432\u043B\u044F\u0435\u0442 \u0437\u043D\u0430\u0447\u043E\u043A \u043D\u0430 \u0433\u043B\u0430\u0432\u043D\u044B\u0439 \u044D\u043A\u0440\u0430\u043D. \u0420\u0435\u043A\u043E\u043C\u0435\u043D\u0434\u0443\u0435\u0442\u0441\u044F.',
+      o1a:'\u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u044D\u0442\u0443 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0432 <b>Chrome</b>.',
+      o1b:'\u041D\u0430\u0436\u043C\u0438\u0442\u0435 \u043C\u0435\u043D\u044E <b>&#8942;</b> \u0432\u0432\u0435\u0440\u0445\u0443 \u0441\u043F\u0440\u0430\u0432\u0430.',
+      o1c:'\u041D\u0430\u0436\u043C\u0438\u0442\u0435 <b>\u0423\u0441\u0442\u0430\u043D\u043E\u0432\u0438\u0442\u044C \u043F\u0440\u0438\u043B\u043E\u0436\u0435\u043D\u0438\u0435</b> (\u0438\u043B\u0438 <b>\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043D\u0430 \u0433\u043B\u0430\u0432\u043D\u044B\u0439 \u044D\u043A\u0440\u0430\u043D</b>).',
+      o1d:'\u041F\u043E\u0434\u0442\u0432\u0435\u0440\u0434\u0438\u0442\u0435. \u0417\u043D\u0430\u0447\u043E\u043A \u043F\u043E\u044F\u0432\u0438\u0442\u0441\u044F \u043D\u0430 \u0433\u043B\u0430\u0432\u043D\u043E\u043C \u044D\u043A\u0440\u0430\u043D\u0435.',
+      o1f:'\u041F\u043E\u0441\u043B\u0435 \u043F\u0435\u0440\u0432\u043E\u0433\u043E \u0437\u0430\u043F\u0443\u0441\u043A\u0430 \u0440\u0430\u0431\u043E\u0442\u0430\u0435\u0442 \u0431\u0435\u0437 \u0438\u043D\u0442\u0435\u0440\u043D\u0435\u0442\u0430.',
+      o2t:'2 &middot; \u0421\u043A\u0430\u0447\u0430\u0442\u044C \u0444\u0430\u0439\u043B',
+      o2s:'\u041E\u0434\u0438\u043D HTML-\u0444\u0430\u0439\u043B \u043D\u0430 \u0442\u0435\u043B\u0435\u0444\u043E\u043D\u0435. \u0411\u0435\u0437 \u043F\u0440\u0438\u043B\u043E\u0436\u0435\u043D\u0438\u044F \u0438 \u0430\u043A\u043A\u0430\u0443\u043D\u0442\u0430.',
+      o2a:'\u041D\u0430\u0436\u043C\u0438\u0442\u0435 <b>\u0421\u043A\u0430\u0447\u0430\u0442\u044C HTML \u0434\u043B\u044F \u0440\u0430\u0431\u043E\u0442\u044B \u043E\u0444\u043B\u0430\u0439\u043D</b> \u0432\u044B\u0448\u0435.',
+      o2b:'\u041F\u043E\u0434\u0442\u0432\u0435\u0440\u0434\u0438\u0442\u0435 \u0437\u0430\u0433\u0440\u0443\u0437\u043A\u0443. \u0424\u0430\u0439\u043B \u043E\u043A\u0430\u0436\u0435\u0442\u0441\u044F \u0432 \u043F\u0430\u043F\u043A\u0435 <b>\u0417\u0430\u0433\u0440\u0443\u0437\u043A\u0438</b>.',
+      o2c:'\u041D\u0430\u0436\u043C\u0438\u0442\u0435 \u043D\u0430 \u0444\u0430\u0439\u043B \u0438 \u043E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u0435\u0433\u043E \u0432 <b>Chrome</b>.',
+      o2f:'\u0420\u0430\u0431\u043E\u0442\u0430\u0435\u0442 \u0432\u043E\u043E\u0431\u0449\u0435 \u0431\u0435\u0437 \u0441\u0435\u0442\u0438, \u0432\u043A\u043B\u044E\u0447\u0430\u044F Wi-Fi \u0442\u0435\u043B\u0435\u0441\u043A\u043E\u043F\u0430.',
+      priv:'\u041A\u043E\u043D\u0444\u0438\u0434\u0435\u043D\u0446\u0438\u0430\u043B\u044C\u043D\u043E\u0441\u0442\u044C'
+    }
+  };
+
+  function setLang(code) {
+    var d = I18N[code] || I18N.en;
+    document.documentElement.setAttribute('lang', d.html);
+    document.title = d.title;
+    var nodes = document.querySelectorAll('[data-i18n]');
+    for (var i = 0; i < nodes.length; i++) {
+      var k = nodes[i].getAttribute('data-i18n');
+      if (d[k] !== undefined) nodes[i].innerHTML = d[k];
+    }
+    var btns = document.querySelectorAll('#langbar button');
+    for (var j = 0; j < btns.length; j++) {
+      btns[j].className = (btns[j].getAttribute('data-lang') === code) ? 'on' : '';
+    }
+    try { localStorage.setItem('zac_lang', code); } catch (e) {}
+  }
+
+  // lingua iniziale: preferenza salvata, altrimenti lingua del browser, altrimenti inglese
+  (function () {
+    var code = null;
+    try { code = localStorage.getItem('zac_lang'); } catch (e) {}
+    if (!code || !I18N[code]) {
+      var nav = (navigator.language || 'en').slice(0, 2).toLowerCase();
+      code = I18N[nav] ? nav : 'en';
+    }
+    setLang(code);
+    var bar = document.getElementById('langbar');
+    if (bar) {
+      bar.addEventListener('click', function (ev) {
+        var b = ev.target.closest ? ev.target.closest('button[data-lang]') : null;
+        if (b) setLang(b.getAttribute('data-lang'));
+      });
+    }
+  })();
   // Service Worker
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('./sw.js').catch(function(){});
