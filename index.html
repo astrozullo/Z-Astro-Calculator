@@ -4,9 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Z-Astro-Calculator</title>
+<meta name="theme-color" content="#0a0000">
+<meta name="description" content="Pixel scale, FOV, sampling and lunar resolution calculator for astrophotographers. Offline, single file, open source.">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap');
-
   :root {
     --bg:    #0a0000;
     --bg2:   #150000;
@@ -24,7 +29,7 @@
     height: 100%;
     background: var(--bg);
     color: var(--text);
-    font-family: 'EB Garamond', Georgia, serif;
+    font-family: 'EB Garamond',Garamond,'Palatino Linotype',Palatino,Georgia,'Times New Roman',serif;
     overflow-x: hidden;
   }
 
@@ -101,7 +106,7 @@
 
   /* ── TITLE ── */
   h1 {
-    font-family: 'Cinzel', serif;
+    font-family: 'Cinzel','Trajan Pro','Palatino Linotype',Palatino,'Book Antiqua',Georgia,serif;
     font-weight: 600;
     font-size: clamp(2rem, 8vw, 4.5rem);
     letter-spacing: .06em;
@@ -164,7 +169,7 @@
     animation: fadeUp .8s ease forwards .9s;
   }
   .badge {
-    font-family: 'EB Garamond', serif;
+    font-family: 'EB Garamond',Garamond,'Palatino Linotype',Palatino,Georgia,'Times New Roman',serif;
     font-size: 12px;
     letter-spacing: .12em;
     text-transform: uppercase;
@@ -178,7 +183,7 @@
     display: inline-block;
     margin-top: .5rem;
     padding: 14px 44px;
-    font-family: 'Cinzel', serif;
+    font-family: 'Cinzel','Trajan Pro','Palatino Linotype',Palatino,'Book Antiqua',Georgia,serif;
     font-size: 13px;
     font-weight: 600;
     letter-spacing: .2em;
@@ -214,7 +219,7 @@
     text-align: center;
   }
   .author {
-    font-family: 'Cinzel', serif;
+    font-family: 'Cinzel','Trajan Pro','Palatino Linotype',Palatino,'Book Antiqua',Georgia,serif;
     font-size: 11px;
     letter-spacing: .3em;
     text-transform: uppercase;
@@ -237,6 +242,66 @@
   }
   .links a:hover { color: var(--text2); border-color: var(--text2); }
 
+
+  /* -- ANDROID INSTALL -- */
+  .install {
+    margin: 2.6rem auto 0;
+    max-width: 620px;
+    width: 100%;
+    text-align: left;
+    opacity: 0;
+    animation: fadeUp .8s ease forwards 1.5s;
+  }
+  .install-head {
+    text-align: center;
+    font-family: 'Cinzel','Trajan Pro','Palatino Linotype',Palatino,'Book Antiqua',Georgia,serif;
+    font-size: 12px;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.4rem;
+  }
+  .opt {
+    border: 1px solid var(--text3);
+    border-radius: 4px;
+    padding: 1rem 1.15rem;
+    margin-bottom: .85rem;
+    background: rgba(21,0,0,.55);
+  }
+  .opt-title {
+    font-family: 'Cinzel','Trajan Pro','Palatino Linotype',Palatino,'Book Antiqua',Georgia,serif;
+    font-size: 13px;
+    letter-spacing: .1em;
+    color: var(--text);
+    margin-bottom: .15rem;
+  }
+  .opt-sub {
+    font-size: 11px;
+    letter-spacing: .05em;
+    color: var(--text3);
+    margin-bottom: .7rem;
+  }
+  .opt ol { margin: 0; padding-left: 1.15rem; }
+  .opt li {
+    font-size: 13.5px;
+    line-height: 1.75;
+    color: var(--text2);
+    margin-bottom: .1rem;
+  }
+  .opt li b { color: var(--text); font-weight: 500; }
+  .opt-foot {
+    margin-top: .7rem;
+    font-size: 11px;
+    letter-spacing: .05em;
+    color: var(--text3);
+    font-style: italic;
+  }
+  @media (max-width: 480px) {
+    .install { margin-top: 2rem; }
+    .opt { padding: .9rem 1rem; }
+    .opt li { font-size: 13px; }
+  }
+
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(18px); }
     to   { opacity: 1; transform: translateY(0); }
@@ -252,7 +317,7 @@
     animation: fadeUp .8s ease forwards 1.2s;
   }
   .dl-link {
-    font-family: 'EB Garamond', serif;
+    font-family: 'EB Garamond',Garamond,'Palatino Linotype',Palatino,Georgia,'Times New Roman',serif;
     font-size: 13px;
     letter-spacing: .08em;
     color: var(--text2);
@@ -302,6 +367,33 @@
   <div class="offline-note">
     <a href="https://github.com/astrozullo/Z-Astro-Calculator/releases/latest/download/Z-Astro-Calculator.html" class="dl-link" download>&#8659; Download HTML for offline use</a>
     <span class="offline-sub">Single file &middot; No installation &middot; Works on telescope WiFi</span>
+  </div>
+
+  <div class="install">
+    <div class="install-head">&#9670; Android &#9670;</div>
+
+    <div class="opt">
+      <div class="opt-title">1 &middot; Install as an app</div>
+      <div class="opt-sub">Adds an icon to your home screen. Recommended.</div>
+      <ol>
+        <li>Open this page in <b>Chrome</b>.</li>
+        <li>Tap the <b>&#8942;</b> menu, top right.</li>
+        <li>Tap <b>Install app</b> (or <b>Add to Home screen</b>).</li>
+        <li>Confirm. The icon appears on your home screen.</li>
+      </ol>
+      <div class="opt-foot">Works offline after the first launch.</div>
+    </div>
+
+    <div class="opt">
+      <div class="opt-title">2 &middot; Download the file</div>
+      <div class="opt-sub">One HTML file on your phone. No app, no account.</div>
+      <ol>
+        <li>Tap <b>Download HTML for offline use</b> above.</li>
+        <li>Accept the download. The file lands in <b>Downloads</b>.</li>
+        <li>Tap the file and choose <b>Chrome</b> to open it.</li>
+      </ol>
+      <div class="opt-foot">Works with no connection at all, telescope WiFi included.</div>
+    </div>
   </div>
 </div>
 

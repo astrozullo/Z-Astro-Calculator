@@ -19,8 +19,8 @@ Z-Astro-Calculator è un tool standalone progettato per astrofotografi. Calcola 
 | **Modalità PRO** | Selezione lunghezza d'onda (nm) per il calcolo di Rayleigh con luce specifica (Ha, OIII, SII, NIR…) |
 | **Analisi campionamento** | Zone ottimali Nyquist per planetario e deep sky con indicatore visivo (ottimale / sottocampionato / sovracampionato) |
 | **Risoluzione lunare** | km/pixel e FOV sulla superficie lunare a distanza configurabile |
-| **Preset fotocamere** | 65+ modelli precaricati (ZWO, PlayerOne, QHY, ToupTek, Aiptek, Moravian, Atik, Canon EOS, Nikon DSLR) |
-| **Visible Objects Tonight** | DSO visibili (130+ oggetti tra Messier, NGC e IC) da qualsiasi posizione, con ricerca città autocomplete (250+ città) |
+| **Preset fotocamere** | 64 modelli precaricati (ZWO, PlayerOne, QHY, ToupTek, Aiptek, Moravian, Atik, Canon EOS, Nikon DSLR) |
+| **Visible Objects Tonight** | DSO visibili (129 oggetti tra Messier, NGC e IC) da qualsiasi posizione, con ricerca città autocomplete (516 città) |
 | **Polar Alignment** *(beta)* | Diagramma interattivo per posizionamento Polaris sul reticolo. Calcola l'angolo orario da data, ora e posizione. Dati epoca 2025. |
 | **Coordinate Converter** | Conversione decimale ↔ DMS con trasferimento diretto ai campi di calcolo |
 | **Avvisi sui valori** | Messaggi contestuali quando si inseriscono valori fuori dai range tipici dell'astrofotografia |
@@ -28,6 +28,32 @@ Z-Astro-Calculator è un tool standalone progettato per astrofotografi. Calcola 
 | **Dark mode** | Automatica |
 
 > ⓘ App in revisione continua — alcune funzionalità sono ancora in fase di verifica.
+
+### Novità v1.5
+
+- 🔧 **Rimosso il fattore di controllo paternità dal calcolo** — la pixel scale ora è sempre `206.265 × pixel / focale`, senza alcun coefficiente correttivo. Il messaggio di avviso sull'integrità resta, ma non altera più i risultati
+- 🐛 **M110 duplicato eliminato** — il database DSO passa da 130 record (129 unici) a 129 record corretti
+- 📱 **Installazione come app** — manifest e icone aggiunti: su Android e su Chrome/Edge desktop l'app si installa dalla home page
+- 🔒 **Rimosso Google Fonts dalla home page** — ora nessun file del progetto contatta server di terze parti
+- 🌐 **Service worker riscritto** — la home page funziona offline anche aperta dalla URL principale, e gli aggiornamenti arrivano subito quando c'è connessione
+- 📊 **Conteggi corretti** nella documentazione (64 fotocamere, 129 oggetti, 516 città)
+
+### Come installarla su Android
+
+**1. Come app (consigliato)**
+1. Apri [astrozullo.github.io/Z-Astro-Calculator](https://astrozullo.github.io/Z-Astro-Calculator) con **Chrome**
+2. Tocca il menu **⋮** in alto a destra
+3. Tocca **Installa app** (oppure **Aggiungi a schermata Home**)
+4. Conferma: l'icona compare nella home del telefono
+
+Dopo il primo avvio funziona anche senza connessione.
+
+**2. Come file singolo**
+1. Tocca **Download HTML for offline use** sulla home page
+2. Accetta il download: il file finisce in **Download**
+3. Tocca il file e aprilo con **Chrome**
+
+Funziona senza alcuna connessione, WiFi del telescopio compreso.
 
 ### Novità v1.4
 
@@ -80,8 +106,8 @@ Z-Astro-Calculator is a standalone tool designed for astrophotographers. It calc
 | **PRO Mode** | Wavelength selection (nm) for Rayleigh limit with specific light (Ha, OIII, SII, NIR…) |
 | **Sampling analysis** | Nyquist optimal zones for planetary and deep sky with visual indicator (optimal / undersampled / oversampled) |
 | **Lunar resolution** | km/pixel and FOV on the lunar surface at configurable distance |
-| **Camera presets** | 65+ preloaded models (ZWO, PlayerOne, QHY, ToupTek, Aiptek, Moravian, Atik, Canon EOS, Nikon DSLR) |
-| **Visible Objects Tonight** | DSO objects visible (130+ Messier, NGC and IC objects) from any location, with city autocomplete search (250+ cities) |
+| **Camera presets** | 64 preloaded models (ZWO, PlayerOne, QHY, ToupTek, Aiptek, Moravian, Atik, Canon EOS, Nikon DSLR) |
+| **Visible Objects Tonight** | DSO objects visible (129 Messier, NGC and IC objects) from any location, with city autocomplete search (516 cities) |
 | **Polar Alignment** *(beta)* | Interactive diagram for positioning Polaris on the polar scope reticle. Calculates hour angle from date, time and location. Epoch 2025 data. |
 | **Coordinate Converter** | Decimal ↔ DMS conversion with direct transfer to calculation fields |
 | **Input warnings** | Contextual messages when physically unlikely values are entered |
@@ -89,6 +115,32 @@ Z-Astro-Calculator is a standalone tool designed for astrophotographers. It calc
 | **Dark mode** | Automatic |
 
 > ⓘ App under continuous development — some features are still being verified.
+
+### What's new in v1.5
+
+- 🔧 **Authorship-check factor removed from the maths** — pixel scale is now always `206.265 × pixel / focal length`, with no correction coefficient. The file integrity notice remains, but it no longer alters any result
+- 🐛 **Duplicate M110 removed** — the DSO database goes from 130 records (129 unique) to 129 correct ones
+- 📱 **Installable as an app** — manifest and icons added: on Android and on desktop Chrome/Edge the app installs straight from the home page
+- 🔒 **Google Fonts removed from the home page** — no file in the project now contacts any third-party server
+- 🌐 **Service worker rewritten** — the home page works offline from the main URL too, and updates arrive immediately when a connection is available
+- 📊 **Corrected counts** in the documentation (64 cameras, 129 objects, 516 cities)
+
+### How to install it on Android
+
+**1. As an app (recommended)**
+1. Open [astrozullo.github.io/Z-Astro-Calculator](https://astrozullo.github.io/Z-Astro-Calculator) in **Chrome**
+2. Tap the **⋮** menu, top right
+3. Tap **Install app** (or **Add to Home screen**)
+4. Confirm: the icon appears on your home screen
+
+It works offline after the first launch.
+
+**2. As a single file**
+1. Tap **Download HTML for offline use** on the home page
+2. Accept the download: the file lands in **Downloads**
+3. Tap the file and open it with **Chrome**
+
+Works with no connection at all, telescope WiFi included.
 
 ### What's new in v1.4
 

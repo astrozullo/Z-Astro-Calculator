@@ -19,8 +19,8 @@ FUNZIONALITÀ PRINCIPALI
 - MODALITÀ PRO — selezione lunghezza d'onda (nm) per il calcolo del limite di Rayleigh con luce specifica (Ha, OIII, SII, NIR, ecc.)
 - ANALISI CAMPIONAMENTO — zone ottimali Nyquist per planetario e deep sky con indicatore visivo (ottimale / sottocampionato / sovracampionato)
 - RISOLUZIONE LUNARE — km/pixel e FOV sulla superficie lunare a distanza configurabile
-- PRESET FOTOCAMERE — 65+ modelli precaricati (ZWO, PlayerOne, QHY, ToupTek, Aiptek, Moravian, Atik, Canon EOS, Nikon DSLR)
-- VISIBLE OBJECTS TONIGHT — DSO visibili (130+ oggetti tra Messier, NGC e IC) da qualsiasi posizione, con ricerca città autocomplete (250+ città)
+- PRESET FOTOCAMERE — 64 modelli precaricati (ZWO, PlayerOne, QHY, ToupTek, Aiptek, Moravian, Atik, Canon EOS, Nikon DSLR)
+- VISIBLE OBJECTS TONIGHT — DSO visibili (129 oggetti tra Messier, NGC e IC) da qualsiasi posizione, con ricerca città autocomplete (516 città)
 - POLAR ALIGNMENT (beta) — diagramma interattivo per il posizionamento di Polaris sul reticolo del polare. Calcola automaticamente l'angolo orario in base a data, ora e posizione. Dati epoca 2025.
 - COORDINATE CONVERTER — conversione decimale ↔ DMS integrata, con trasferimento diretto ai campi di calcolo
 - AVVISI SUI VALORI — messaggi contestuali quando si inseriscono valori fisicamente improbabili
@@ -28,6 +28,35 @@ FUNZIONALITÀ PRINCIPALI
 - DARK MODE automatica
 
   ⓘ App in revisione continua — alcune funzionalità sono ancora in fase di verifica.
+
+NOVITA' v1.5
+============================================================
+- Rimosso il fattore di controllo paternita' dal calcolo. La pixel scale e' ora sempre
+  206.265 x pixel / focale, senza coefficienti correttivi. Il messaggio di avviso
+  sull'integrita' del file resta, ma non altera piu' alcun risultato.
+- Eliminato il record duplicato M110: il database DSO passa a 129 oggetti corretti.
+- Installazione come app: aggiunti manifest e icone. Su Android e su Chrome/Edge
+  desktop l'app si installa direttamente dalla home page.
+- Rimosso Google Fonts dalla home page: nessun file del progetto contatta piu'
+  server di terze parti.
+- Service worker riscritto: la home funziona offline anche dalla URL principale e
+  gli aggiornamenti arrivano subito quando c'e' connessione.
+- Conteggi corretti nella documentazione: 64 fotocamere, 129 oggetti, 516 citta'.
+
+COME INSTALLARLA SU ANDROID
+============================================================
+1) COME APP (consigliato)
+   1. Apri https://astrozullo.github.io/Z-Astro-Calculator con Chrome
+   2. Tocca il menu tre puntini in alto a destra
+   3. Tocca "Installa app" (oppure "Aggiungi a schermata Home")
+   4. Conferma: l'icona compare nella home del telefono
+   Dopo il primo avvio funziona anche senza connessione.
+
+2) COME FILE SINGOLO
+   1. Tocca "Download HTML for offline use" sulla home page
+   2. Accetta il download: il file finisce in Download
+   3. Tocca il file e aprilo con Chrome
+   Funziona senza alcuna connessione, WiFi del telescopio compreso.
 
 NOVITÀ v1.4
 ============================================================
@@ -96,8 +125,8 @@ KEY FEATURES
 - PRO MODE — wavelength selection (nm) for Rayleigh limit calculation with specific light (Ha, OIII, SII, NIR, etc.)
 - SAMPLING ANALYSIS — Nyquist optimal zones for planetary and deep sky with visual indicator (optimal / undersampled / oversampled)
 - LUNAR RESOLUTION — km/pixel and FOV on the lunar surface at configurable distance
-- CAMERA PRESETS — 65+ preloaded models (ZWO, PlayerOne, QHY, ToupTek, Aiptek, Moravian, Atik, Canon EOS, Nikon DSLR)
-- VISIBLE OBJECTS TONIGHT — DSO objects visible (130+ Messier, NGC and IC objects) from any location, with city autocomplete search (250+ cities)
+- CAMERA PRESETS — 64 preloaded models (ZWO, PlayerOne, QHY, ToupTek, Aiptek, Moravian, Atik, Canon EOS, Nikon DSLR)
+- VISIBLE OBJECTS TONIGHT — DSO objects visible (129 Messier, NGC and IC objects) from any location, with city autocomplete search (516 cities)
 - POLAR ALIGNMENT (beta) — interactive diagram for positioning Polaris on the polar scope reticle. Automatically calculates the hour angle from date, time and location. Epoch 2025 data.
 - COORDINATE CONVERTER — decimal ↔ DMS conversion built in, with direct transfer to calculation fields
 - INPUT WARNINGS — contextual messages when physically unlikely values are entered
@@ -105,6 +134,35 @@ KEY FEATURES
 - AUTOMATIC DARK MODE
 
   ⓘ App under continuous development — some features are still being verified.
+
+WHAT'S NEW IN v1.5
+============================================================
+- Authorship-check factor removed from the maths. Pixel scale is now always
+  206.265 x pixel / focal length, with no correction coefficient. The file
+  integrity notice remains, but it no longer alters any result.
+- Duplicate M110 record removed: the DSO database is now 129 correct objects.
+- Installable as an app: manifest and icons added. On Android and on desktop
+  Chrome/Edge the app installs straight from the home page.
+- Google Fonts removed from the home page: no file in the project contacts any
+  third-party server any more.
+- Service worker rewritten: the home page works offline from the main URL too,
+  and updates arrive immediately when a connection is available.
+- Corrected counts in the documentation: 64 cameras, 129 objects, 516 cities.
+
+HOW TO INSTALL IT ON ANDROID
+============================================================
+1) AS AN APP (recommended)
+   1. Open https://astrozullo.github.io/Z-Astro-Calculator in Chrome
+   2. Tap the three-dot menu, top right
+   3. Tap "Install app" (or "Add to Home screen")
+   4. Confirm: the icon appears on your home screen
+   It works offline after the first launch.
+
+2) AS A SINGLE FILE
+   1. Tap "Download HTML for offline use" on the home page
+   2. Accept the download: the file lands in Downloads
+   3. Tap the file and open it with Chrome
+   Works with no connection at all, telescope WiFi included.
 
 WHAT'S NEW IN v1.4
 ============================================================
