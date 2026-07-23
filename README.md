@@ -8,7 +8,7 @@
 
 ### Cos'è
 
-Z-Astro-Calculator è un file HTML standalone progettato per astrofotografi. Calcola pixel scale, FOV, risoluzione teorica, crop factor e altri parametri ottici fondamentali per pianificare sessioni di ripresa.
+Z-Astro-Calculator è un tool standalone progettato per astrofotografi. Calcola pixel scale, FOV, risoluzione teorica, crop factor e altri parametri ottici fondamentali per pianificare sessioni di ripresa.
 
 ### Funzionalità principali
 
@@ -69,7 +69,7 @@ Vedi il file [LICENSE](LICENSE) per il testo completo.
 
 ### What is it
 
-Z-Astro-Calculator is a standalone HTML file designed for astrophotographers. It calculates pixel scale, FOV, theoretical resolution, crop factor and other fundamental optical parameters for planning imaging sessions.
+Z-Astro-Calculator is a standalone tool designed for astrophotographers. It calculates pixel scale, FOV, theoretical resolution, crop factor and other fundamental optical parameters for planning imaging sessions.
 
 ### Key features
 
