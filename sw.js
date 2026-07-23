@@ -1,7 +1,7 @@
 /* Z-Astro-Calculator service worker
    IMPORTANTE: cambiare CACHE a OGNI modifica di un file elencato in FILES,
    altrimenti i visitatori di ritorno continueranno a ricevere la versione vecchia. */
-const CACHE = 'zac-v1.5';
+const CACHE = 'zac-v1.5.1';
 
 const FILES = [
   './',
