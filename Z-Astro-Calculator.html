@@ -125,7 +125,7 @@
     pixel scale=206.265&times;pixel(&micro;m)/focale(mm) &middot; Dawes=116/D &middot; Rayleigh=1.22&times;&lambda;/D &middot; Nyquist: seeing/4&ndash;seeing/2
     <div class="footer-contrib"><span data-i18n="footerContrib"></span>: Davide Lavarini, Mattia Cipriani</div>
     <div style="margin-top:.75rem;font-size:11px;color:var(--text3);font-style:italic">&#9432; App in revisione continua &mdash; alcune funzionalit&agrave; sono ancora in fase di verifica.</div>
-    <a href="https://github.com/astrozullo/Z-Astro-Calculator/releases" target="_blank" rel="noopener" style="display:block;margin-top:1.25rem;padding:10px;background:var(--bg2);border:.5px solid var(--border2);border-radius:var(--radius-md);color:var(--text2);font-size:12px;text-decoration:none;letter-spacing:.04em;text-align:center" onmouseover="this.style.borderColor='var(--text2)';this.style.color='var(--text)'" onmouseout="this.style.borderColor='var(--border2)';this.style.color='var(--text2)'">&#11088; v1.5.1 &nbsp;&mdash;&nbsp; Check for new release &rarr;</a>
+    <a id="rel-btn" href="https://github.com/astrozullo/Z-Astro-Calculator/releases" target="_blank" rel="noopener" style="display:block;margin-top:1.25rem;padding:10px;background:var(--bg2);border:.5px solid var(--border2);border-radius:var(--radius-md);color:var(--text2);font-size:12px;text-decoration:none;letter-spacing:.04em;text-align:center" onmouseover="this.style.borderColor='var(--text2)';this.style.color='var(--text)'" onmouseout="this.style.borderColor='var(--border2)';this.style.color='var(--text2)'">&#11088; v1.5.1 &nbsp;&mdash;&nbsp; Check for new release &rarr;</a>
   <div style="margin-top:.75rem;font-size:11px;color:var(--text3);text-align:center"><a href="index.html" style="color:var(--text3);text-decoration:none">&#8592; Home</a> &nbsp;&middot;&nbsp; <a href="privacy.html" style="color:var(--text3);text-decoration:none">Privacy</a> &nbsp;&middot;&nbsp; <a href="https://github.com/astrozullo/Z-Astro-Calculator/blob/main/LICENSE" target="_blank" rel="noopener" style="color:var(--text3);text-decoration:none">MIT License</a></div>
   <div id="integrity-warn" style="display:none;margin-top:.75rem;font-size:11px;color:#e07050;text-align:center;letter-spacing:.03em;">
     ⚠ File integrity check failed — results may be inaccurate. Download the original from <a href="https://github.com/astrozullo/Z-Astro-Calculator/releases" target="_blank" rel="noopener" style="color:#e07050;">GitHub</a>.
@@ -1045,6 +1045,62 @@ document.querySelectorAll('.lang-btn').forEach(function(b){
 });
 // Ripristina al caricamento
 restoreSetup();
+
+
+// ===== Aggiornamento manuale + note di rilascio incorporate — zero richieste proprie =====
+// CHECKLIST RELEASE: aggiornare SOLO RELNOTES qui sotto (ver + 4 testi). Il pulsante si aggiorna da solo.
+var RELNOTES={ver:'1.5.1',
+ it:'• Corretti i dati di 8 camere e la declinazione di NGC 6188\n• Aggiunte 6 camere: Explore Scientific, Canon R, Sony A7\n• Risolta l\'omonimia Nicosia (Sicilia/Cipro)\n• Aggiornamento ora solo manuale, con questo pulsante',
+ en:'• Fixed specs of 8 cameras and the declination of NGC 6188\n• Added 6 cameras: Explore Scientific, Canon R, Sony A7\n• Fixed the Nicosia name clash (Sicily/Cyprus)\n• Updates are now manual only, via this button',
+ es:'• Corregidos los datos de 8 cámaras y la declinación de NGC 6188\n• Añadidas 6 cámaras: Explore Scientific, Canon R, Sony A7\n• Resuelta la homonimia de Nicosia (Sicilia/Chipre)\n• Las actualizaciones ahora son solo manuales, con este botón',
+ ru:'• Исправлены данные 8 камер и склонение NGC 6188\n• Добавлены 6 камер: Explore Scientific, Canon R, Sony A7\n• Устранено совпадение имён Никосия (Сицилия/Кипр)\n• Обновление теперь только вручную, этой кнопкой'};
+(function(){
+var btn=g('rel-btn');if(!btn)return;
+var RT={
+ it:{upd:'Aggiorna all\'ultima versione',chk:'Aggiornamento in corso…',latest:'✔ Sei già alla versione più recente',title:'Novità della versione ',gh:'Tutte le release su GitHub →',close:'Chiudi'},
+ en:{upd:'Update to the latest version',chk:'Updating…',latest:'✔ You are on the latest version',title:"What's new in version ",gh:'All releases on GitHub →',close:'Close'},
+ es:{upd:'Actualizar a la última versión',chk:'Actualizando…',latest:'✔ Ya tienes la versión más reciente',title:'Novedades de la versión ',gh:'Todas las releases en GitHub →',close:'Cerrar'},
+ ru:{upd:'Обновить до последней версии',chk:'Обновление…',latest:'✔ У вас последняя версия',title:'Что нового в версии ',gh:'Все релизы на GitHub →',close:'Закрыть'}};
+var t=RT[lang]||RT.en;
+btn.innerHTML='&#11088; v'+RELNOTES.ver+' &nbsp;&mdash;&nbsp; '+t.upd+' &rarr;';
+function esc(x){var d=document.createElement('div');d.textContent=x;return d.innerHTML;}
+function showRel(already){
+ var notes=RELNOTES[lang]||RELNOTES.en;
+ var ov=document.createElement('div');
+ ov.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:9999;display:flex;align-items:center;justify-content:center;padding:1rem;cursor:pointer';
+ ov.innerHTML='<div style="background:#1a0000;border:.5px solid rgba(255,100,100,0.3);border-radius:12px;padding:1.5rem;max-width:420px;width:100%;max-height:80vh;overflow-y:auto;cursor:default" onclick="event.stopPropagation()">'
+  +(already?'<div style="font-size:14px;color:var(--ok-txt);margin-bottom:.5rem">'+t.latest+'</div>':'')
+  +'<div style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:.75rem">'+t.title+'v'+esc(RELNOTES.ver)+'</div>'
+  +'<div style="font-size:13px;color:var(--text);line-height:1.8;white-space:pre-wrap;background:var(--bg2);border-radius:8px;padding:.75rem 1rem;margin-bottom:1rem">'+esc(notes)+'</div>'
+  +'<div style="display:flex;gap:8px;flex-wrap:wrap">'
+  +'<button id="rel-close" style="flex:1;padding:9px;background:none;border:.5px solid var(--border2);border-radius:8px;color:var(--text2);font-size:13px;cursor:pointer;font-family:var(--font)">'+t.close+'</button>'
+  +'<a href="https://github.com/astrozullo/Z-Astro-Calculator/releases" target="_blank" rel="noopener" style="flex:1.4;padding:9px;border:.5px solid var(--border2);border-radius:8px;color:var(--text2);font-size:13px;text-align:center;text-decoration:none">'+t.gh+'</a>'
+  +'</div></div>';
+ ov.addEventListener('click',function(){ov.remove();});
+ document.body.appendChild(ov);
+ document.getElementById('rel-close').addEventListener('click',function(){ov.remove();});
+}
+btn.addEventListener('click',function(ev){
+ if(location.protocol==='file:')return; // file scaricato: il link alle release e' il canale giusto
+ ev.preventDefault();
+ if(!navigator.onLine||!('serviceWorker' in navigator)||!navigator.serviceWorker.controller){showRel(false);return;}
+ btn.textContent=t.chk;
+ try{sessionStorage.setItem('zac_upd','1');}catch(e){}
+ var done=false;
+ function fin(){if(done)return;done=true;location.reload();}
+ navigator.serviceWorker.addEventListener('message',function(e){if(e.data&&e.data.type==='ZAC_UPDATED')fin();});
+ navigator.serviceWorker.controller.postMessage({type:'ZAC_UPDATE'});
+ setTimeout(fin,20000); // rete di sicurezza: ricarica comunque
+});
+// Dopo il reload: se la versione e' nuova mostra il banner novita';
+// se era gia' l'ultima, mostra le note con la conferma "sei aggiornato".
+try{
+ var wasUpd=sessionStorage.getItem('zac_upd');sessionStorage.removeItem('zac_upd');
+ var seen=localStorage.getItem('zac_seen_ver');
+ if(seen!==RELNOTES.ver){localStorage.setItem('zac_seen_ver',RELNOTES.ver);showRel(false);}
+ else if(wasUpd){showRel(true);}
+}catch(e){}
+})();
 
 applyLang();
 (function(){if(typeof _cAZ!=='undefined'&&_cAZ!==1){var w=document.getElementById('integrity-warn');if(w)w.style.display='block';}})();
