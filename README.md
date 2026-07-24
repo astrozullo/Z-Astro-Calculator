@@ -3,7 +3,7 @@
 **Strumento di calcolo per astrofotografi — Tool for astrophotographers**
 
 Pixel scale · FOV · Campionamento · Risoluzione lunare
-Offline · File singolo · Installabile come app e aggiornamento manuale in-app · Open source
+Offline · File singolo · Installabile come app · Open source
 
 [**Apri il calcolatore →**](https://astrozullo.github.io/Z-Astro-Calculator) · [Scarica il file](https://github.com/astrozullo/Z-Astro-Calculator/releases/latest/download/Z-Astro-Calculator.html) · [Changelog](https://github.com/astrozullo/Z-Astro-Calculator/releases)
 
@@ -15,7 +15,7 @@ Offline · File singolo · Installabile come app e aggiornamento manuale in-app 
 
 Z-Astro-Calculator è un tool standalone progettato per astrofotografi. Calcola pixel scale, FOV, risoluzione teorica, crop factor e altri parametri ottici fondamentali per pianificare sessioni di ripresa.
 
-Funziona anche offline. Tutti i calcoli avvengono nel browser, sul tuo dispositivo.
+Non richiede installazione, account o connessione. Tutti i calcoli avvengono nel browser, sul tuo dispositivo.
 
 ### Funzionalità principali
 
@@ -26,12 +26,13 @@ Funziona anche offline. Tutti i calcoli avvengono nel browser, sul tuo dispositi
 | **Modalità PRO** | Selezione lunghezza d'onda (nm) per il calcolo di Rayleigh con luce specifica (Ha, OIII, SII, NIR…) |
 | **Analisi campionamento** | Zone ottimali Nyquist per planetario e deep sky con indicatore visivo (ottimale / sottocampionato / sovracampionato) |
 | **Risoluzione lunare** | km/pixel e FOV sulla superficie lunare a distanza configurabile |
-| **Preset fotocamere** | 64 modelli precaricati (ZWO, PlayerOne, QHY, ToupTek, Aiptek, Moravian, Atik, Canon EOS, Nikon DSLR) |
+| **Preset fotocamere** | 64 modelli precaricati (ZWO, PlayerOne, QHY, ToupTek, Explore Scientific, Canon EOS, Nikon DSLR, Sony, Moravian, Atik) |
 | **Visible Objects Tonight** | DSO visibili (129 oggetti tra Messier, NGC e IC) da qualsiasi posizione, con ricerca città autocomplete (516 città) |
 | **Polar Alignment** *(beta)* | Diagramma interattivo per posizionamento Polaris sul reticolo. Calcola l'angolo orario da data, ora e posizione. Dati epoca 2025. |
 | **Coordinate Converter** | Conversione decimale ↔ DMS con trasferimento diretto ai campi di calcolo |
 | **Avvisi sui valori** | Messaggi contestuali quando si inseriscono valori fuori dai range tipici dell'astrofotografia |
 | **Setup ricordato** | Diametro, focale, pixel size, sensore, Barlow, città, timezone, DST e lingua restano salvati tra una sessione e l'altra |
+| **Aggiornamento manuale** | L'app si aggiorna solo premendo il pulsante in fondo alla pagina; al termine un banner mostra le novità della versione |
 | **4 lingue** | Italiano · English · Español · Русский |
 | **Dark mode** | Automatica |
 
@@ -44,7 +45,7 @@ Tre modi, tutti equivalenti nei risultati. Scegli in base a come lavori sul camp
 #### 1. Dal browser
 
 Apri [astrozullo.github.io/Z-Astro-Calculator](https://astrozullo.github.io/Z-Astro-Calculator).
-Dopo la prima visita con connessione funziona anche offline, grazie al service worker.
+Dopo la prima visita con connessione funziona anche offline, grazie al service worker. Da quel momento l'app viene servita sempre dalla cache locale: per riceverne una versione più recente premi **Aggiorna all'ultima versione** in fondo alla pagina.
 
 #### 2. Installandola come app (Android, Chrome, Edge)
 
@@ -67,13 +68,13 @@ Un solo file, nessuna cartella, nessuna installazione. È la via più robusta pe
 
 - ✅ **Nessun dato raccolto** — niente analytics, niente cookie, niente tracciamento
 - ✅ **Zero risorse esterne** — nessun font, script o immagine caricato da server di terze parti
-- ✅ **Funziona offline** — nessuna connessione richiesta, aggiornamento con pulsante manuale
+- ✅ **Funziona offline** — nessuna connessione richiesta
 - ✅ **Multipiattaforma** — Chrome, Firefox, Safari, Edge su Windows, macOS, Linux, Android, iOS
 - ✅ **Open source** — codice leggibile direttamente nel browser (`Ctrl+U`)
 
-> 🔒 **Versione GitHub Pages** — al primo accesso GitHub riceve l'IP del visitatore, come qualsiasi sito web. Un service worker mette in cache i file localmente per l'uso offline. Setup e preferenza di lingua sono salvati in localStorage sul dispositivo. Nessun dato viene trasmesso all'autore.
+> 🔒 **Versione GitHub Pages** — al primo accesso GitHub riceve l'IP del visitatore, come qualsiasi sito web. Un service worker mette in cache i file localmente per l'uso offline; da lì in poi l'app è servita sempre dalla cache e aprirla non contatta alcun server. Setup e preferenza di lingua sono salvati in localStorage sul dispositivo. Nessun dato viene trasmesso all'autore.
 
-> 🔒 **Pulsante "Check for new release"** — cliccando viene verificato se ci sono aggiornamenti.
+> 🔒 **Pulsante "Aggiorna all'ultima versione"** — l'aggiornamento avviene solo se premi il pulsante in fondo alla pagina: in quel momento i file vengono riscaricati da GitHub Pages. L'app non effettua nessun'altra richiesta di rete e non invia nulla automaticamente.
 
 Testo completo: [Privacy Policy](https://astrozullo.github.io/Z-Astro-Calculator/privacy.html)
 
@@ -94,7 +95,7 @@ Vedi il file [LICENSE](LICENSE) per il testo completo.
 
 Z-Astro-Calculator is a standalone tool designed for astrophotographers. It calculates pixel scale, FOV, theoretical resolution, crop factor and other fundamental optical parameters for planning imaging sessions.
 
-Every calculation runs in your browser, on your own device.
+No installation, no account, no connection required. Every calculation runs in your browser, on your own device.
 
 ### Key features
 
@@ -105,12 +106,13 @@ Every calculation runs in your browser, on your own device.
 | **PRO Mode** | Wavelength selection (nm) for Rayleigh limit with specific light (Ha, OIII, SII, NIR…) |
 | **Sampling analysis** | Nyquist optimal zones for planetary and deep sky with visual indicator (optimal / undersampled / oversampled) |
 | **Lunar resolution** | km/pixel and FOV on the lunar surface at configurable distance |
-| **Camera presets** | 64 preloaded models (ZWO, PlayerOne, QHY, ToupTek, Aiptek, Moravian, Atik, Canon EOS, Nikon DSLR) |
+| **Camera presets** | 64 preloaded models (ZWO, PlayerOne, QHY, ToupTek, Explore Scientific, Canon EOS, Nikon DSLR, Sony, Moravian, Atik) |
 | **Visible Objects Tonight** | DSO objects visible (129 Messier, NGC and IC objects) from any location, with city autocomplete search (516 cities) |
 | **Polar Alignment** *(beta)* | Interactive diagram for positioning Polaris on the polar scope reticle. Calculates hour angle from date, time and location. Epoch 2025 data. |
 | **Coordinate Converter** | Decimal ↔ DMS conversion with direct transfer to calculation fields |
 | **Input warnings** | Contextual messages when physically unlikely values are entered |
 | **Setup remembered** | Diameter, focal length, pixel size, sensor, Barlow, city, timezone, DST and language are kept between sessions |
+| **Manual update** | The app updates only when you press the button at the bottom of the page; a banner then shows what's new in that version |
 | **4 languages** | Italiano · English · Español · Русский |
 | **Dark mode** | Automatic |
 
@@ -123,7 +125,7 @@ Three ways, all giving the same results. Pick the one that suits how you work in
 #### 1. In the browser
 
 Open [astrozullo.github.io/Z-Astro-Calculator](https://astrozullo.github.io/Z-Astro-Calculator).
-After the first visit with a connection it works offline too, thanks to the service worker.
+After the first visit with a connection it works offline too, thanks to the service worker. From then on the app is always served from the local cache: to get a newer version, press **Update to the latest version** at the bottom of the page.
 
 #### 2. Installed as an app (Android, Chrome, Edge)
 
@@ -150,9 +152,9 @@ One file, no folders, no installation. This is the most robust option at the tel
 - ✅ **Cross-platform** — Chrome, Firefox, Safari, Edge on Windows, macOS, Linux, Android, iOS
 - ✅ **Open source** — code is readable directly in the browser (`Ctrl+U`)
 
-> 🔒 **GitHub Pages version** — on first access GitHub receives the visitor's IP address, as with any website. A service worker caches files locally for offline use. Setup and language preference are saved in localStorage on the device. No data is transmitted to the author.
+> 🔒 **GitHub Pages version** — on first access GitHub receives the visitor's IP address, as with any website. A service worker caches files locally for offline use; from then on the app is always served from that cache and opening it contacts no server. Setup and language preference are saved in localStorage on the device. No data is transmitted to the author.
 
-> 🔒 **"Check for new release" button** — clicking it redirects you to the GitHub releases page. The tool sends nothing automatically.
+> 🔒 **"Update to the latest version" button** — updates happen only when you press the button at the bottom of the page: at that moment the files are re-downloaded from GitHub Pages. The app makes no other network requests and sends nothing automatically.
 
 Full text: [Privacy Policy](https://astrozullo.github.io/Z-Astro-Calculator/privacy.html)
 

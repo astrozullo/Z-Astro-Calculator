@@ -37,7 +37,7 @@ FUNZIONALITA' PRINCIPALI
 - RISOLUZIONE LUNARE - km/pixel e FOV sulla superficie lunare a distanza
   configurabile
 - PRESET FOTOCAMERE - 64 modelli precaricati (ZWO, PlayerOne, QHY, ToupTek,
-  Aiptek, Moravian, Atik, Canon EOS, Nikon DSLR)
+  Explore Scientific, Canon EOS, Nikon DSLR, Sony, Moravian, Atik)
 - VISIBLE OBJECTS TONIGHT - DSO visibili (129 oggetti tra Messier, NGC e IC) da
   qualsiasi posizione, con ricerca citta' autocomplete (516 citta')
 - POLAR ALIGNMENT (beta) - diagramma interattivo per il posizionamento di
@@ -49,6 +49,8 @@ FUNZIONALITA' PRINCIPALI
   fisicamente improbabili
 - SETUP RICORDATO - diametro, focale, pixel size, sensore, Barlow, citta',
   timezone, DST e lingua restano salvati tra una sessione e l'altra
+- AGGIORNAMENTO MANUALE - l'app si aggiorna solo premendo il pulsante in fondo
+  alla pagina; al termine un banner mostra le novita' della versione
 - 4 LINGUE - Italiano, English, Espanol, Russkij
 - DARK MODE automatica
 
@@ -63,7 +65,9 @@ campo.
 1) DAL BROWSER
    Apri https://astrozullo.github.io/Z-Astro-Calculator
    Dopo la prima visita con connessione funziona anche offline, grazie al
-   service worker.
+   service worker. Da quel momento l'app viene servita sempre dalla cache
+   locale: per riceverne una versione piu' recente premi "Aggiorna all'ultima
+   versione" in fondo alla pagina.
 
 2) INSTALLANDOLA COME APP (Android, Chrome, Edge)
    1. Apri https://astrozullo.github.io/Z-Astro-Calculator con Chrome
@@ -93,11 +97,14 @@ PRIVACY E REQUISITI
 
 Versione GitHub Pages: al primo accesso GitHub riceve l'IP del visitatore, come
 qualsiasi sito web. Un service worker mette in cache i file localmente per l'uso
-offline. Setup e preferenza di lingua sono salvati in localStorage sul
-dispositivo. Nessun dato viene trasmesso all'autore.
+offline; da li' in poi l'app e' servita sempre dalla cache e aprirla non
+contatta alcun server. Setup e preferenza di lingua sono salvati in localStorage
+sul dispositivo. Nessun dato viene trasmesso all'autore.
 
-Pulsante "Check for new release": cliccando vieni reindirizzato alla pagina
-GitHub delle release. Il tool non invia nulla automaticamente.
+Pulsante "Aggiorna all'ultima versione": l'aggiornamento avviene solo se premi
+il pulsante in fondo alla pagina; in quel momento i file vengono riscaricati da
+GitHub Pages. L'app non effettua nessun'altra richiesta di rete e non invia
+nulla automaticamente.
 
 Testo completo:
 https://astrozullo.github.io/Z-Astro-Calculator/privacy.html
@@ -137,8 +144,8 @@ KEY FEATURES
   visual indicator (optimal / undersampled / oversampled)
 - LUNAR RESOLUTION - km/pixel and FOV on the lunar surface at configurable
   distance
-- CAMERA PRESETS - 64 preloaded models (ZWO, PlayerOne, QHY, ToupTek, Aiptek,
-  Moravian, Atik, Canon EOS, Nikon DSLR)
+- CAMERA PRESETS - 64 preloaded models (ZWO, PlayerOne, QHY, ToupTek, Explore
+  Scientific, Canon EOS, Nikon DSLR, Sony, Moravian, Atik)
 - VISIBLE OBJECTS TONIGHT - DSO objects visible (129 Messier, NGC and IC
   objects) from any location, with city autocomplete search (516 cities)
 - POLAR ALIGNMENT (beta) - interactive diagram for positioning Polaris on the
@@ -150,6 +157,8 @@ KEY FEATURES
   entered
 - SETUP REMEMBERED - diameter, focal length, pixel size, sensor, Barlow, city,
   timezone, DST and language are kept between sessions
+- MANUAL UPDATE - the app updates only when you press the button at the bottom
+  of the page; a banner then shows what's new in that version
 - 4 LANGUAGES - Italiano, English, Espanol, Russkij
 - AUTOMATIC DARK MODE
 
@@ -163,7 +172,9 @@ in the field.
 1) IN THE BROWSER
    Open https://astrozullo.github.io/Z-Astro-Calculator
    After the first visit with a connection it works offline too, thanks to the
-   service worker.
+   service worker. From then on the app is always served from the local cache:
+   to get a newer version, press "Update to the latest version" at the bottom
+   of the page.
 
 2) INSTALLED AS AN APP (Android, Chrome, Edge)
    1. Open https://astrozullo.github.io/Z-Astro-Calculator in Chrome
@@ -192,12 +203,15 @@ PRIVACY AND REQUIREMENTS
 - OPEN SOURCE - code is readable directly in the browser (Ctrl+U)
 
 GitHub Pages version: on first access GitHub receives the visitor's IP address,
-as with any website. A service worker caches files locally for offline use.
-Setup and language preference are saved in localStorage on the device. No data
-is transmitted to the author.
+as with any website. A service worker caches files locally for offline use; from
+then on the app is always served from that cache and opening it contacts no
+server. Setup and language preference are saved in localStorage on the device.
+No data is transmitted to the author.
 
-"Check for new release" button: clicking it redirects you to the GitHub
-releases page. The tool sends nothing automatically.
+"Update to the latest version" button: updates happen only when you press the
+button at the bottom of the page; at that moment the files are re-downloaded
+from GitHub Pages. The app makes no other network requests and sends nothing
+automatically.
 
 Full text:
 https://astrozullo.github.io/Z-Astro-Calculator/privacy.html
