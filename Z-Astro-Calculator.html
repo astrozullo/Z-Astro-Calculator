@@ -26,6 +26,7 @@
       </div>
     </div>
     <div class="header-right">
+      <button class="ss-toggle" type="button" style="background:none;border:.5px solid var(--border2);border-radius:8px;padding:3px 10px;font-size:11px;color:var(--text2);font-family:var(--font);cursor:pointer;white-space:nowrap"></button>
       <div class="lang-bar">
         <button class="lang-btn active" data-lang="it">Ita</button>
         <button class="lang-btn" data-lang="en">Eng</button>
@@ -36,13 +37,13 @@
   </div>
 
   <div class="pro-panel" id="pro-panel">
-    <div class="pro-title">&#9733; Pro &mdash; Wavelength / Lunghezza d'onda</div>
+    <div class="pro-title">&#9733; Pro &mdash; <span data-i18n="proWl"></span></div>
     <div class="wl-presets" id="wl-presets"></div>
     <div class="wl-custom-row"><input type="number" id="wl-input" min="300" max="1100" step="1" value="550"><span>nm &mdash; custom</span></div>
     <div class="wl-note" id="wl-note"></div>
   </div>
 
-  <button class="obj-btn" id="open-ov">&#128301; Visible Objects Tonight<br>&amp; Polar Alignment &rarr;</button>
+  <button class="obj-btn" id="open-ov">&#128301; <span data-i18n="objBtn1"></span><br><span data-i18n="objBtn2"></span> &rarr;</button>
 
   <div class="two-col">
     <div>
@@ -67,6 +68,7 @@
 
   <div class="sect-lbl" data-i18n="secBarlow"></div>
   <div class="barlow-row" id="bl-row"></div>
+  <div class="wl-custom-row"><input type="number" id="bl-input" min="0.05" max="20" step="0.01" value="1"><span data-i18n="blCustomLabel"></span></div>
   <div class="bl-note" id="bl-note"></div>
   <hr class="divider">
 
@@ -122,34 +124,41 @@
 
   <footer>
     <span data-i18n="footerBy"></span> <span id="ftr-az">Andrea Zullo</span> &nbsp;&middot;&nbsp; zullo.spacehistory&#64;gmail.com<br>
-    pixel scale=206.265&times;pixel(&micro;m)/focale(mm) &middot; Dawes=116/D &middot; Rayleigh=1.22&times;&lambda;/D &middot; Nyquist: seeing/4&ndash;seeing/2
+    <span data-i18n="ftrFormula"></span>
     <div class="footer-contrib"><span data-i18n="footerContrib"></span>: Davide Lavarini, Mattia Cipriani</div>
-    <div style="margin-top:.75rem;font-size:11px;color:var(--text3);font-style:italic">&#9432; App in revisione continua &mdash; alcune funzionalit&agrave; sono ancora in fase di verifica.</div>
+    <div style="margin-top:.75rem;font-size:11px;color:var(--text3);font-style:italic" data-i18n="revNote"></div>
     <a id="rel-btn" href="https://github.com/astrozullo/Z-Astro-Calculator/releases" target="_blank" rel="noopener" style="display:block;margin-top:1.25rem;padding:10px;background:var(--bg2);border:.5px solid var(--border2);border-radius:var(--radius-md);color:var(--text2);font-size:12px;text-decoration:none;letter-spacing:.04em;text-align:center" onmouseover="this.style.borderColor='var(--text2)';this.style.color='var(--text)'" onmouseout="this.style.borderColor='var(--border2)';this.style.color='var(--text2)'">&#11088; v1.5.1 &nbsp;&mdash;&nbsp; Check for new release &rarr;</a>
-  <div style="margin-top:.75rem;font-size:11px;color:var(--text3);text-align:center"><a href="index.html" style="color:var(--text3);text-decoration:none">&#8592; Home</a> &nbsp;&middot;&nbsp; <a href="privacy.html" style="color:var(--text3);text-decoration:none">Privacy</a> &nbsp;&middot;&nbsp; <a href="https://github.com/astrozullo/Z-Astro-Calculator/blob/main/LICENSE" target="_blank" rel="noopener" style="color:var(--text3);text-decoration:none">MIT License</a></div>
+  <div style="margin-top:.75rem;font-size:11px;color:var(--text3);text-align:center"><a href="index.html" style="color:var(--text3);text-decoration:none">&#8592; <span data-i18n="homeLink"></span></a> &nbsp;&middot;&nbsp; <a href="privacy.html" style="color:var(--text3);text-decoration:none">Privacy</a> &nbsp;&middot;&nbsp; <a href="https://github.com/astrozullo/Z-Astro-Calculator/blob/main/LICENSE" target="_blank" rel="noopener" style="color:var(--text3);text-decoration:none">MIT License</a></div>
   <div id="integrity-warn" style="display:none;margin-top:.75rem;font-size:11px;color:#e07050;text-align:center;letter-spacing:.03em;">
-    ⚠ File integrity check failed — results may be inaccurate. Download the original from <a href="https://github.com/astrozullo/Z-Astro-Calculator/releases" target="_blank" rel="noopener" style="color:#e07050;">GitHub</a>.
+    <span data-i18n="integrity"></span><a href="https://github.com/astrozullo/Z-Astro-Calculator/releases" target="_blank" rel="noopener" style="color:#e07050;">GitHub</a>.
   </div>
   </footer>
 </div>
 
 <div id="ov-page">
-  <div class="ov-header"><button class="back-btn" id="back-btn">&larr; Back</button><div class="ov-title">Visible Objects Tonight</div></div>
-  <div class="city-hint">Don't know your coordinates? No problem!<br>Search the nearest city &mdash; results will be approximate.<div class="city-note" id="city-note"></div></div>
+  <div class="ov-header"><button class="back-btn" id="back-btn">&larr; <span data-i18n="ovBack"></span></button><div class="ov-title" data-i18n="ovTitle"></div></div>
+  <div class="city-hint"><span data-i18n-html="ovCityHint"></span><div class="city-note" id="city-note"></div></div>
+
+  <!-- POSITION / CLOCK FROM DEVICE (opt-in, on click only) -->
+  <div style="display:flex;gap:8px;margin-bottom:.5rem;flex-wrap:wrap">
+    <button id="geo-btn" type="button" style="flex:1;min-width:150px;padding:9px 10px;background:var(--bg2);border:.5px solid var(--border2);border-radius:var(--radius-md);font-size:13px;cursor:pointer;color:var(--text);font-family:var(--font)">&#128205; <span data-i18n="ovGeo"></span></button>
+    <button id="now-btn" type="button" style="flex:1;min-width:110px;padding:9px 10px;background:var(--bg2);border:.5px solid var(--border2);border-radius:var(--radius-md);font-size:13px;cursor:pointer;color:var(--text);font-family:var(--font)">&#128339; <span data-i18n="ovNow"></span></button>
+  </div>
+  <div id="geo-note" style="font-size:11px;color:var(--text3);margin-bottom:.75rem;min-height:15px;font-style:italic"></div>
 
   <!-- COORDINATE CONVERTER -->
   <div style="margin-bottom:.75rem">
-    <button class="obj-btn" id="conv-toggle" style="margin-bottom:0;font-size:13px;padding:8px 10px">&#8645; Coordinate Converter: decimal &#8596; DMS &darr;</button>
+    <button class="obj-btn" id="conv-toggle" style="margin-bottom:0;font-size:13px;padding:8px 10px">&#8645; <span data-i18n="ovConv"></span> <span id="conv-arrow">&darr;</span></button>
   </div>
   <div id="conv-section" style="display:none;background:var(--bg2);border:.5px solid var(--border);border-radius:var(--radius-lg);padding:1rem 1.25rem;margin-bottom:.75rem">
-    <div style="font-size:11px;color:var(--text3);text-align:center;margin-bottom:.75rem;letter-spacing:.05em;text-transform:uppercase">Decimal &rarr; DMS</div>
+    <div style="font-size:11px;color:var(--text3);text-align:center;margin-bottom:.75rem;letter-spacing:.05em;text-transform:uppercase" data-i18n="ovD2D"></div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:.75rem">
-      <div><label style="font-size:12px;color:var(--text2);display:block;margin-bottom:3px">Lat decimal</label><input type="number" id="dd-lat" placeholder="45.4384" step="0.0001" style="width:100%;font-size:13px;padding:6px 8px;background:var(--bg);border:.5px solid var(--border2);border-radius:var(--radius-md);color:var(--text);font-family:var(--mono);outline:none"></div>
-      <div><label style="font-size:12px;color:var(--text2);display:block;margin-bottom:3px">Lon decimal</label><input type="number" id="dd-lon" placeholder="10.9924" step="0.0001" style="width:100%;font-size:13px;padding:6px 8px;background:var(--bg);border:.5px solid var(--border2);border-radius:var(--radius-md);color:var(--text);font-family:var(--mono);outline:none"></div>
+      <div><label style="font-size:12px;color:var(--text2);display:block;margin-bottom:3px" data-i18n="ovLatDec"></label><input type="number" id="dd-lat" placeholder="45.4384" step="0.0001" style="width:100%;font-size:13px;padding:6px 8px;background:var(--bg);border:.5px solid var(--border2);border-radius:var(--radius-md);color:var(--text);font-family:var(--mono);outline:none"></div>
+      <div><label style="font-size:12px;color:var(--text2);display:block;margin-bottom:3px" data-i18n="ovLonDec"></label><input type="number" id="dd-lon" placeholder="10.9924" step="0.0001" style="width:100%;font-size:13px;padding:6px 8px;background:var(--bg);border:.5px solid var(--border2);border-radius:var(--radius-md);color:var(--text);font-family:var(--mono);outline:none"></div>
     </div>
     <div id="dd-result" style="font-size:13px;font-family:var(--mono);color:var(--text2);text-align:center;min-height:18px;margin-bottom:1rem"></div>
     <hr style="border:none;border-top:.5px solid var(--border);margin-bottom:.75rem">
-    <div style="font-size:11px;color:var(--text3);text-align:center;margin-bottom:.75rem;letter-spacing:.05em;text-transform:uppercase">DMS &rarr; Decimal</div>
+    <div style="font-size:11px;color:var(--text3);text-align:center;margin-bottom:.75rem;letter-spacing:.05em;text-transform:uppercase" data-i18n="ovDms2D"></div>
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin-bottom:.5rem">
       <div><label style="font-size:11px;color:var(--text2);display:block;margin-bottom:3px">Lat °</label><input type="number" id="dms-latd" placeholder="45" style="width:100%;font-size:13px;padding:6px 8px;background:var(--bg);border:.5px solid var(--border2);border-radius:var(--radius-md);color:var(--text);font-family:var(--mono);outline:none"></div>
       <div><label style="font-size:11px;color:var(--text2);display:block;margin-bottom:3px">Lat '</label><input type="number" id="dms-latm" placeholder="26" style="width:100%;font-size:13px;padding:6px 8px;background:var(--bg);border:.5px solid var(--border2);border-radius:var(--radius-md);color:var(--text);font-family:var(--mono);outline:none"></div>
@@ -165,36 +174,36 @@
       <div style="display:flex;gap:6px;align-items:center"><label style="font-size:11px;color:var(--text2)">Lon:</label><select id="dms-lonh" style="font-size:12px;padding:4px 6px;background:var(--bg);border:.5px solid var(--border2);border-radius:var(--radius-md);color:var(--text);outline:none"><option value="1">E</option><option value="-1">W</option></select></div>
     </div>
     <div id="dms-result" style="font-size:13px;font-family:var(--mono);color:var(--text2);text-align:center;min-height:18px"></div>
-    <button id="dms-use-btn" style="display:none;margin-top:.75rem;width:100%;padding:8px;background:#2a0a0a;border:.5px solid rgba(255,100,100,0.3);border-radius:var(--radius-md);font-size:12px;cursor:pointer;color:var(--text);font-family:var(--font)">&#8595; Use these coordinates</button>
+    <button id="dms-use-btn" style="display:none;margin-top:.75rem;width:100%;padding:8px;background:#2a0a0a;border:.5px solid rgba(255,100,100,0.3);border-radius:var(--radius-md);font-size:12px;cursor:pointer;color:var(--text);font-family:var(--font)">&#8595; <span data-i18n="ovUseCoords"></span></button>
   </div>
 
-  <div class="search-wrap"><input type="text" id="city-search" placeholder="Type city name..." autocomplete="off"><div id="city-dd" class="city-dd"></div></div>
+  <div class="search-wrap"><input type="text" id="city-search" placeholder="Type city name..." data-i18n-ph="ovCityPh" autocomplete="off"><div id="city-dd" class="city-dd"></div></div>
   <div class="ov-grid">
-    <div class="ov-field"><label>Latitude <span style="font-weight:400;color:var(--text3);font-size:11px">decimal</span></label><input type="text" inputmode="decimal" id="ov-lat" placeholder="e.g. 45.44 (N) or −33.87 (S)" style="font-family:var(--font);font-size:14px;color:var(--text);background:var(--bg2);border:.5px solid var(--border2);border-radius:var(--radius-md);padding:7px 10px;width:100%;outline:none"></div>
-    <div class="ov-field"><label>Longitude <span style="font-weight:400;color:var(--text3);font-size:11px">decimal</span></label><input type="text" inputmode="decimal" id="ov-lon" placeholder="e.g. 10.99 (E) or −115.81 (W)" style="font-family:var(--font);font-size:14px;color:var(--text);background:var(--bg2);border:.5px solid var(--border2);border-radius:var(--radius-md);padding:7px 10px;width:100%;outline:none"></div>
-    <div class="ov-field"><label>Timezone</label><select id="ov-tz"></select></div>
-    <div class="ov-field"><label>Date</label><input type="date" id="ov-date" style="font-family:var(--font);font-size:14px;color:var(--text);background:var(--bg2);border:.5px solid var(--border2);border-radius:var(--radius-md);padding:7px 10px;width:100%;outline:none;cursor:pointer"></div>
+    <div class="ov-field"><label><span data-i18n="ovLat"></span> <span style="font-weight:400;color:var(--text3);font-size:11px" data-i18n="ovDecimal"></span></label><input type="text" inputmode="decimal" id="ov-lat" placeholder="e.g. 45.44 (N) or −33.87 (S)" data-i18n-ph="ovLatPh" style="font-family:var(--font);font-size:14px;color:var(--text);background:var(--bg2);border:.5px solid var(--border2);border-radius:var(--radius-md);padding:7px 10px;width:100%;outline:none"></div>
+    <div class="ov-field"><label><span data-i18n="ovLon"></span> <span style="font-weight:400;color:var(--text3);font-size:11px" data-i18n="ovDecimal"></span></label><input type="text" inputmode="decimal" id="ov-lon" placeholder="e.g. 10.99 (E) or −115.81 (W)" data-i18n-ph="ovLonPh" style="font-family:var(--font);font-size:14px;color:var(--text);background:var(--bg2);border:.5px solid var(--border2);border-radius:var(--radius-md);padding:7px 10px;width:100%;outline:none"></div>
+    <div class="ov-field"><label data-i18n="ovTz"></label><select id="ov-tz"></select></div>
+    <div class="ov-field"><label data-i18n="ovDate"></label><input type="date" id="ov-date" style="font-family:var(--font);font-size:14px;color:var(--text);background:var(--bg2);border:.5px solid var(--border2);border-radius:var(--radius-md);padding:7px 10px;width:100%;outline:none;cursor:pointer"></div>
   </div>
   <div class="ov-grid">
-    <div class="ov-field"><label>Time</label><input type="time" id="ov-time" style="font-family:var(--font);font-size:14px;color:var(--text);background:var(--bg2);border:.5px solid var(--border2);border-radius:var(--radius-md);padding:7px 10px;width:100%;outline:none;cursor:pointer"></div>
-    <div class="ov-field"><label>Min altitude (&deg;)</label><input type="number" id="ov-minalt" value="15" min="0" max="60" step="1"></div>
+    <div class="ov-field"><label data-i18n="ovTime"></label><input type="time" id="ov-time" style="font-family:var(--font);font-size:14px;color:var(--text);background:var(--bg2);border:.5px solid var(--border2);border-radius:var(--radius-md);padding:7px 10px;width:100%;outline:none;cursor:pointer"></div>
+    <div class="ov-field"><label data-i18n="ovMinAlt"></label><input type="number" id="ov-minalt" value="15" min="0" max="60" step="1"></div>
   </div>
-  <div class="dst-row"><label>DST:</label><div class="dst-toggle"><button class="dst-opt active" data-dst="0">No</button><button class="dst-opt" data-dst="1">Yes +1h</button></div><span style="font-size:11px;color:var(--text3)">default: standard time &mdash; enable in summer</span></div>
+  <div class="dst-row"><label>DST:</label><div class="dst-toggle"><button class="dst-opt active" data-dst="0" data-i18n="ovDstNo"></button><button class="dst-opt" data-dst="1" data-i18n="ovDstYes"></button></div><span style="font-size:11px;color:var(--text3)" data-i18n="ovDstHint"></span></div>
   <div style="display:flex;gap:8px;margin-bottom:0">
-    <button class="show-btn" id="show-btn" style="margin-bottom:0;flex:1">Show objects now!</button>
-    <button id="clear-btn" style="background:none;border:.5px solid var(--border2);border-radius:var(--radius-lg);padding:11px 16px;font-size:13px;cursor:pointer;color:var(--text2);font-family:var(--font);white-space:nowrap">✕ Clear</button>
+    <button class="show-btn" id="show-btn" style="margin-bottom:0;flex:1" data-i18n="ovShow"></button>
+    <button id="clear-btn" style="background:none;border:.5px solid var(--border2);border-radius:var(--radius-lg);padding:11px 16px;font-size:13px;cursor:pointer;color:var(--text2);font-family:var(--font);white-space:nowrap">✕ <span data-i18n="ovClear"></span></button>
   </div>
-  <div style="font-size:11px;color:var(--text3);text-align:center;margin-top:.5rem;margin-bottom:1rem">Press again to update after changing date or time</div>
+  <div style="font-size:11px;color:var(--text3);text-align:center;margin-top:.5rem;margin-bottom:1rem" data-i18n="ovPressAgain"></div>
   <div id="ov-results"></div>
 
   <!-- POLAR ALIGNMENT -->
   <div style="margin-top:1.5rem">
-    <button class="obj-btn" id="polar-toggle" style="margin-bottom:0">&#11088; Polar Alignment &mdash; Posizione Polaris &darr;</button>
+    <button class="obj-btn" id="polar-toggle" style="margin-bottom:0">&#11088; <span data-i18n="polTitle"></span> <span id="polar-arrow">&darr;</span></button>
   </div>
   <div id="polar-section" style="display:none;margin-top:1rem">
     <div style="background:var(--bg2);border:.5px solid var(--border);border-radius:var(--radius-lg);padding:1rem 1.25rem;margin-bottom:1rem;font-size:13px;color:var(--text2);line-height:1.7">
-      Place Polaris in the polar scope reticle at the clock position shown below.
-      <div style="margin-top:.6rem;font-size:11px;color:var(--warn-txt);opacity:.85">&#9888; Funzionalit&agrave; in fase di test &mdash; dati riferiti all&rsquo;epoca 2025. Verr&agrave; aggiornata in una release successiva.</div>
+      <span data-i18n="polHint"></span>
+      <div style="margin-top:.6rem;font-size:11px;color:var(--warn-txt);opacity:.85" data-i18n="polWarn"></div>
     </div>
     <div style="display:flex;flex-direction:column;align-items:center;gap:1rem">
       <svg id="polar-svg" width="260" height="260" viewBox="0 0 260 260" style="max-width:100%">
@@ -223,15 +232,15 @@
         <text id="polaris-label" x="130" y="42" text-anchor="middle" font-size="11" fill="#f5c842">Polaris</text>
       </svg>
       <div id="polar-info" style="text-align:center;font-size:14px;color:var(--text);line-height:2">
-        <span style="color:var(--text3);font-size:12px">Enter date, time and location, then press "Show objects now!"</span>
+        <span style="color:var(--text3);font-size:12px" id="polar-empty"></span>
       </div>
     </div>
   </div>
   <footer>
     <span data-i18n="footerBy"></span> Andrea Zullo &nbsp;&middot;&nbsp; zullo.spacehistory&#64;gmail.com<br>
-    LST = Local Sidereal Time &middot; Alt = object altitude &middot; Polaris RA 2h55m, NCP offset ~0.64&deg; (2025)
+    <span data-i18n="ftrFormula2"></span>
     <div class="footer-contrib"><span data-i18n="footerContrib"></span>: Davide Lavarini, Mattia Cipriani</div>
-    <div style="margin-top:.75rem;font-size:11px;color:var(--text3);font-style:italic">&#9432; App in revisione continua &mdash; alcune funzionalit&agrave; sono ancora in fase di verifica.</div>
+    <div style="margin-top:.75rem;font-size:11px;color:var(--text3);font-style:italic" data-i18n="revNote"></div>
   </footer>
 </div>
 
@@ -295,7 +304,30 @@ it:{mainTitle:'Tool per astrofotografi',secTelescope:'Telescopio',secCamera:'Cam
 en:{mainTitle:'Tool for astrophotographers',secTelescope:'Telescope',secCamera:'Camera',camPreset:'Camera preset',secBarlow:'Barlow / reducer',labelDiam:'Diameter (mm)',labelFocal:'Base focal (mm)',labelPixel:'Pixel (\u03bcm)',labelSensor:'Sensor (px)',mPixelScale:'Pixel scale',mFocalEff:'Eff. focal',mFRatio:'Focal ratio',mFactor:'Factor',mCrop:'Crop',mFocalEq:'FF focal',moonTitle:'Moon resolution',moonDist:'Lunar distance',moonPx:'km/pixel',moonFovW:'FOV width',moonFovH:'FOV height',tabPlanetary:'Planetary',tabDeepsky:'Deep sky',limDawes:'Dawes',limRayleigh:'Rayleigh',limOptZone:'Recommended range',limStars:'Stars',fovLabel:'FOV',seeingLabel:'Seeing (FWHM)',badgeOk:'well matched',badgeUnder:'undersampled',badgeOver:'oversampled',footerBy:'Generated by',footerContrib:'Contributors',blNone:'No additional optics.',blR:function(f,a,b){return 'Reducer '+f+'\u00d7. Focal: '+a+' \u2192 '+b+' mm.';},blB:function(f,a,b){return 'Barlow '+f+'\u00d7. Focal: '+a+' \u2192 '+b+' mm.';},plOk:function(p,r){return 'Well matched. Scale '+p+'"/px \u2248 Rayleigh/'+r+'. Practical guideline based on Rayleigh criterion.';},plU:function(f,a,b){return 'Undersampled. Factor ~'+f+'\u00d7 (recommended range: '+a+'\u2013'+b+'"/px).';},plO:function(f){return 'Oversampled. Factor ~'+f+'\u00d7. Consider a reducer or binning.';},dsOk:function(s,t){return 'Well matched. Seeing '+s+'". Stars ~'+t+' px FWHM.';},dsU:function(f,m){return 'Undersampled. Factor ~'+f+'\u00d7. Seeing >'+m+'".';},dsO:function(f,b){return 'Oversampled. Factor ~'+f+'\u00d7. Consider 2\u00d72 binning (~'+b+'"/px).';} },
 es:{mainTitle:'Herramienta para astrof\u00f3tografos',secTelescope:'Telescopio',secCamera:'C\u00e1mara',camPreset:'Preset c\u00e1mara',secBarlow:'Barlow / reductor',labelDiam:'Di\u00e1metro (mm)',labelFocal:'Focal base (mm)',labelPixel:'P\u00edxel (\u03bcm)',labelSensor:'Sensor (px)',mPixelScale:'Escala px',mFocalEff:'Focal ef.',mFRatio:'Rel. focal',mFactor:'Factor',mCrop:'Recorte',mFocalEq:'Focal FF',moonTitle:'Resoluci\u00f3n Luna',moonDist:'Distancia lunar',moonPx:'km/p\u00edxel',moonFovW:'FOV ancho',moonFovH:'FOV alto',tabPlanetary:'Planetario',tabDeepsky:'Cielo prof.',limDawes:'Dawes',limRayleigh:'Rayleigh',limOptZone:'Rango recomendado',limStars:'Estrellas',fovLabel:'FOV',seeingLabel:'Seeing (FWHM)',badgeOk:'bien calibrado',badgeUnder:'submuestreado',badgeOver:'sobremuestreado',footerBy:'Generado por',footerContrib:'Colaboradores',blNone:'Sin \u00f3pticas adicionales.',blR:function(f,a,b){return 'Reductor '+f+'\u00d7. '+a+'\u2192'+b+' mm.';},blB:function(f,a,b){return 'Barlow '+f+'\u00d7. '+a+'\u2192'+b+' mm.';},plOk:function(p,r){return 'Bien calibrado. '+p+'"/px\u2248Rayleigh/'+r+'. Guía práctica basada en criterio Rayleigh.';},plU:function(f,a,b){return 'Submuestreado. ~'+f+'\u00d7 (recomendado: '+a+'\u2013'+b+'"/px).';},plO:function(f){return 'Sobremuestreado. ~'+f+'\u00d7. Considera reductor o binning.';},dsOk:function(s,t){return 'Bien calibrado. Seeing '+s+'". ~'+t+' px.';},dsU:function(f,m){return 'Submuestreado. ~'+f+'\u00d7. Seeing>'+m+'".';},dsO:function(f,b){return 'Sobremuestreado. ~'+f+'\u00d7 o bin 2\u00d72.';} },
 ru:{mainTitle:'\u0418\u043d\u0441\u0442\u0440. \u0430\u0441\u0442\u0440\u043e\u0444\u043e\u0442\u043e\u0433\u0440\u0430\u0444\u043e\u0432',secTelescope:'\u0422\u0435\u043b\u0435\u0441\u043a\u043e\u043f',secCamera:'\u041a\u0430\u043c\u0435\u0440\u0430',camPreset:'\u041f\u0440\u0435\u0441\u0435\u0442 \u043a\u0430\u043c\u0435\u0440\u044b',secBarlow:'\u0411\u0430\u0440\u043b\u043e\u0443/\u0440\u0435\u0434.',labelDiam:'\u0414\u0438\u0430\u043c. (\u043c\u043c)',labelFocal:'\u0424\u043e\u043a. (\u043c\u043c)',labelPixel:'\u041f\u0438\u043a\u0441. (\u043c\u043a\u043c)',labelSensor:'\u0421\u0435\u043d\u0441. (\u043f\u043a\u0441)',mPixelScale:'\u041c\u0430\u0441\u0448\u0442\u0430\u0431',mFocalEff:'\u0424\u043e\u043a\u0443\u0441',mFRatio:'\u041e\u0442\u043d\u043e\u0448.',mFactor:'\u041a\u043e\u044d\u0444\u0444.',mCrop:'\u041a\u0440\u043e\u043f',mFocalEq:'FF\u0444\u043e\u043a.',moonTitle:'\u0420\u0430\u0437\u0440\u0435\u0448. \u041b\u0443\u043d\u0430',moonDist:'\u0420\u0430\u0441\u0441\u0442.',moonPx:'\u043a\u043c/\u043f\u043a\u0441',moonFovW:'\u041f\u043e\u043b\u0435(\u0448)',moonFovH:'\u041f\u043e\u043b\u0435(\u0432)',tabPlanetary:'\u041f\u043b\u0430\u043d.',tabDeepsky:'\u0414\u0438\u043f-\u0441\u043a\u0430\u0439',limDawes:'\u0414\u043e\u0443\u0437',limRayleigh:'\u0420\u044d\u043b\u0435\u0439',limOptZone:'\u041e\u043f\u0442. \u0437.',limStars:'\u0417\u0432\u0451\u0437\u0434\u044b',fovLabel:'\u041f\u043e\u043b\u0435',seeingLabel:'\u0421\u0438\u0438\u043d\u0433',badgeOk:'\u043e\u043f\u0442.',badgeUnder:'\u043d\u0435\u0434\u043e\u0441.',badgeOver:'\u043f\u0435\u0440\u0435\u0441.',footerBy:'\u0421\u043e\u0437\u0434\u0430\u043d\u043e',footerContrib:'\u0423\u0447\u0430\u0441\u0442\u043d\u0438\u043a\u0438',blNone:'\u0411\u0435\u0437 \u0434\u043e\u043f. \u043e\u043f\u0442\u0438\u043a\u0438.',blR:function(f,a,b){return '\u0420\u0435\u0434. '+f+'\u00d7. '+a+'\u2192'+b+'\u043c\u043c.';},blB:function(f,a,b){return '\u0411\u0430\u0440. '+f+'\u00d7. '+a+'\u2192'+b+'\u043c\u043c.';},plOk:function(p,r){return '\u0425\u043e\u0440. \u043f\u043e\u0434\u0431\u043e\u0440. '+p+'"/\u043f\u043a\u0441\u2248R/'+r+'. \u041f\u0440\u0430\u043a\u0442. \u0440\u0435\u043a\u043e\u043c.';},plU:function(f,a,b){return '\u041d\u0435\u0434. ~'+f+'\u00d7('+a+'\u2013'+b+'"/\u043f\u043a\u0441).';},plO:function(f){return '\u041f\u0435\u0440. ~'+f+'\u00d7.';},dsOk:function(s,t){return '\u0425\u043e\u0440. \u043f\u043e\u0434\u0431\u043e\u0440. '+s+'". ~'+t+'\u043f\u043a\u0441.';},dsU:function(f,m){return '\u041d\u0435\u0434. ~'+f+'\u00d7. >'+m+'".';},dsO:function(f,b){return '\u041f\u0435\u0440. ~'+f+'\u00d7/2\u00d72(~'+b+'").';} }};
-function applyLang(){var t=I[lang];document.querySelectorAll('[data-i18n]').forEach(function(e){var k=e.getAttribute('data-i18n');if(t[k]&&typeof t[k]==='string')e.textContent=t[k];});calc();}
+
+var I2={
+it:{ovBack:'Indietro',ovTitle:'Oggetti visibili stanotte',objBtn1:'Oggetti visibili stanotte',objBtn2:'e allineamento polare',ovCityHint:'Non conosci le tue coordinate? Nessun problema!<br>Cerca la citt\u00e0 pi\u00f9 vicina: i risultati saranno approssimati.',ovConv:'Convertitore coordinate: decimali \u2194 DMS',ovD2D:'Decimali \u2192 DMS',ovDms2D:'DMS \u2192 decimali',ovLatDec:'Lat decimale',ovLonDec:'Lon decimale',ovUseCoords:'Usa queste coordinate',ovCityPh:'Scrivi il nome della citt\u00e0...',ovLat:'Latitudine',ovLon:'Longitudine',ovDecimal:'decimale',ovLatPh:'es. 45.44 (N) o \u221233.87 (S)',ovLonPh:'es. 10.99 (E) o \u2212115.81 (W)',ovTz:'Fuso orario',ovDate:'Data',ovTime:'Ora',ovMinAlt:'Altezza minima (\u00b0)',ovDstNo:'No',ovDstYes:'S\u00ec +1h',ovDstHint:'predefinito: ora solare, attiva in estate',ovShow:'Mostra gli oggetti!',ovClear:'Pulisci',ovPressAgain:'Premi di nuovo per aggiornare dopo aver cambiato data o ora',ovGeo:'Usa la mia posizione',ovNow:'Adesso',geoWait:'Rilevamento in corso\u2026',geoDenied:'Permesso negato. Puoi sempre inserire le coordinate a mano.',geoUnavail:'Posizione non disponibile in questo momento.',geoTimeout:'Tempo scaduto. Riprova, meglio all\u2019aperto.',geoNoApi:'La geolocalizzazione non \u00e8 disponibile in questo browser.',geoInsecure:'La geolocalizzazione richiede una connessione HTTPS.',nowApprox:'Data e ora impostate. Il fuso \u00e8 stato arrotondato allo scarto disponibile pi\u00f9 vicino: controllalo.',ovFromConv:'Coordinate dal convertitore',ovApprox:'approssimate',errLatLon:'Inserisci latitudine e longitudine.',errDateTime:'Inserisci data e ora.',errFormat:'Formato non valido. Usa AAAA/MM/GG e HH:MM.',thName:'Nome',thType:'Tipo',mCoordinates:'Coordinate',mSize:'Dimensione',mSkyView:'Vista del cielo dall\u2019osservatore, zenit al centro',polTitle:'Allineamento polare \u2014 posizione della Polare',polHint:'Posiziona la Polare nel reticolo del cannocchiale polare alla posizione oraria indicata qui sotto.',polWarn:'\u26a0 Funzionalit\u00e0 in fase di test \u2014 dati riferiti all\u2019epoca 2025. Verr\u00e0 aggiornata in una release successiva.',polSouth1:'Emisfero australe rilevato.',polSouth2:'La Polare non \u00e8 visibile dalla tua posizione.',polSouth3:'L\u2019allineamento polare australe usa Sigma Octantis (mag 5.4): la procedura \u00e8 diversa.',polRotate:'Ruota la montatura finch\u00e9 la Polare coincide con il punto sul reticolo',ftrFormula:'pixel scale=206.265\u00d7pixel(\u00b5m)/focale(mm) \u00b7 Dawes=116/D \u00b7 Rayleigh=1.22\u00d7\u03bb/D \u00b7 Nyquist: seeing/4\u2013seeing/2',ftrFormula2:'LST = tempo siderale locale \u00b7 Alt = altezza dell\u2019oggetto \u00b7 Polare AR 2h55m, scarto dal PNC ~0,64\u00b0 (2025)',revNote:'\u2139 App in revisione continua \u2014 alcune funzionalit\u00e0 sono ancora in fase di verifica.',ssLabel:'Salvaschermo',ssOn:'attivo',ssOff:'disattivato',ssTitle:'Salvaschermo',ssTap:'Tocca per tornare',homeLink:'Home',proWl:'Lunghezza d\u2019onda',blCustomLabel:'\u00d7 \u2014 personalizzato',integrity:'\u26a0 Controllo di integrit\u00e0 del file fallito: i risultati potrebbero essere inesatti. Scarica l\u2019originale da ',
+ resInfo:function(n,l){return n+' oggetti sopra l\u2019orizzonte \u2014 LST '+l;},noObjects:function(a){return 'Nessun oggetto sopra '+a+'\u00b0 a quest\u2019ora e in questa posizione.';},geoOk:function(a){return 'Posizione dal dispositivo \u2014 precisione \u00b1'+a+' m';},nowOk:function(t){return 'Data, ora, fuso ('+t+') e ora legale impostati dal dispositivo.';},polHA:function(h){return 'Posizione della Polare sul reticolo \u2014 angolo orario '+h;}},
+en:{ovBack:'Back',ovTitle:'Visible Objects Tonight',objBtn1:'Visible Objects Tonight',objBtn2:'& Polar Alignment',ovCityHint:'Don\u2019t know your coordinates? No problem!<br>Search the nearest city \u2014 results will be approximate.',ovConv:'Coordinate Converter: decimal \u2194 DMS',ovD2D:'Decimal \u2192 DMS',ovDms2D:'DMS \u2192 decimal',ovLatDec:'Lat decimal',ovLonDec:'Lon decimal',ovUseCoords:'Use these coordinates',ovCityPh:'Type city name...',ovLat:'Latitude',ovLon:'Longitude',ovDecimal:'decimal',ovLatPh:'e.g. 45.44 (N) or \u221233.87 (S)',ovLonPh:'e.g. 10.99 (E) or \u2212115.81 (W)',ovTz:'Timezone',ovDate:'Date',ovTime:'Time',ovMinAlt:'Min altitude (\u00b0)',ovDstNo:'No',ovDstYes:'Yes +1h',ovDstHint:'default: standard time, enable in summer',ovShow:'Show objects now!',ovClear:'Clear',ovPressAgain:'Press again to update after changing date or time',ovGeo:'Use my position',ovNow:'Now',geoWait:'Locating\u2026',geoDenied:'Permission denied. You can still enter the coordinates by hand.',geoUnavail:'Position not available right now.',geoTimeout:'Timed out. Try again, ideally outdoors.',geoNoApi:'Geolocation is not available in this browser.',geoInsecure:'Geolocation requires an HTTPS connection.',nowApprox:'Date and time set. The timezone was rounded to the nearest available offset \u2014 please check it.',ovFromConv:'Coordinates from converter',ovApprox:'approximate',errLatLon:'Please enter latitude and longitude.',errDateTime:'Please enter date and time.',errFormat:'Invalid format. Use YYYY/MM/DD and HH:MM.',thName:'Name',thType:'Type',mCoordinates:'Coordinates',mSize:'Size',mSkyView:'Sky view from observer \u2014 zenith at center',polTitle:'Polar Alignment \u2014 Polaris position',polHint:'Place Polaris in the polar scope reticle at the clock position shown below.',polWarn:'\u26a0 Feature under test \u2014 data referred to epoch 2025. It will be updated in a later release.',polSouth1:'Southern hemisphere detected.',polSouth2:'Polaris is not visible from your location.',polSouth3:'Southern polar alignment uses Sigma Octantis (mag 5.4) \u2014 a different procedure applies.',polRotate:'Rotate the mount until Polaris coincides with the dot on the reticle',ftrFormula:'pixel scale=206.265\u00d7pixel(\u00b5m)/focal(mm) \u00b7 Dawes=116/D \u00b7 Rayleigh=1.22\u00d7\u03bb/D \u00b7 Nyquist: seeing/4\u2013seeing/2',ftrFormula2:'LST = Local Sidereal Time \u00b7 Alt = object altitude \u00b7 Polaris RA 2h55m, NCP offset ~0.64\u00b0 (2025)',revNote:'\u2139 App under continuous review \u2014 some features are still being verified.',ssLabel:'Screen saver',ssOn:'on',ssOff:'off',ssTitle:'Screen Saver',ssTap:'Tap to return',homeLink:'Home',proWl:'Wavelength',blCustomLabel:'\u00d7 \u2014 custom',integrity:'\u26a0 File integrity check failed \u2014 results may be inaccurate. Download the original from ',
+ resInfo:function(n,l){return n+' objects above the horizon \u2014 LST '+l;},noObjects:function(a){return 'No objects above '+a+'\u00b0 at this time and location.';},geoOk:function(a){return 'Position from device \u2014 accuracy \u00b1'+a+' m';},nowOk:function(t){return 'Date, time, timezone ('+t+') and DST set from your device.';},polHA:function(h){return 'Polaris position on reticle \u2014 hour angle '+h;}},
+es:{ovBack:'Volver',ovTitle:'Objetos visibles esta noche',objBtn1:'Objetos visibles esta noche',objBtn2:'y alineaci\u00f3n polar',ovCityHint:'\u00bfNo conoces tus coordenadas? \u00a1Sin problema!<br>Busca la ciudad m\u00e1s cercana: los resultados ser\u00e1n aproximados.',ovConv:'Conversor de coordenadas: decimal \u2194 DMS',ovD2D:'Decimal \u2192 DMS',ovDms2D:'DMS \u2192 decimal',ovLatDec:'Lat decimal',ovLonDec:'Lon decimal',ovUseCoords:'Usar estas coordenadas',ovCityPh:'Escribe el nombre de la ciudad...',ovLat:'Latitud',ovLon:'Longitud',ovDecimal:'decimal',ovLatPh:'ej. 45.44 (N) o \u221233.87 (S)',ovLonPh:'ej. 10.99 (E) o \u2212115.81 (W)',ovTz:'Zona horaria',ovDate:'Fecha',ovTime:'Hora',ovMinAlt:'Altura m\u00ednima (\u00b0)',ovDstNo:'No',ovDstYes:'S\u00ed +1h',ovDstHint:'por defecto: hora est\u00e1ndar, act\u00edvalo en verano',ovShow:'\u00a1Mostrar objetos!',ovClear:'Limpiar',ovPressAgain:'Pulsa de nuevo para actualizar tras cambiar la fecha o la hora',ovGeo:'Usar mi posici\u00f3n',ovNow:'Ahora',geoWait:'Localizando\u2026',geoDenied:'Permiso denegado. Puedes introducir las coordenadas a mano.',geoUnavail:'Posici\u00f3n no disponible en este momento.',geoTimeout:'Tiempo agotado. Int\u00e9ntalo de nuevo, mejor al aire libre.',geoNoApi:'La geolocalizaci\u00f3n no est\u00e1 disponible en este navegador.',geoInsecure:'La geolocalizaci\u00f3n requiere una conexi\u00f3n HTTPS.',nowApprox:'Fecha y hora establecidas. La zona horaria se ha redondeado al desfase disponible m\u00e1s cercano: compru\u00e9balo.',ovFromConv:'Coordenadas del conversor',ovApprox:'aproximadas',errLatLon:'Introduce la latitud y la longitud.',errDateTime:'Introduce la fecha y la hora.',errFormat:'Formato no v\u00e1lido. Usa AAAA/MM/DD y HH:MM.',thName:'Nombre',thType:'Tipo',mCoordinates:'Coordenadas',mSize:'Tama\u00f1o',mSkyView:'Vista del cielo desde el observador, c\u00e9nit en el centro',polTitle:'Alineaci\u00f3n polar \u2014 posici\u00f3n de Polaris',polHint:'Coloca Polaris en el ret\u00edculo del buscador polar en la posici\u00f3n horaria indicada abajo.',polWarn:'\u26a0 Funci\u00f3n en fase de prueba \u2014 datos referidos a la \u00e9poca 2025. Se actualizar\u00e1 en una versi\u00f3n posterior.',polSouth1:'Hemisferio sur detectado.',polSouth2:'Polaris no es visible desde tu ubicaci\u00f3n.',polSouth3:'La alineaci\u00f3n polar austral usa Sigma Octantis (mag 5.4): el procedimiento es distinto.',polRotate:'Gira la montura hasta que Polaris coincida con el punto del ret\u00edculo',ftrFormula:'pixel scale=206.265\u00d7pixel(\u00b5m)/focal(mm) \u00b7 Dawes=116/D \u00b7 Rayleigh=1.22\u00d7\u03bb/D \u00b7 Nyquist: seeing/4\u2013seeing/2',ftrFormula2:'LST = tiempo sid\u00e9reo local \u00b7 Alt = altura del objeto \u00b7 Polaris AR 2h55m, desv\u00edo del PNC ~0,64\u00b0 (2025)',revNote:'\u2139 App en revisi\u00f3n continua \u2014 algunas funciones a\u00fan se est\u00e1n verificando.',ssLabel:'Salvapantallas',ssOn:'activado',ssOff:'desactivado',ssTitle:'Salvapantallas',ssTap:'Toca para volver',homeLink:'Inicio',proWl:'Longitud de onda',blCustomLabel:'\u00d7 \u2014 personalizado',integrity:'\u26a0 Fallo en la comprobaci\u00f3n de integridad del archivo: los resultados pueden ser inexactos. Descarga el original en ',
+ resInfo:function(n,l){return n+' objetos sobre el horizonte \u2014 LST '+l;},noObjects:function(a){return 'Ning\u00fan objeto por encima de '+a+'\u00b0 a esta hora y en esta ubicaci\u00f3n.';},geoOk:function(a){return 'Posici\u00f3n del dispositivo \u2014 precisi\u00f3n \u00b1'+a+' m';},nowOk:function(t){return 'Fecha, hora, zona horaria ('+t+') y horario de verano tomados del dispositivo.';},polHA:function(h){return 'Posici\u00f3n de Polaris en el ret\u00edculo \u2014 \u00e1ngulo horario '+h;}},
+ru:{ovBack:'\u041d\u0430\u0437\u0430\u0434',ovTitle:'\u0412\u0438\u0434\u0438\u043c\u044b\u0435 \u043e\u0431\u044a\u0435\u043a\u0442\u044b \u0441\u0435\u0433\u043e\u0434\u043d\u044f',objBtn1:'\u0412\u0438\u0434\u0438\u043c\u044b\u0435 \u043e\u0431\u044a\u0435\u043a\u0442\u044b \u0441\u0435\u0433\u043e\u0434\u043d\u044f',objBtn2:'\u0438 \u043f\u043e\u043b\u044f\u0440\u043d\u0430\u044f \u0432\u044b\u0441\u0442\u0430\u0432\u043a\u0430',ovCityHint:'\u041d\u0435 \u0437\u043d\u0430\u0435\u0442\u0435 \u0441\u0432\u043e\u0438 \u043a\u043e\u043e\u0440\u0434\u0438\u043d\u0430\u0442\u044b? \u041d\u0435 \u0431\u0435\u0434\u0430!<br>\u041d\u0430\u0439\u0434\u0438\u0442\u0435 \u0431\u043b\u0438\u0436\u0430\u0439\u0448\u0438\u0439 \u0433\u043e\u0440\u043e\u0434 \u2014 \u0440\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442\u044b \u0431\u0443\u0434\u0443\u0442 \u043f\u0440\u0438\u0431\u043b\u0438\u0437\u0438\u0442\u0435\u043b\u044c\u043d\u044b\u043c\u0438.',ovConv:'\u041a\u043e\u043d\u0432\u0435\u0440\u0442\u0435\u0440 \u043a\u043e\u043e\u0440\u0434\u0438\u043d\u0430\u0442: \u0433\u0440\u0430\u0434\u0443\u0441\u044b \u2194 DMS',ovD2D:'\u0413\u0440\u0430\u0434\u0443\u0441\u044b \u2192 DMS',ovDms2D:'DMS \u2192 \u0433\u0440\u0430\u0434\u0443\u0441\u044b',ovLatDec:'\u0428\u0438\u0440\u043e\u0442\u0430',ovLonDec:'\u0414\u043e\u043b\u0433\u043e\u0442\u0430',ovUseCoords:'\u0418\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u044c \u044d\u0442\u0438 \u043a\u043e\u043e\u0440\u0434\u0438\u043d\u0430\u0442\u044b',ovCityPh:'\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u043d\u0430\u0437\u0432\u0430\u043d\u0438\u0435 \u0433\u043e\u0440\u043e\u0434\u0430...',ovLat:'\u0428\u0438\u0440\u043e\u0442\u0430',ovLon:'\u0414\u043e\u043b\u0433\u043e\u0442\u0430',ovDecimal:'\u0434\u0435\u0441\u044f\u0442\u0438\u0447\u043d\u0430\u044f',ovLatPh:'\u043d\u0430\u043f\u0440. 45.44 (N) \u0438\u043b\u0438 \u221233.87 (S)',ovLonPh:'\u043d\u0430\u043f\u0440. 10.99 (E) \u0438\u043b\u0438 \u2212115.81 (W)',ovTz:'\u0427\u0430\u0441\u043e\u0432\u043e\u0439 \u043f\u043e\u044f\u0441',ovDate:'\u0414\u0430\u0442\u0430',ovTime:'\u0412\u0440\u0435\u043c\u044f',ovMinAlt:'\u041c\u0438\u043d. \u0432\u044b\u0441\u043e\u0442\u0430 (\u00b0)',ovDstNo:'\u041d\u0435\u0442',ovDstYes:'\u0414\u0430 +1\u0447',ovDstHint:'\u043f\u043e \u0443\u043c\u043e\u043b\u0447\u0430\u043d\u0438\u044e: \u0437\u0438\u043c\u043d\u0435\u0435 \u0432\u0440\u0435\u043c\u044f, \u0432\u043a\u043b\u044e\u0447\u0438\u0442\u0435 \u043b\u0435\u0442\u043e\u043c',ovShow:'\u041f\u043e\u043a\u0430\u0437\u0430\u0442\u044c \u043e\u0431\u044a\u0435\u043a\u0442\u044b!',ovClear:'\u041e\u0447\u0438\u0441\u0442\u0438\u0442\u044c',ovPressAgain:'\u041d\u0430\u0436\u043c\u0438\u0442\u0435 \u0441\u043d\u043e\u0432\u0430 \u043f\u043e\u0441\u043b\u0435 \u0438\u0437\u043c\u0435\u043d\u0435\u043d\u0438\u044f \u0434\u0430\u0442\u044b \u0438\u043b\u0438 \u0432\u0440\u0435\u043c\u0435\u043d\u0438',ovGeo:'\u041c\u043e\u0451 \u043c\u0435\u0441\u0442\u043e\u043f\u043e\u043b\u043e\u0436\u0435\u043d\u0438\u0435',ovNow:'\u0421\u0435\u0439\u0447\u0430\u0441',geoWait:'\u041e\u043f\u0440\u0435\u0434\u0435\u043b\u0435\u043d\u0438\u0435\u2026',geoDenied:'\u0414\u043e\u0441\u0442\u0443\u043f \u0437\u0430\u043f\u0440\u0435\u0449\u0451\u043d. \u041a\u043e\u043e\u0440\u0434\u0438\u043d\u0430\u0442\u044b \u043c\u043e\u0436\u043d\u043e \u0432\u0432\u0435\u0441\u0442\u0438 \u0432\u0440\u0443\u0447\u043d\u0443\u044e.',geoUnavail:'\u041c\u0435\u0441\u0442\u043e\u043f\u043e\u043b\u043e\u0436\u0435\u043d\u0438\u0435 \u0441\u0435\u0439\u0447\u0430\u0441 \u043d\u0435\u0434\u043e\u0441\u0442\u0443\u043f\u043d\u043e.',geoTimeout:'\u0412\u0440\u0435\u043c\u044f \u043e\u0436\u0438\u0434\u0430\u043d\u0438\u044f \u0438\u0441\u0442\u0435\u043a\u043b\u043e. \u041f\u043e\u043f\u0440\u043e\u0431\u0443\u0439\u0442\u0435 \u0441\u043d\u043e\u0432\u0430, \u043b\u0443\u0447\u0448\u0435 \u043d\u0430 \u0443\u043b\u0438\u0446\u0435.',geoNoApi:'\u0413\u0435\u043e\u043b\u043e\u043a\u0430\u0446\u0438\u044f \u043d\u0435\u0434\u043e\u0441\u0442\u0443\u043f\u043d\u0430 \u0432 \u044d\u0442\u043e\u043c \u0431\u0440\u0430\u0443\u0437\u0435\u0440\u0435.',geoInsecure:'\u0414\u043b\u044f \u0433\u0435\u043e\u043b\u043e\u043a\u0430\u0446\u0438\u0438 \u043d\u0443\u0436\u043d\u043e \u0441\u043e\u0435\u0434\u0438\u043d\u0435\u043d\u0438\u0435 HTTPS.',nowApprox:'\u0414\u0430\u0442\u0430 \u0438 \u0432\u0440\u0435\u043c\u044f \u0443\u0441\u0442\u0430\u043d\u043e\u0432\u043b\u0435\u043d\u044b. \u0427\u0430\u0441\u043e\u0432\u043e\u0439 \u043f\u043e\u044f\u0441 \u043e\u043a\u0440\u0443\u0433\u043b\u0451\u043d \u0434\u043e \u0431\u043b\u0438\u0436\u0430\u0439\u0448\u0435\u0433\u043e \u0434\u043e\u0441\u0442\u0443\u043f\u043d\u043e\u0433\u043e \u2014 \u043f\u0440\u043e\u0432\u0435\u0440\u044c\u0442\u0435 \u0435\u0433\u043e.',ovFromConv:'\u041a\u043e\u043e\u0440\u0434\u0438\u043d\u0430\u0442\u044b \u0438\u0437 \u043a\u043e\u043d\u0432\u0435\u0440\u0442\u0435\u0440\u0430',ovApprox:'\u043f\u0440\u0438\u0431\u043b\u0438\u0437\u0438\u0442\u0435\u043b\u044c\u043d\u043e',errLatLon:'\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u0448\u0438\u0440\u043e\u0442\u0443 \u0438 \u0434\u043e\u043b\u0433\u043e\u0442\u0443.',errDateTime:'\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u0434\u0430\u0442\u0443 \u0438 \u0432\u0440\u0435\u043c\u044f.',errFormat:'\u041d\u0435\u0432\u0435\u0440\u043d\u044b\u0439 \u0444\u043e\u0440\u043c\u0430\u0442. \u0418\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0439\u0442\u0435 \u0413\u0413\u0413\u0413/\u041c\u041c/\u0414\u0414 \u0438 \u0427\u0427:\u041c\u041c.',thName:'\u041d\u0430\u0437\u0432\u0430\u043d\u0438\u0435',thType:'\u0422\u0438\u043f',mCoordinates:'\u041a\u043e\u043e\u0440\u0434\u0438\u043d\u0430\u0442\u044b',mSize:'\u0420\u0430\u0437\u043c\u0435\u0440',mSkyView:'\u0412\u0438\u0434 \u043d\u0435\u0431\u0430 \u043e\u0442 \u043d\u0430\u0431\u043b\u044e\u0434\u0430\u0442\u0435\u043b\u044f, \u0437\u0435\u043d\u0438\u0442 \u0432 \u0446\u0435\u043d\u0442\u0440\u0435',polTitle:'\u041f\u043e\u043b\u044f\u0440\u043d\u0430\u044f \u0432\u044b\u0441\u0442\u0430\u0432\u043a\u0430 \u2014 \u043f\u043e\u043b\u043e\u0436\u0435\u043d\u0438\u0435 \u041f\u043e\u043b\u044f\u0440\u043d\u043e\u0439',polHint:'\u041f\u043e\u043c\u0435\u0441\u0442\u0438\u0442\u0435 \u041f\u043e\u043b\u044f\u0440\u043d\u0443\u044e \u0432 \u0441\u0435\u0442\u043a\u0443 \u043f\u043e\u043b\u044f\u0440\u043d\u043e\u0433\u043e \u0438\u0441\u043a\u0430\u0442\u0435\u043b\u044f \u0432 \u0443\u043a\u0430\u0437\u0430\u043d\u043d\u043e\u0435 \u043d\u0438\u0436\u0435 \u0447\u0430\u0441\u043e\u0432\u043e\u0435 \u043f\u043e\u043b\u043e\u0436\u0435\u043d\u0438\u0435.',polWarn:'\u26a0 \u0424\u0443\u043d\u043a\u0446\u0438\u044f \u0432 \u0441\u0442\u0430\u0434\u0438\u0438 \u0442\u0435\u0441\u0442\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u044f \u2014 \u0434\u0430\u043d\u043d\u044b\u0435 \u043d\u0430 \u044d\u043f\u043e\u0445\u0443 2025. \u0411\u0443\u0434\u0435\u0442 \u043e\u0431\u043d\u043e\u0432\u043b\u0435\u043d\u043e \u0432 \u0441\u043b\u0435\u0434\u0443\u044e\u0449\u0435\u043c \u0432\u044b\u043f\u0443\u0441\u043a\u0435.',polSouth1:'\u041e\u0431\u043d\u0430\u0440\u0443\u0436\u0435\u043d\u043e \u044e\u0436\u043d\u043e\u0435 \u043f\u043e\u043b\u0443\u0448\u0430\u0440\u0438\u0435.',polSouth2:'\u041f\u043e\u043b\u044f\u0440\u043d\u0430\u044f \u043d\u0435 \u0432\u0438\u0434\u043d\u0430 \u0438\u0437 \u0432\u0430\u0448\u0435\u0433\u043e \u043c\u0435\u0441\u0442\u0430.',polSouth3:'\u042e\u0436\u043d\u0430\u044f \u0432\u044b\u0441\u0442\u0430\u0432\u043a\u0430 \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u0442 \u0421\u0438\u0433\u043c\u0443 \u041e\u043a\u0442\u0430\u043d\u0442\u0430 (\u0431\u043b. \u0432\u0435\u043b. 5,4): \u043f\u0440\u043e\u0446\u0435\u0434\u0443\u0440\u0430 \u0438\u043d\u0430\u044f.',polRotate:'\u041f\u043e\u0432\u0435\u0440\u043d\u0438\u0442\u0435 \u043c\u043e\u043d\u0442\u0438\u0440\u043e\u0432\u043a\u0443, \u043f\u043e\u043a\u0430 \u041f\u043e\u043b\u044f\u0440\u043d\u0430\u044f \u043d\u0435 \u0441\u043e\u0432\u043f\u0430\u0434\u0451\u0442 \u0441 \u0442\u043e\u0447\u043a\u043e\u0439 \u043d\u0430 \u0441\u0435\u0442\u043a\u0435',ftrFormula:'pixel scale=206.265\u00d7\u043f\u0438\u043a\u0441\u0435\u043b\u044c(\u00b5\u043c)/\u0444\u043e\u043a\u0443\u0441(\u043c\u043c) \u00b7 Dawes=116/D \u00b7 Rayleigh=1.22\u00d7\u03bb/D \u00b7 Nyquist: seeing/4\u2013seeing/2',ftrFormula2:'LST = \u043c\u0435\u0441\u0442\u043d\u043e\u0435 \u0437\u0432\u0451\u0437\u0434\u043d\u043e\u0435 \u0432\u0440\u0435\u043c\u044f \u00b7 Alt = \u0432\u044b\u0441\u043e\u0442\u0430 \u043e\u0431\u044a\u0435\u043a\u0442\u0430 \u00b7 \u041f\u043e\u043b\u044f\u0440\u043d\u0430\u044f RA 2h55m, \u043e\u0442\u0441\u0442\u0443\u043f \u043e\u0442 \u0421\u041f\u041c ~0,64\u00b0 (2025)',revNote:'\u2139 \u041f\u0440\u0438\u043b\u043e\u0436\u0435\u043d\u0438\u0435 \u043f\u043e\u0441\u0442\u043e\u044f\u043d\u043d\u043e \u0434\u043e\u0440\u0430\u0431\u0430\u0442\u044b\u0432\u0430\u0435\u0442\u0441\u044f \u2014 \u043d\u0435\u043a\u043e\u0442\u043e\u0440\u044b\u0435 \u0444\u0443\u043d\u043a\u0446\u0438\u0438 \u0435\u0449\u0451 \u043f\u0440\u043e\u0432\u0435\u0440\u044f\u044e\u0442\u0441\u044f.',ssLabel:'\u042d\u043a\u0440\u0430\u043d\u043d\u0430\u044f \u0437\u0430\u0441\u0442\u0430\u0432\u043a\u0430',ssOn:'\u0432\u043a\u043b',ssOff:'\u0432\u044b\u043a\u043b',ssTitle:'\u0417\u0430\u0441\u0442\u0430\u0432\u043a\u0430',ssTap:'\u041d\u0430\u0436\u043c\u0438\u0442\u0435, \u0447\u0442\u043e\u0431\u044b \u0432\u0435\u0440\u043d\u0443\u0442\u044c\u0441\u044f',homeLink:'\u0413\u043b\u0430\u0432\u043d\u0430\u044f',proWl:'\u0414\u043b\u0438\u043d\u0430 \u0432\u043e\u043b\u043d\u044b',blCustomLabel:'\u00d7 \u2014 \u0441\u0432\u043e\u0439',integrity:'\u26a0 \u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u0446\u0435\u043b\u043e\u0441\u0442\u043d\u043e\u0441\u0442\u0438 \u0444\u0430\u0439\u043b\u0430 \u043d\u0435 \u043f\u0440\u043e\u0439\u0434\u0435\u043d\u0430 \u2014 \u0440\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442\u044b \u043c\u043e\u0433\u0443\u0442 \u0431\u044b\u0442\u044c \u043d\u0435\u0442\u043e\u0447\u043d\u044b. \u0421\u043a\u0430\u0447\u0430\u0439\u0442\u0435 \u043e\u0440\u0438\u0433\u0438\u043d\u0430\u043b \u0441 ',
+ resInfo:function(n,l){return n+' \u043e\u0431\u044a\u0435\u043a\u0442\u043e\u0432 \u043d\u0430\u0434 \u0433\u043e\u0440\u0438\u0437\u043e\u043d\u0442\u043e\u043c \u2014 LST '+l;},noObjects:function(a){return '\u041d\u0435\u0442 \u043e\u0431\u044a\u0435\u043a\u0442\u043e\u0432 \u0432\u044b\u0448\u0435 '+a+'\u00b0 \u0432 \u044d\u0442\u043e \u0432\u0440\u0435\u043c\u044f \u0438 \u0432 \u044d\u0442\u043e\u043c \u043c\u0435\u0441\u0442\u0435.';},geoOk:function(a){return '\u041f\u043e\u043b\u043e\u0436\u0435\u043d\u0438\u0435 \u0441 \u0443\u0441\u0442\u0440\u043e\u0439\u0441\u0442\u0432\u0430 \u2014 \u0442\u043e\u0447\u043d\u043e\u0441\u0442\u044c \u00b1'+a+' \u043c';},nowOk:function(t){return '\u0414\u0430\u0442\u0430, \u0432\u0440\u0435\u043c\u044f, \u0447\u0430\u0441\u043e\u0432\u043e\u0439 \u043f\u043e\u044f\u0441 ('+t+') \u0438 \u043b\u0435\u0442\u043d\u0435\u0435 \u0432\u0440\u0435\u043c\u044f \u0432\u0437\u044f\u0442\u044b \u0441 \u0443\u0441\u0442\u0440\u043e\u0439\u0441\u0442\u0432\u0430.';},polHA:function(h){return '\u041f\u043e\u043b\u043e\u0436\u0435\u043d\u0438\u0435 \u041f\u043e\u043b\u044f\u0440\u043d\u043e\u0439 \u043d\u0430 \u0441\u0435\u0442\u043a\u0435 \u2014 \u0447\u0430\u0441\u043e\u0432\u043e\u0439 \u0443\u0433\u043e\u043b '+h;}}};
+(function(){for(var _l in I2){if(!I[_l])I[_l]={};for(var _k in I2[_l])I[_l][_k]=I2[_l][_k];}})();
+var I3={
+it:{polEmpty:function(b){return 'Inserisci data, ora e posizione, poi premi \u201c'+b+'\u201d';}},
+en:{polEmpty:function(b){return 'Enter date, time and location, then press \u201c'+b+'\u201d';}},
+es:{polEmpty:function(b){return 'Introduce fecha, hora y ubicaci\u00f3n, luego pulsa \u201c'+b+'\u201d';}},
+ru:{polEmpty:function(b){return '\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u0434\u0430\u0442\u0443, \u0432\u0440\u0435\u043c\u044f \u0438 \u043c\u0435\u0441\u0442\u043e, \u0437\u0430\u0442\u0435\u043c \u043d\u0430\u0436\u043c\u0438\u0442\u0435 \u00ab'+b+'\u00bb';}}};
+(function(){for(var _l in I3){if(!I[_l])I[_l]={};for(var _k in I3[_l])I[_l][_k]=I3[_l][_k];}})();
+function applyLang(){var t=I[lang];
+document.querySelectorAll('[data-i18n]').forEach(function(e){var k=e.getAttribute('data-i18n');if(t[k]&&typeof t[k]==='string')e.textContent=t[k];});
+document.querySelectorAll('[data-i18n-html]').forEach(function(e){var k=e.getAttribute('data-i18n-html');if(t[k]&&typeof t[k]==='string')e.innerHTML=t[k];});
+document.querySelectorAll('[data-i18n-ph]').forEach(function(e){var k=e.getAttribute('data-i18n-ph');if(t[k]&&typeof t[k]==='string')e.setAttribute('placeholder',t[k]);});
+try{document.documentElement.setAttribute('lang',lang);}catch(e){}
+if(typeof applyLangDyn==='function')applyLangDyn();
+calc();}
 document.querySelectorAll('.lang-btn').forEach(function(b){b.addEventListener('click',function(){document.querySelectorAll('.lang-btn').forEach(function(x){x.classList.remove('active');});b.classList.add('active');lang=b.getAttribute('data-lang');try{localStorage.setItem('zac_lang',lang);}catch(e){}applyLang();});});
 (function(){
 var opts=[
@@ -307,11 +339,26 @@ var row=g('bl-row');
 opts.forEach(function(o){
 var b=document.createElement('button');
 b.className='bl-btn'+(o.t==='r'?' reducer':'')+(o.v===1?' active':'');
+b.setAttribute('data-v',o.v);
 b.textContent=o.l;
 b.addEventListener('click',function(){
 document.querySelectorAll('.bl-btn').forEach(function(x){x.classList.remove('active');});
-b.classList.add('active');curF=o.v;calc();});
-row.appendChild(b);});})();
+b.classList.add('active');curF=o.v;
+var bi=g('bl-input');if(bi)bi.value=o.v;
+calc();});
+row.appendChild(b);});
+var blInput=g('bl-input');
+if(blInput)blInput.addEventListener('input',function(){
+var v=parseFloat(this.value);
+if(isNaN(v)||v<=0)return;
+curF=v;
+var matched=false;
+document.querySelectorAll('.bl-btn').forEach(function(x){
+var xv=parseFloat(x.getAttribute('data-v'));
+var isM=Math.abs(xv-v)<1e-9;
+x.classList.toggle('active',isM);
+if(isM)matched=true;});
+calc();});})();
 document.querySelectorAll('.tab').forEach(function(b){b.addEventListener('click',function(){document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('active');});document.querySelectorAll('.panel').forEach(function(x){x.classList.remove('active');});b.classList.add('active');g('panel-'+b.getAttribute('data-tab')).classList.add('active');});});
 var CAMS=[
 
@@ -526,11 +573,11 @@ var CD=[
 ['Obs. Sutherland (SAAO)',-32.38,20.81,2,'F'],['Obs. Boyden (Bloemfontein)',-29.04,26.41,2,'F'],['Obs. Entoto (Ethiopia)',9.04,38.77,3,'F'],];
 var GN={'I':'Italy','E':'Europe','A':'Americas','S':'Asia','O':'Oceania','F':'Africa'};
 var seen={};var CIT=[];CD.forEach(function(c){if(!seen[c[0]]){seen[c[0]]=true;CIT.push(c);}});
-var TZ=[{l:'UTC-12',o:-12},{l:'UTC-11',o:-11},{l:'UTC-10 Hawaii',o:-10},{l:'UTC-9 Alaska',o:-9},{l:'UTC-8 Los Angeles',o:-8},{l:'UTC-7 Denver',o:-7},{l:'UTC-6 Chicago',o:-6},{l:'UTC-5 New York',o:-5},{l:'UTC-4 Caracas',o:-4},{l:'UTC-3 Buenos Aires',o:-3},{l:'UTC-2',o:-2},{l:'UTC-1 Azores',o:-1},{l:'UTC+0 London',o:0},{l:'UTC+1 Rome/Paris',o:1},{l:'UTC+2 Cairo/Athens',o:2},{l:'UTC+3 Moscow/Nairobi',o:3},{l:'UTC+3:30 Tehran',o:3.5},{l:'UTC+4 Dubai',o:4},{l:'UTC+4:30 Kabul',o:4.5},{l:'UTC+5 Karachi',o:5},{l:'UTC+5:30 New Delhi',o:5.5},{l:'UTC+5:45 Kathmandu',o:5.75},{l:'UTC+6 Dhaka',o:6},{l:'UTC+6:30 Yangon',o:6.5},{l:'UTC+7 Bangkok',o:7},{l:'UTC+8 Beijing',o:8},{l:'UTC+8:45 Eucla',o:8.75},{l:'UTC+9 Tokyo',o:9},{l:'UTC+9:30 Adelaide',o:9.5},{l:'UTC+10 Sydney',o:10},{l:'UTC+10:30',o:10.5},{l:'UTC+11 Vladivostok',o:11},{l:'UTC+12 Auckland',o:12},{l:'UTC+13 Tonga',o:13},{l:'UTC+14 Line Islands',o:14}];
+var TZ=[{l:'UTC-12',o:-12},{l:'UTC-11',o:-11},{l:'UTC-10 Hawaii',o:-10},{l:'UTC-9 Alaska',o:-9},{l:'UTC-8 Los Angeles',o:-8},{l:'UTC-7 Denver',o:-7},{l:'UTC-6 Chicago',o:-6},{l:'UTC-5 New York',o:-5},{l:'UTC-4 Caracas',o:-4},{l:'UTC-3 Buenos Aires',o:-3},{l:'UTC-2',o:-2},{l:'UTC-1 Azores',o:-1},{l:'UTC+0 London',o:0},{l:'UTC+1 Rome/Paris',o:1},{l:'UTC+2 Cairo/Athens',o:2},{l:'UTC+3 Moscow/Nairobi',o:3},{l:'UTC+3:30 Tehran',o:3.5},{l:'UTC+4 Dubai',o:4},{l:'UTC+4:30 Kabul',o:4.5},{l:'UTC+5 Karachi',o:5},{l:'UTC+5:30 New Delhi',o:5.5},{l:'UTC+5:45 Kathmandu',o:5.75},{l:'UTC+6 Dhaka',o:6},{l:'UTC+6:30 Yangon',o:6.5},{l:'UTC+7 Bangkok',o:7},{l:'UTC+8 Beijing',o:8},{l:'UTC+8:45 Eucla',o:8.75},{l:'UTC+9 Tokyo',o:9},{l:'UTC+9:30 Adelaide',o:9.5},{l:'UTC+10 Sydney',o:10},{l:'UTC+10:30',o:10.5},{l:'UTC+11 Vladivostok',o:11},{l:'UTC+12 Auckland',o:12},{l:'UTC+13 Tonga',o:13},{l:'UTC+14 Line Islands',o:14},{l:'UTC-9:30 Marquesas',o:-9.5},{l:'UTC-3:30 Newfoundland',o:-3.5},{l:'UTC+12:45 Chatham',o:12.75}];
 var tzSel=g('ov-tz');
-TZ.forEach(function(t,i){var o=document.createElement('option');o.value=i;o.textContent=t.l;if(t.o===1)o.selected=true;tzSel.appendChild(o);});
+(function(){var _ord=TZ.map(function(t,i){return i;}).sort(function(a,b){return TZ[a].o-TZ[b].o;});_ord.forEach(function(i){var t=TZ[i];var o=document.createElement('option');o.value=i;o.textContent=t.l;if(t.o===1)o.selected=true;tzSel.appendChild(o);});})();
 var cs=g('city-search'),dd=g('city-dd');
-cs.addEventListener('input',function(){var q=this.value.toLowerCase().trim();dd.innerHTML='';if(q.length<2){dd.style.display='none';return;}var m=[];for(var i=0;i<CIT.length;i++){if(CIT[i][0].toLowerCase().indexOf(q)!==-1){m.push(i);if(m.length>=12)break;}}if(!m.length){dd.style.display='none';return;}m.forEach(function(idx){var c=CIT[idx];var it=document.createElement('div');it.className='city-item';it.innerHTML='<span>'+c[0]+'</span><span class="city-gtag">'+GN[c[4]]+'</span>';it.addEventListener('click',function(){cs.value=c[0];g('ov-lat').value=String(c[1]).replace(',','.'); g('ov-lon').value=String(c[2]).replace(',','.');var bi=0,bd=999;TZ.forEach(function(t,i){var d=Math.abs(t.o-c[3]);if(d<bd){bd=d;bi=i;}});tzSel.value=bi;g('city-note').textContent=c[0]+' — lat '+c[1]+', lon '+c[2]+' (approximate)';dd.style.display='none';});dd.appendChild(it);});dd.style.display='block';});
+cs.addEventListener('input',function(){var q=this.value.toLowerCase().trim();dd.innerHTML='';if(q.length<2){dd.style.display='none';return;}var m=[];for(var i=0;i<CIT.length;i++){if(CIT[i][0].toLowerCase().indexOf(q)!==-1){m.push(i);if(m.length>=12)break;}}if(!m.length){dd.style.display='none';return;}m.forEach(function(idx){var c=CIT[idx];var it=document.createElement('div');it.className='city-item';it.innerHTML='<span>'+c[0]+'</span><span class="city-gtag">'+GN[c[4]]+'</span>';it.addEventListener('click',function(){cs.value=c[0];g('ov-lat').value=String(c[1]).replace(',','.'); g('ov-lon').value=String(c[2]).replace(',','.');var bi=0,bd=999;TZ.forEach(function(t,i){var d=Math.abs(t.o-c[3]);if(d<bd){bd=d;bi=i;}});tzSel.value=bi;g('city-note').textContent=c[0]+' — lat '+c[1]+', lon '+c[2]+' ('+I[lang].ovApprox+')';dd.style.display='none';});dd.appendChild(it);});dd.style.display='block';});
 document.addEventListener('click',function(e){var t=e.target,iW=false;while(t){if(t.className&&typeof t.className==='string'&&t.className.indexOf('search-wrap')!==-1){iW=true;break;}t=t.parentNode;}if(!iW)dd.style.display='none';});
 document.querySelectorAll('.dst-opt').forEach(function(b){b.addEventListener('click',function(){document.querySelectorAll('.dst-opt').forEach(function(x){x.classList.remove('active');});b.classList.add('active');dst=parseInt(b.getAttribute('data-dst'));});});
 var OBJ=[
@@ -672,14 +719,15 @@ function p2(n){return n<10?'0'+n:''+n;}
 function rS(h){var hh=Math.floor(h),mm=Math.floor((h-hh)*60),ss=Math.round(((h-hh)*60-mm)*60);return p2(hh)+'h'+p2(mm)+'m'+p2(ss)+'s';}
 function dS(d){var s=d<0?'−':'+',a=Math.abs(d),dg=Math.floor(a),mm=Math.floor((a-dg)*60),ss=Math.round(((a-dg)*60-mm)*60);return s+p2(dg)+'°'+p2(mm)+"'"+p2(ss)+'"';}
 function showObj(){
+var t=I[lang];
 var lat=parseFloat(g('ov-lat').value.replace(',','.')),lon=parseFloat(g('ov-lon').value.replace(',','.')),
 minA=parseFloat(g('ov-minalt').value)||15,
 tz=TZ[parseInt(tzSel.value)].o,
 ds=g('ov-date').value.trim(),ts=g('ov-time').value.trim();
-if(isNaN(lat)||isNaN(lon)){g('ov-results').innerHTML='<p class="no-results">Please enter latitude and longitude.</p>';return;}
-if(!ds||!ts){g('ov-results').innerHTML='<p class="no-results">Please enter date and time.</p>';return;}
+if(isNaN(lat)||isNaN(lon)){g('ov-results').innerHTML='<p class="no-results">'+t.errLatLon+'</p>';return;}
+if(!ds||!ts){g('ov-results').innerHTML='<p class="no-results">'+t.errDateTime+'</p>';return;}
 var dp=ds.replace(/-/g,'/').split('/'),tp=ts.split(':');
-if(dp.length<3||tp.length<2){g('ov-results').innerHTML='<p class="no-results">Invalid format. Use YYYY/MM/DD and HH:MM.</p>';return;}
+if(dp.length<3||tp.length<2){g('ov-results').innerHTML='<p class="no-results">'+t.errFormat+'</p>';return;}
 var y=parseInt(dp[0]),mo=parseInt(dp[1]),d=parseInt(dp[2]),
 utcH=parseInt(tp[0])+parseInt(tp[1])/60-tz-dst;
 checkArea51(lat,lon);
@@ -687,11 +735,12 @@ if(utcH<0){utcH+=24;d--;}if(utcH>=24){utcH-=24;d++;}
 var J=jd(y,mo,d,utcH),L=lst(J,lon),res=[];
 OBJ.forEach(function(o){var a=Math.round(alt(o.ra,o.dec,lat,L)*10)/10;if(a>=minA)res.push({id:o.id,name:o.name,type:o.type,ra:o.ra,dec:o.dec,mag:o.mag,alt:a,sz:o.sz});});
 res.sort(function(a,b){return b.alt-a.alt;});
-if(!res.length){g('ov-results').innerHTML='<p class="no-results">No objects above '+minA+'° at this time and location.</p>';return;}
+if(!res.length){g('ov-results').innerHTML='<p class="no-results">'+t.noObjects(minA)+'</p>';return;}
 window._zacRes=res;window._zacSort={col:'alt',dir:-1};
 renderObjTable(res,'alt',-1,res.length,L);
 updatePolar(L);}
 function renderObjTable(res,col,dir,total,L){
+var t=I[lang];
 var sorted=res.slice().sort(function(a,b){
 var va=a[col],vb=b[col];
 if(col==='id'||col==='name'||col==='type'){va=String(va);vb=String(vb);return dir*(va<vb?-1:va>vb?1:0);}
@@ -700,9 +749,9 @@ function th(label,key){
 var isActive=window._zacSort.col===key;
 var arrow=isActive?(window._zacSort.dir===-1?' ↓':' ↑'):'';
 return '<th style="cursor:pointer;user-select:none;'+(isActive?'color:var(--text)':'')+'" data-col="'+key+'">'+label+arrow+'</th>';}
-var html='<div class="results-info">'+total+' objects above — LST '+rS(L||0)+'</div>'
+var html='<div class="results-info">'+t.resInfo(total,rS(L||0))+'</div>'
 +'<table class="obj-table"><thead><tr>'
-+th('ID','id')+th('Name','name')+th('Type','type')
++th('ID','id')+th(t.thName,'name')+th(t.thType,'type')
 +'<th>RA</th><th>Dec</th>'
 +th('Mag','mag')+th('Alt','alt')
 +'</tr></thead><tbody>';
@@ -729,6 +778,7 @@ var az=Math.acos(Math.max(-1,Math.min(1,cosAz)))*180/Math.PI;
 if(Math.sin(haR)>0)az=360-az;
 return az;}
 function showObjModal(o){
+var t=I[lang];
 var lat=parseFloat(g('ov-lat').value.replace(',','.'));
 var L=window._zacL||0;
 var az=azimuth(o.ra,o.dec,lat,L);
@@ -753,7 +803,7 @@ overlay.innerHTML=
 +'<div style="background:#220000;border-radius:8px;padding:.5rem;text-align:center"><div style="font-size:10px;color:var(--text3)">Az</div><div style="font-size:16px;font-family:var(--mono);color:var(--text)">'+az.toFixed(1)+'°</div></div>'
 +'</div>'
 +'<div style="background:#220000;border-radius:8px;padding:.75rem;margin-bottom:.5rem">'
-+'<div style="font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.4rem">Coordinates</div>'
++'<div style="font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.4rem">'+t.mCoordinates+'</div>'
 +'<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.3rem">'
 +'<span style="font-size:12px;color:var(--text2)">RA</span>'
 +'<span style="font-family:var(--mono);font-size:12px;color:var(--text)">'+raStr+'</span>'
@@ -763,7 +813,7 @@ overlay.innerHTML=
 +'<span style="font-family:var(--mono);font-size:12px;color:var(--text)">'+decStr+'</span>'
 +'</div>'
 +'</div>'
-+(o.sz?'<div style="font-size:12px;color:var(--text2);text-align:center;margin-bottom:1rem">Size: <span style="font-family:var(--mono);color:var(--text)">'+o.sz+'</span></div>':'')
++(o.sz?'<div style="font-size:12px;color:var(--text2);text-align:center;margin-bottom:1rem">'+t.mSize+': <span style="font-family:var(--mono);color:var(--text)">'+o.sz+'</span></div>':'')
 +'<div style="text-align:center">'
 +'<svg width="220" height="220" viewBox="0 0 220 220">'
 +'<circle cx="110" cy="110" r="100" fill="#0d0000" stroke="rgba(255,100,100,0.15)" stroke-width="1"/>'
@@ -780,7 +830,7 @@ overlay.innerHTML=
 +'<line x1="'+(px-8).toFixed(1)+'" y1="'+py.toFixed(1)+'" x2="'+(px+8).toFixed(1)+'" y2="'+py.toFixed(1)+'" stroke="#f5c842" stroke-width="1" opacity=".5"/>'
 +'<line x1="'+px.toFixed(1)+'" y1="'+(py-8).toFixed(1)+'" x2="'+px.toFixed(1)+'" y2="'+(py+8).toFixed(1)+'" stroke="#f5c842" stroke-width="1" opacity=".5"/>'
 +'</svg>'
-+'<div style="font-size:10px;color:var(--text3);margin-top:.25rem">Sky view from observer — zenith at center</div>'
++'<div style="font-size:10px;color:var(--text3);margin-top:.25rem">'+t.mSkyView+'</div>'
 +'</div>'
 +'</div>';
 overlay.addEventListener('click',function(){document.body.removeChild(overlay);});
@@ -791,9 +841,7 @@ g('conv-toggle').addEventListener('click',function(){
 var s=g('conv-section');
 var open=s.style.display==='none';
 s.style.display=open?'block':'none';
-g('conv-toggle').innerHTML=open
-?'↳ Coordinate Converter: decimal ↔ DMS ↑'
-:'↳ Coordinate Converter: decimal ↔ DMS ↓';});
+g('conv-arrow').textContent=open?'↑':'↓';});
 function ddToDms(dd){
 var abs=Math.abs(dd);
 var d=Math.floor(abs);
@@ -827,7 +875,7 @@ g('dms-use-btn')._lat=latDD;g('dms-use-btn')._lon=lonDD;}
 g('dms-use-btn').addEventListener('click',function(){
 if(this._lat!==undefined){g('ov-lat').value=this._lat.toFixed(6);}
 if(this._lon!==undefined){g('ov-lon').value=this._lon.toFixed(6);}
-g('city-note').textContent='Coordinates from converter';});
+g('city-note').textContent=I[lang].ovFromConv;});
 g('clear-btn').addEventListener('click',function(){
 g('city-search').value='';
 g('city-note').textContent='';
@@ -837,14 +885,14 @@ g('ov-date').value='';
 g('ov-time').value='';
 g('ov-minalt').value='15';
 g('ov-results').innerHTML='';
-g('polar-info').innerHTML='<span style="color:var(--text3);font-size:12px">Inserisci data, ora e posizione, poi clicca "Show objects now!"</span>';});
+g('polar-info').innerHTML='<span style="color:var(--text3);font-size:12px" id="polar-empty"></span>';
+g('geo-note').textContent='';
+setPolarEmpty();});
 g('polar-toggle').addEventListener('click',function(){
 var s=g('polar-section');
 var open=s.style.display==='none';
 s.style.display=open?'block':'none';
-g('polar-toggle').innerHTML=open
-?'&#11088; Polar Alignment — Posizione Polaris ↑'
-:'&#11088; Polar Alignment — Posizione Polaris ↓';});
+g('polar-arrow').textContent=open?'↑':'↓';});
 (function(){
 var g2=document.getElementById('polar-ticks');
 for(var i=0;i<48;i++){
@@ -861,6 +909,7 @@ ln.setAttribute('stroke','var(--text3)');
 ln.setAttribute('stroke-width',isMaj?'1.2':'0.6');
 g2.appendChild(ln);}})();
 function updatePolar(L){
+var t=I[lang];
 var RA_POL=2.9167;
 var ha=((L-RA_POL)%24+24)%24;
 var haMod=ha/2;
@@ -881,14 +930,14 @@ lbl.setAttribute('y',(ly+4).toFixed(1));
 var lat=parseFloat(g('ov-lat').value.replace(',','.'));
 if(!isNaN(lat)&&lat<0){
 document.getElementById('polar-info').innerHTML=
-'<span style="color:var(--warn-txt);font-size:13px">&#9888; Southern hemisphere detected.<br>Polaris is not visible from your location.<br><span style="font-size:11px;color:var(--text3)">Southern polar alignment uses Sigma Octantis (mag 5.4) — a different procedure applies.</span></span>';
+'<span style="color:var(--warn-txt);font-size:13px">&#9888; '+t.polSouth1+'<br>'+t.polSouth2+'<br><span style="font-size:11px;color:var(--text3)">'+t.polSouth3+'</span></span>';
 return;}
 var hh=Math.floor(haMod),mm=Math.floor((haMod-hh)*60);
 var p2=function(n){return n<10?'0'+n:''+n;};
 document.getElementById('polar-info').innerHTML=
 '<strong style="font-size:16px;font-family:var(--mono)">'+p2(hh)+'h '+p2(mm)+'m</strong><br>'+
-'<span style="color:var(--text2);font-size:12px">Polaris position on reticle — hour angle '+p2(hh)+'h '+p2(mm)+'m</span><br>'+
-'<span style="color:var(--text3);font-size:11px">Rotate the mount until Polaris coincides with the dot on the reticle</span>';}
+'<span style="color:var(--text2);font-size:12px">'+t.polHA(p2(hh)+'h '+p2(mm)+'m')+'</span><br>'+
+'<span style="color:var(--text3);font-size:11px">'+t.polRotate+'</span>';}
 function checkArea51(lat,lon){
 if(Math.abs(lat-45.68)<0.02&&Math.abs(lon-10.83)<0.02){
 var cn=document.createElement('div');
@@ -939,14 +988,17 @@ applyLang();
 var SS_TIMEOUT=30000;
 var ssEl=null;
 var ssTimer=null;
+var ssOn=true;
+try{ssOn=(localStorage.getItem('zac_ss')!=='0');}catch(e){}
 function showSS(){
-if(ssEl)return;
+if(ssEl||!ssOn)return;
+var t=I[lang]||I.en;
 ssEl=document.createElement('div');
 ssEl.style.cssText='position:fixed;inset:0;background:#1a0000;z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;user-select:none;-webkit-user-select:none;';
 ssEl.innerHTML='<div style="color:#6b6b6b;font-size:13px;letter-spacing:0.18em;font-family:monospace;text-align:center;line-height:2.2;text-transform:uppercase;">'
 +'<div style="font-size:28px;margin-bottom:1.2rem;opacity:0.18">🔭</div>'
-+'Screen Saver<br>'
-+'<span style="font-size:10px;letter-spacing:0.22em;opacity:0.6">Tap to return</span>'
++(t.ssTitle||'Screen Saver')+'<br>'
++'<span style="font-size:10px;letter-spacing:0.22em;opacity:0.6">'+(t.ssTap||'Tap to return')+'</span>'
 +'</div>';
 ssEl.addEventListener('click',hideSS);
 ssEl.addEventListener('touchstart',hideSS,{passive:true});
@@ -956,10 +1008,97 @@ if(ssEl){document.body.removeChild(ssEl);ssEl=null;}
 resetTimer();}
 function resetTimer(){
 clearTimeout(ssTimer);
-ssTimer=setTimeout(showSS,SS_TIMEOUT);}
+if(ssOn)ssTimer=setTimeout(showSS,SS_TIMEOUT);}
 ['mousemove','mousedown','keydown','touchstart','scroll','input','change'].forEach(function(ev){
 document.addEventListener(ev,function(){if(!ssEl)resetTimer();},{passive:true});});
+window.ZAC_SS={
+isOn:function(){return ssOn;},
+set:function(v){
+ssOn=!!v;
+try{localStorage.setItem('zac_ss',ssOn?'1':'0');}catch(e){}
+if(!ssOn){clearTimeout(ssTimer);if(ssEl){document.body.removeChild(ssEl);ssEl=null;}}
+else resetTimer();
+paintSS();}};
+function paintSS(){
+var t=I[lang]||I.en;
+document.querySelectorAll('.ss-toggle').forEach(function(b){
+b.innerHTML='🌙 '+(ssOn?(t.ssOn||'on'):(t.ssOff||'off'));
+b.title=t.ssLabel||'Screen saver';
+b.style.color=ssOn?'var(--text)':'var(--text3)';
+b.style.borderColor=ssOn?'var(--text2)':'var(--border2)';});}
+window.ZAC_SS.paint=paintSS;
+document.querySelectorAll('.ss-toggle').forEach(function(b){
+b.addEventListener('click',function(){window.ZAC_SS.set(!ssOn);});});
+paintSS();
 resetTimer();})();
+
+/* ===== i18n dinamico, orologio e posizione dal dispositivo (solo su click) ===== */
+
+
+function setPolarEmpty(){
+var e=document.getElementById('polar-empty');
+if(!e)return;
+var t=I[lang]||I.en;
+if(typeof t.polEmpty!=='function')return;
+e.textContent=t.polEmpty(t.ovShow);}
+
+function applyLangDyn(){
+setPolarEmpty();
+if(window.ZAC_SS&&window.ZAC_SS.paint)window.ZAC_SS.paint();
+if(window.ZAC_RELBTN)window.ZAC_RELBTN();}
+
+/* Fuso e ora legale ricavati dal dispositivo: nessuna rete, solo l'orologio locale. */
+function zacTzInfo(d){
+var y=d.getFullYear();
+var jan=new Date(y,0,1).getTimezoneOffset();
+var jul=new Date(y,6,1).getTimezoneOffset();
+var std=Math.max(jan,jul);
+var cur=d.getTimezoneOffset();
+return {stdH:-std/60,curH:-cur/60,isDst:cur<std,shiftH:(std-cur)/60};}
+
+function zacPickTz(offH){
+var bi=0,bd=1e9;
+TZ.forEach(function(t,i){var dd=Math.abs(t.o-offH);if(dd<bd){bd=dd;bi=i;}});
+return {idx:bi,exact:bd<1e-6};}
+
+(function(){
+var nb=g('now-btn');
+if(nb)nb.addEventListener('click',function(){
+var t=I[lang]||I.en,d=new Date();
+var p2=function(n){return n<10?'0'+n:''+n;};
+g('ov-date').value=d.getFullYear()+'-'+p2(d.getMonth()+1)+'-'+p2(d.getDate());
+g('ov-time').value=p2(d.getHours())+':'+p2(d.getMinutes());
+var ti=zacTzInfo(d),useDst=0,target=ti.curH;
+if(ti.isDst&&Math.abs(ti.shiftH-1)<0.01){useDst=1;target=ti.stdH;}
+var pk=zacPickTz(target);
+tzSel.value=pk.idx;
+dst=useDst;
+document.querySelectorAll('.dst-opt').forEach(function(b){b.classList.toggle('active',parseInt(b.getAttribute('data-dst'))===dst);});
+var lbl=TZ[pk.idx].l;
+g('geo-note').textContent=pk.exact?t.nowOk(lbl):t.nowApprox;
+saveSetup();});
+
+var gb=g('geo-btn');
+if(gb)gb.addEventListener('click',function(){
+var t=I[lang]||I.en,note=g('geo-note');
+if(!navigator.geolocation){note.textContent=t.geoNoApi;return;}
+if(window.isSecureContext===false){note.textContent=t.geoInsecure;return;}
+note.textContent=t.geoWait;
+gb.disabled=true;
+navigator.geolocation.getCurrentPosition(function(pos){
+gb.disabled=false;
+g('ov-lat').value=pos.coords.latitude.toFixed(4);
+g('ov-lon').value=pos.coords.longitude.toFixed(4);
+g('city-search').value='';
+g('city-note').textContent='';
+note.textContent=t.geoOk(Math.round(pos.coords.accuracy||0));
+saveSetup();},
+function(err){
+gb.disabled=false;
+note.textContent=(err&&err.code===1)?t.geoDenied:(err&&err.code===3)?t.geoTimeout:t.geoUnavail;},
+{enableHighAccuracy:true,timeout:20000,maximumAge:0});});
+})();
+
 (function(){var _lb=document.querySelector('.lang-btn[data-lang="'+lang+'"]');if(_lb){document.querySelectorAll('.lang-btn').forEach(function(x){x.classList.remove('active');});_lb.classList.add('active');}})();
 
 // SETUP SAVE/RESTORE
@@ -1009,8 +1148,9 @@ function restoreSetup(){
     if(typeof s.curF!=='undefined'&&s.curF){
       curF=parseFloat(s.curF);
       document.querySelectorAll('.bl-btn').forEach(function(b){
-        b.classList.toggle('active',parseFloat(b.getAttribute('data-v'))==curF);
+        b.classList.toggle('active',Math.abs(parseFloat(b.getAttribute('data-v'))-curF)<1e-9);
       });
+      var bi0=g('bl-input');if(bi0)bi0.value=curF;
     }
     if(s.ovTz){
       setTimeout(function(){
@@ -1030,6 +1170,8 @@ function restoreSetup(){
 document.querySelectorAll('.bl-btn').forEach(function(b){
   b.addEventListener('click',function(){setTimeout(saveSetup,50);});
 });
+var _blInEl=g('bl-input');
+if(_blInEl)_blInEl.addEventListener('change',saveSetup);
 // Salva quando cambia DST
 document.querySelectorAll('.dst-opt').forEach(function(b){
   b.addEventListener('click',function(){setTimeout(saveSetup,50);});
@@ -1049,11 +1191,11 @@ restoreSetup();
 
 // ===== Aggiornamento manuale + note di rilascio incorporate — zero richieste proprie =====
 // CHECKLIST RELEASE: aggiornare SOLO RELNOTES qui sotto (ver + 4 testi). Il pulsante si aggiorna da solo.
-var RELNOTES={ver:'1.5.1',
- it:'• Corretti i dati di 8 camere e la declinazione di NGC 6188\n• Aggiunte 6 camere: Explore Scientific, Canon R, Sony A7\n• Risolta l\'omonimia Nicosia (Sicilia/Cipro)\n• Aggiornamento ora solo manuale, con questo pulsante',
- en:'• Fixed specs of 8 cameras and the declination of NGC 6188\n• Added 6 cameras: Explore Scientific, Canon R, Sony A7\n• Fixed the Nicosia name clash (Sicily/Cyprus)\n• Updates are now manual only, via this button',
- es:'• Corregidos los datos de 8 cámaras y la declinación de NGC 6188\n• Añadidas 6 cámaras: Explore Scientific, Canon R, Sony A7\n• Resuelta la homonimia de Nicosia (Sicilia/Chipre)\n• Las actualizaciones ahora son solo manuales, con este botón',
- ru:'• Исправлены данные 8 камер и склонение NGC 6188\n• Добавлены 6 камер: Explore Scientific, Canon R, Sony A7\n• Устранено совпадение имён Никосия (Сицилия/Кипр)\n• Обновление теперь только вручную, этой кнопкой'};
+var RELNOTES={ver:'1.6.1',
+ it:'• Barlow/riduttore: ora si pu\u00f2 scrivere il fattore esatto (es. 0.75, 1.4, 2.4), non solo i preset\n• Salvaschermo spostato in alto vicino alla lingua, e disattivabile\n• Pagina \u201cOggetti visibili\u201d e allineamento polare ora tradotti in tutte le lingue\n• Nuovo pulsante \u201cAdesso\u201d: data, ora, fuso e ora legale dal dispositivo\n• Nuovo pulsante \u201cUsa la mia posizione\u201d, facoltativo e solo su richiesta',
+ en:'• Barlow/reducer: you can now type the exact factor (e.g. 0.75, 1.4, 2.4), not just the presets\n• Screen saver moved next to the language switcher, and can be switched off\n• \u201cVisible Objects\u201d page and polar alignment are now fully translated\n• New \u201cNow\u201d button: date, time, timezone and DST from your device\n• New \u201cUse my position\u201d button, optional and only on request',
+ es:'• Barlow/reductor: ahora puedes escribir el factor exacto (ej. 0.75, 1.4, 2.4), no solo los preajustes\n• Salvapantallas movido junto al selector de idioma, y se puede desactivar\n• P\u00e1gina \u201cObjetos visibles\u201d y alineaci\u00f3n polar ahora traducidas\n• Nuevo bot\u00f3n \u201cAhora\u201d: fecha, hora, zona horaria y horario de verano del dispositivo\n• Nuevo bot\u00f3n \u201cUsar mi posici\u00f3n\u201d, opcional y solo a petici\u00f3n',
+ ru:'• Барло/редуктор: теперь можно ввести точный коэффициент (напр. 0.75, 1.4, 2.4), а не только пресеты\n• Экранная заставка перенесена рядом с переключателем языка и теперь отключается\n• Страница \u00abВидимые объекты\u00bb и полярная выставка полностью переведены\n• Новая кнопка \u00abСейчас\u00bb: дата, время, часовой пояс и летнее время с устройства\n• Новая кнопка \u00abМоё местоположение\u00bb, только по запросу'};
 (function(){
 var btn=g('rel-btn');if(!btn)return;
 var RT={
@@ -1062,7 +1204,9 @@ var RT={
  es:{upd:'Actualizar a la última versión',chk:'Actualizando…',latest:'✔ Ya tienes la versión más reciente',title:'Novedades de la versión ',gh:'Todas las releases en GitHub →',close:'Cerrar'},
  ru:{upd:'Обновить до последней версии',chk:'Обновление…',latest:'✔ У вас последняя версия',title:'Что нового в версии ',gh:'Все релизы на GitHub →',close:'Закрыть'}};
 var t=RT[lang]||RT.en;
-btn.innerHTML='&#11088; v'+RELNOTES.ver+' &nbsp;&mdash;&nbsp; '+t.upd+' &rarr;';
+function paintRel(){t=RT[lang]||RT.en;btn.innerHTML='&#11088; v'+RELNOTES.ver+' &nbsp;&mdash;&nbsp; '+t.upd+' &rarr;';}
+window.ZAC_RELBTN=paintRel;
+paintRel();
 function esc(x){var d=document.createElement('div');d.textContent=x;return d.innerHTML;}
 function showRel(already){
  var notes=RELNOTES[lang]||RELNOTES.en;

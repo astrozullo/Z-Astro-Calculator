@@ -19,7 +19,7 @@
 <a class="back" href="index.html">← Back to Z-Astro-Calculator</a>
 
 <h1>Privacy Policy</h1>
-<p style="font-size:13px;color:#7a5555">Z-Astro-Calculator — last updated July 2026</p>
+<p style="font-size:13px;color:#7a5555">Z-Astro-Calculator — last updated September 2026</p>
 
 <h2>The app itself</h2>
 <p>Z-Astro-Calculator is a static single-page application. It runs entirely in your browser and does not collect, transmit, or store any personal data. It loads no external resources: no fonts, no scripts, no images from third-party servers. No analytics, no cookies, no tracking of any kind. All calculations happen locally on your device.</p>
@@ -39,8 +39,14 @@
 <h2>Installing it as an app</h2>
 <p>If you install this site as an app from your browser (Android, desktop Chrome or Edge), the files are stored on your device and the app runs from there. Installing sends nothing to anyone and creates no account.</p>
 
+<h2>Location and clock (optional, on request only)</h2>
+<p>Two buttons on the &ldquo;Visible Objects Tonight&rdquo; page can fill in the observing fields for you. Both do nothing unless you press them: the app never reads your position or your clock on its own.</p>
+<p><strong>&ldquo;Now&rdquo;</strong> reads your device clock and time-zone setting to fill in date, time, timezone and daylight saving. This happens entirely inside your browser, involves no permission prompt and no network traffic of any kind.</p>
+<p><strong>&ldquo;Use my position&rdquo;</strong> uses the browser Geolocation API. Your browser will ask you for permission the first time, and you can refuse or revoke it at any time in your browser or system settings; if you refuse, everything else keeps working and you can enter or search your coordinates by hand. The coordinates are written into the latitude and longitude fields, used for the calculation, and saved in local storage on your device together with the rest of your setup. They are never sent to the author or to anyone else, and the app performs no network request in connection with them.</p>
+<p>One caveat that is not under the control of this app: depending on your device, the browser may determine the position through your operating system&rsquo;s own location service (typically satellite positioning, and where that is unavailable, Wi-Fi or mobile-network based positioning provided by your browser or OS vendor). In that case your device communicates with that vendor, under their privacy policy, not with this site. The app asks for a high-accuracy fix, which on devices with a GPS receiver is normally resolved on the device itself. The Geolocation API also requires a secure connection (HTTPS), so the button has no effect if the page is opened over plain HTTP.</p>
+
 <h2>Local storage</h2>
-<p>The app uses your browser's local storage to save your language preference, your optical setup (telescope diameter, focal length, pixel size, sensor, Barlow, city, timezone, DST) and the last release-notes version shown to you, on your device. This data never leaves your device and is not accessible to anyone other than you.</p>
+<p>The app uses your browser's local storage to save your language preference, your optical setup (telescope diameter, focal length, pixel size, sensor, Barlow, city, latitude, longitude, timezone, DST), your screen-saver preference and the last release-notes version shown to you, on your device. This data never leaves your device and is not accessible to anyone other than you.</p>
 
 <h2>Third-party links</h2>
 <p>The app contains a link to the GitHub releases page. Clicking it will redirect you to GitHub, where their privacy policy applies. Your IP address will be received by GitHub at that point, as with any link you open in a browser.</p>

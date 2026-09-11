@@ -28,8 +28,8 @@ FUNZIONALITA' PRINCIPALI
 ------------------------------------------------------------
 - PIXEL SCALE E FOV - calcolo automatico da diametro, focale, pixel size e
   risoluzione sensore
-- BARLOW E RIDUTTORI - da 0.5x a 5x, con indicazione del cambio di focale
-  effettiva
+- BARLOW E RIDUTTORI - preset da 0.5x a 5x, oppure fattore esatto a piacere
+  (es. 0.75, 1.4, 2.4)
 - MODALITA' PRO - selezione lunghezza d'onda (nm) per il calcolo del limite di
   Rayleigh con luce specifica (Ha, OIII, SII, NIR, ecc.)
 - ANALISI CAMPIONAMENTO - zone ottimali Nyquist per planetario e deep sky con
@@ -47,8 +47,16 @@ FUNZIONALITA' PRINCIPALI
   trasferimento diretto ai campi di calcolo
 - AVVISI SUI VALORI - messaggi contestuali quando si inseriscono valori
   fisicamente improbabili
+- ADESSO - compila data, ora, fuso orario e ora legale leggendo l'orologio del
+  dispositivo. Nessun permesso richiesto, nessuna rete.
+- USA LA MIA POSIZIONE - facoltativo: compila latitudine e longitudine tramite
+  la geolocalizzazione del browser, solo se premi il pulsante e concedi il
+  permesso. Le coordinate restano sul dispositivo.
+- SALVASCHERMO DISATTIVABILE - il salvaschermo (30 s di inattivita') si accende
+  e si spegne dal pulsante in fondo alla pagina; la scelta viene ricordata
 - SETUP RICORDATO - diametro, focale, pixel size, sensore, Barlow, citta',
-  timezone, DST e lingua restano salvati tra una sessione e l'altra
+  coordinate, timezone, DST, lingua e salvaschermo restano salvati tra una
+  sessione e l'altra
 - AGGIORNAMENTO MANUALE - l'app si aggiorna solo premendo il pulsante in fondo
   alla pagina; al termine un banner mostra le novita' della versione
 - 4 LINGUE - Italiano, English, Espanol, Russkij
@@ -98,7 +106,9 @@ PRIVACY E REQUISITI
 Versione GitHub Pages: al primo accesso GitHub riceve l'IP del visitatore, come
 qualsiasi sito web. Un service worker mette in cache i file localmente per l'uso
 offline; da li' in poi l'app e' servita sempre dalla cache e aprirla non
-contatta alcun server. Setup e preferenza di lingua sono salvati in localStorage
+contatta alcun server. La geolocalizzazione e' facoltativa, parte solo se premi "Usa la mia
+posizione" e richiede il permesso del browser: le coordinate restano sul
+dispositivo. Setup e preferenza di lingua sono salvati in localStorage
 sul dispositivo. Nessun dato viene trasmesso all'autore.
 
 Pulsante "Aggiorna all'ultima versione": l'aggiornamento avviene solo se premi
@@ -137,7 +147,8 @@ KEY FEATURES
 ------------------------------------------------------------
 - PIXEL SCALE AND FOV - automatic calculation from diameter, focal length,
   pixel size and sensor resolution
-- BARLOW AND REDUCERS - from 0.5x to 5x, showing effective focal length change
+- BARLOW AND REDUCERS - presets from 0.5x to 5x, or type any exact factor
+  (e.g. 0.75, 1.4, 2.4)
 - PRO MODE - wavelength selection (nm) for Rayleigh limit calculation with
   specific light (Ha, OIII, SII, NIR, etc.)
 - SAMPLING ANALYSIS - Nyquist optimal zones for planetary and deep sky with
@@ -155,8 +166,16 @@ KEY FEATURES
   transfer to calculation fields
 - INPUT WARNINGS - contextual messages when physically unlikely values are
   entered
+- NOW - fills in date, time, timezone and DST from your device clock. No
+  permission required, no network.
+- USE MY POSITION - optional: fills in latitude and longitude through the
+  browser Geolocation API, only if you press the button and grant permission.
+  The coordinates stay on your device.
+- SCREEN SAVER CAN BE SWITCHED OFF - the screen saver (30 s of inactivity) is
+  toggled from the button at the bottom of the page; the choice is remembered
 - SETUP REMEMBERED - diameter, focal length, pixel size, sensor, Barlow, city,
-  timezone, DST and language are kept between sessions
+  coordinates, timezone, DST, language and screen-saver choice are kept between
+  sessions
 - MANUAL UPDATE - the app updates only when you press the button at the bottom
   of the page; a banner then shows what's new in that version
 - 4 LANGUAGES - Italiano, English, Espanol, Russkij
@@ -205,7 +224,9 @@ PRIVACY AND REQUIREMENTS
 GitHub Pages version: on first access GitHub receives the visitor's IP address,
 as with any website. A service worker caches files locally for offline use; from
 then on the app is always served from that cache and opening it contacts no
-server. Setup and language preference are saved in localStorage on the device.
+server. Geolocation is optional, it starts only if you press "Use my position" and it
+requires browser permission: the coordinates stay on your device. Setup and
+language preference are saved in localStorage on the device.
 No data is transmitted to the author.
 
 "Update to the latest version" button: updates happen only when you press the
