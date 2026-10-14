@@ -587,7 +587,7 @@ var TZ=[{l:'UTC-12',o:-12},{l:'UTC-11',o:-11},{l:'UTC-10 Hawaii',o:-10},{l:'UTC-
 var tzSel=g('ov-tz');
 (function(){var _ord=TZ.map(function(t,i){return i;}).sort(function(a,b){return TZ[a].o-TZ[b].o;});_ord.forEach(function(i){var t=TZ[i];var o=document.createElement('option');o.value=i;o.textContent=t.l;if(t.o===1)o.selected=true;tzSel.appendChild(o);});})();
 var cs=g('city-search'),dd=g('city-dd');
-cs.addEventListener('input',function(){var q=this.value.toLowerCase().trim();dd.innerHTML='';if(q.length<2){dd.style.display='none';return;}var m=[];for(var i=0;i<CIT.length;i++){if(CIT[i][0].toLowerCase().indexOf(q)!==-1){m.push(i);if(m.length>=12)break;}}if(!m.length){dd.style.display='none';return;}m.forEach(function(idx){var c=CIT[idx];var it=document.createElement('div');it.className='city-item';it.innerHTML='<span>'+c[0]+'</span><span class="city-gtag">'+GN[c[4]]+'</span>';it.addEventListener('click',function(){cs.value=c[0];g('ov-lat').value=String(c[1]).replace(',','.'); g('ov-lon').value=String(c[2]).replace(',','.');var bi=0,bd=999;TZ.forEach(function(t,i){var d=Math.abs(t.o-c[3]);if(d<bd){bd=d;bi=i;}});tzSel.value=bi;g('city-note').textContent=c[0]+' — lat '+c[1]+', lon '+c[2]+' ('+I[lang].ovApprox+')';dd.style.display='none';});dd.appendChild(it);});dd.style.display='block';});
+cs.addEventListener('input',function(){var q=this.value.toLowerCase().trim();dd.innerHTML='';if(q.length<2){dd.style.display='none';return;}var m=[];for(var i=0;i<CIT.length;i++){if(CIT[i][0].toLowerCase().indexOf(q)!==-1){m.push(i);if(m.length>=12)break;}}if(!m.length){dd.style.display='none';return;}m.forEach(function(idx){var c=CIT[idx];var it=document.createElement('div');it.className='city-item';it.innerHTML='<span>'+c[0]+'</span><span class="city-gtag">'+GN[c[4]]+'</span>';it.addEventListener('click',function(){cs.value=c[0];g('ov-lat').value=String(c[1]).replace(',','.'); g('ov-lon').value=String(c[2]).replace(',','.');var bi=0,bd=999;TZ.forEach(function(t,i){var d=Math.abs(t.o-c[3]);if(d<bd){bd=d;bi=i;}});tzSel.value=bi;g('city-note').textContent=c[0]+' — lat '+c[1]+', lon '+c[2]+' ('+I[lang].ovApprox+')';dd.style.display='none';saveSetup();});dd.appendChild(it);});dd.style.display='block';});
 document.addEventListener('click',function(e){var t=e.target,iW=false;while(t){if(t.className&&typeof t.className==='string'&&t.className.indexOf('search-wrap')!==-1){iW=true;break;}t=t.parentNode;}if(!iW)dd.style.display='none';});
 document.querySelectorAll('.dst-opt').forEach(function(b){b.addEventListener('click',function(){document.querySelectorAll('.dst-opt').forEach(function(x){x.classList.remove('active');});b.classList.add('active');dst=parseInt(b.getAttribute('data-dst'));});});
 var OBJ=[
@@ -885,7 +885,7 @@ g('dms-use-btn')._lat=latDD;g('dms-use-btn')._lon=lonDD;}
 g('dms-use-btn').addEventListener('click',function(){
 if(this._lat!==undefined){g('ov-lat').value=this._lat.toFixed(6);}
 if(this._lon!==undefined){g('ov-lon').value=this._lon.toFixed(6);}
-g('city-note').textContent=I[lang].ovFromConv;});
+g('city-note').textContent=I[lang].ovFromConv;saveSetup();});
 g('clear-btn').addEventListener('click',function(){
 g('city-search').value='';
 g('city-note').textContent='';
@@ -897,7 +897,7 @@ g('ov-minalt').value='15';
 g('ov-results').innerHTML='';
 g('polar-info').innerHTML='<span style="color:var(--text3);font-size:12px" id="polar-empty"></span>';
 g('geo-note').textContent='';
-setPolarEmpty();});
+setPolarEmpty();saveSetup();});
 g('polar-toggle').addEventListener('click',function(){
 var s=g('polar-section');
 var open=s.style.display==='none';
@@ -1191,6 +1191,7 @@ var _csEl=g('city-search');
 if(_csEl)_csEl.addEventListener('change',saveSetup);
 var _tzEl=g('ov-tz');
 if(_tzEl)_tzEl.addEventListener('change',saveSetup);
+['ov-lat','ov-lon'].forEach(function(id){var el=g(id);if(el)el.addEventListener('input',saveSetup);});
 // Salva quando cambia lingua
 document.querySelectorAll('.lang-btn').forEach(function(b){
   b.addEventListener('click',function(){setTimeout(saveSetup,100);});
