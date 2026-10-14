@@ -1032,7 +1032,7 @@ paintSS();}};
 function paintSS(){
 var t=I[lang]||I.en;
 document.querySelectorAll('.ss-toggle').forEach(function(b){
-b.innerHTML='🌙 '+(ssOn?(t.ssOn||'on'):(t.ssOff||'off'));
+b.innerHTML='🌙 '+(t.ssTitle||t.ssLabel||'Screen saver')+'<br>'+(ssOn?(t.ssOn||'on'):(t.ssOff||'off'));b.style.textAlign='center';b.style.lineHeight='1.35';
 b.title=t.ssLabel||'Screen saver';
 b.style.color=ssOn?'var(--text)':'var(--text3)';
 b.style.borderColor=ssOn?'var(--text2)':'var(--border2)';});}
