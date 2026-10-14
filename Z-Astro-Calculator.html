@@ -246,7 +246,7 @@
 </div>
 
 <script>var g=function(id){return document.getElementById(id);};
-var FF=43.2665,WL=550,curWL=550,proOn=false,curF=1,lang=localStorage.getItem('zac_lang')||'en',dst=0;
+var FF=43.2665,WL=550,curWL=550,proOn=false,curF=1,lang=(function(){var L=['it','en','es','ru'],c='';try{c=localStorage.getItem('zac_lang')||'';}catch(e){}if(L.indexOf(c)<0){c=String(navigator.language||'en').slice(0,2).toLowerCase();if(L.indexOf(c)<0)c='en';}return c;})(),dst=0;
 var _ref_CAV={lat:45.6800,lon:10.8300};var _z41='';try{_z41=atob('QW5kcmVhWnVsbG8=');}catch(e){}
 var _cAZ=(function(){try{var _fa=document.getElementById('ftr-az');var _fn=_fa?_fa.textContent.trim():'';return(_z41==='AndreaZullo'&&Math.abs(FF-43.2665)<0.0001&&Math.abs(_ref_CAV.lat-45.68)<0.01&&Math.abs(_ref_CAV.lon-10.83)<0.01&&_fn==='Andrea Zullo')?1:0;}catch(e){return 1;}})();
 var WLP=[{l:'White',nm:550,c:'#ddd'},{l:'Ca-K',nm:393,c:'#93f'},{l:'Hb',nm:486,c:'#48f'},{l:'OIII',nm:501,c:'#2c8'},{l:'Ha',nm:656,c:'#f33'},{l:'SII',nm:672,c:'#f60'},{l:'NIR',nm:850,c:'#700'}];
