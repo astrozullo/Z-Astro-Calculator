@@ -7,7 +7,7 @@ Pixel scale . FOV . Campionamento . Risoluzione lunare
 Offline . File singolo . Installabile come app . Open source
 
 Apri il calcolatore:  https://astrozullo.github.io/Z-Astro-Calculator
-Scarica il file:      https://github.com/astrozullo/Z-Astro-Calculator/releases/latest/download/Z-Astro-Calculator.html
+Scarica il file:      https://astrozullo.github.io/Z-Astro-Calculator
 Changelog:            https://github.com/astrozullo/Z-Astro-Calculator/releases
 
 ============================================================
@@ -86,8 +86,8 @@ campo.
    Su iPhone e iPad: pulsante Condividi -> Aggiungi a Home.
 
 3) SCARICANDO IL FILE SINGOLO
-   1. Scarica Z-Astro-Calculator.html dalla sezione Releases
-      https://github.com/astrozullo/Z-Astro-Calculator/releases
+   1. Apri il sito e tocca «Scarica l’HTML per l’uso offline»
+      https://astrozullo.github.io/Z-Astro-Calculator
    2. Aprilo con qualsiasi browser, con un doppio clic o toccandolo
    Un solo file, nessuna cartella, nessuna installazione. E' la via piu'
    robusta per l'uso in postazione: funziona anche agganciato al WiFi del
@@ -121,8 +121,9 @@ https://astrozullo.github.io/Z-Astro-Calculator/privacy.html
 
 VERSIONI
 ------------------------------------------------------------
-Il changelog di ogni versione sta nella pagina Releases:
+Il changelog delle versioni principali sta nella pagina Releases:
 https://github.com/astrozullo/Z-Astro-Calculator/releases
+Le modifiche minori sono pubblicate direttamente sul sito, senza una nuova release.
 
 LICENZA
 ------------------------------------------------------------
@@ -204,8 +205,8 @@ in the field.
    On iPhone and iPad: Share button -> Add to Home Screen.
 
 3) AS A SINGLE DOWNLOADED FILE
-   1. Download Z-Astro-Calculator.html from the Releases section
-      https://github.com/astrozullo/Z-Astro-Calculator/releases
+   1. Open the website and tap «Download HTML for offline use»
+      https://astrozullo.github.io/Z-Astro-Calculator
    2. Open it with any browser, by double-clicking or tapping it
    One file, no folders, no installation. This is the most robust option at the
    telescope: it works even while connected to the mount's own WiFi, with no
@@ -239,8 +240,9 @@ https://astrozullo.github.io/Z-Astro-Calculator/privacy.html
 
 VERSIONS
 ------------------------------------------------------------
-The changelog for each version lives on the Releases page:
+The changelog for major versions lives on the Releases page:
 https://github.com/astrozullo/Z-Astro-Calculator/releases
+Minor changes are published directly on the website, without a new release.
 
 LICENSE
 ------------------------------------------------------------
