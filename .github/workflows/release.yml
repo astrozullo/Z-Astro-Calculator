@@ -1,0 +1,51 @@
+name: Release
+
+# Publishes a GitHub release automatically when the version in
+# Z-Astro-Calculator.html (RELNOTES ver) has no release yet.
+# Text of the release: release-notes.md (IT + EN). Pushes that do not
+# change the version publish nothing.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'Z-Astro-Calculator.html'
+      - 'release-notes.md'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Read version and check if the release already exists
+        id: ver
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          VER=$(grep -oP "var RELNOTES=\{ver:'\K[0-9]+\.[0-9]+\.[0-9]+" Z-Astro-Calculator.html | head -n1)
+          if [ -z "$VER" ]; then echo "RELNOTES version not found"; exit 1; fi
+          echo "version=$VER" >> "$GITHUB_OUTPUT"
+          if gh release view "v$VER" >/dev/null 2>&1; then
+            echo "Release v$VER already exists, nothing to do"
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+          exit 0
+
+      - name: Create release
+        if: steps.ver.outputs.skip == 'false'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          VER="${{ steps.ver.outputs.version }}"
+          gh release create "v$VER" \
+            --target "${{ github.sha }}" \
+            --title "ZASTROCALCULATOR v$VER" \
+            --notes-file release-notes.md \
+            Z-Astro-Calculator.html README.md README.txt index.html
